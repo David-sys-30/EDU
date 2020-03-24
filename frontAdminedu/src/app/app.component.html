@@ -1,0 +1,123 @@
+<mat-sidenav-container fullscreen  *ngIf="identity">
+  <mat-sidenav [mode]="(screenWidth > 840) ? 'push' : 'side'" opened="screenWidth > 840" #sidenav  class=" col-4  col-md-2" style='height: 100%;'>
+  <div  class='background-blue' style="height: 150px">
+        <ul >
+        <li class="contenedor-img-nav" *ngIf="identity.length != 1" ><img id="imagenAdministrador" src="{{url+ 'getImagen/' + administrador.imagenAdministrador}}" class="img-fluid profile-img-card" ></li>
+
+        <li class="contenedor-img-nav" *ngIf="identity.length == 1"><img id="imagenAdministrador" src="{{url+ 'getImagenPersona/' + administrador.imagenAdministrador}}" class="img-fluid profile-img-card" ></li>
+        
+         <li><h5 class="text-white text-center text-responsive">{{administrador.nombreAdministrador}} {{administrador.apellidopaternoAdministrador}}</h5></li> 
+        </ul>
+  </div>
+      <div class="list-group">
+        <ul class="list-inline list-group-item list-group-item-action pointer " [routerLink]="['/mi-perfil']" >
+          <li class="list-inline-item" style="margin-left: 5%;"><img src="../assets/img/azules/Instructor.png" style="width: 20px" ></li>
+          <li class="list-inline-item text-responsive">Mi Perfil</li>
+        </ul>
+        <ul class="list-inline list-group-item list-group-item-action pointer " [routerLink]="['/verPerfiles']" *ngIf="CrearPerfiles == 1" >
+          <li class="list-inline-item" style="margin-left: 5%;"><img src="../assets/img/azules/Crear perfiles.png" style="width: 20px" ></li>
+          <li class="list-inline-item text-responsive">Perfiles</li>
+        </ul>
+        <ul class="list-inline list-group-item list-group-item-action pointer" [routerLink]="['/catalogos']" *ngIf="VerCatalagos == 1">
+          <li class="list-inline-item" style="margin-left: 5%;"><img src="../assets/img/azules/Correo.png" style="width: 20px"></li>
+          <li class="list-inline-item text-responsive">Catalogos</li>
+        </ul> 
+        <ul class="list-inline list-group-item list-group-item-action pointer" [routerLink]="['/crearCurso']" *ngIf="CrearCursos == 1">
+          <li class="list-inline-item" style="margin-left: 5%;"><img src="../assets/img/azules/Crear cursos.png" style="width: 20px" ></li>
+          <li class="list-inline-item text-responsive">Cursos</li>
+        </ul>
+        <ul class="list-inline list-group-item list-group-item-action pointer" [routerLink]="['/persona']" >
+          <li class="list-inline-item" style="margin-left: 5%;"><img src="../assets/img/azules/Crear persona.png" style="width: 20px" ></li>
+          <li class="list-inline-item text-responsive">Personas</li>
+        </ul> 
+        <ul class="list-inline list-group-item list-group-item-action pointer" [routerLink]="['/asignarperfiles']" >
+          <li class="list-inline-item" style="margin-left: 5%;"><img src="../assets/img/azules/Ver perfiles.png" style="width: 20px" ></li>
+          <li class="list-inline-item text-responsive">Asignar Personas</li>
+        </ul>
+        <ul class="list-inline list-group-item list-group-item-action pointer" [routerLink]="['/misalumnos/'+administrador.idAdministrador]" *ngIf="MisAlumnos == 1">
+          <li class="list-inline-item" style="margin-left: 5%;"><img src="../assets/img/azules/Mis Alumnos.png" style="width: 20px" ></li>
+          <li class="list-inline-item text-responsive">Mis Alumnos</li>
+        </ul>
+        <ul class="list-inline list-group-item list-group-item-action pointer" [routerLink]="['/practicas/'+administrador.idAdministrador]" *ngIf="Practicas == 1">
+          <li class="list-inline-item" style="margin-left: 5%;"><img src="../assets/img/azules/Practicas.png" style="width: 20px" ></li>
+          <li class="list-inline-item text-responsive">Prácticas</li>
+        </ul> 
+        <ul class="list-inline list-group-item list-group-item-action pointer" [routerLink]="['/mensajes/'+administrador.idAdministrador]">
+          <li class="list-inline-item" style="margin-left: 5%;"><img src="../assets/img/azules/Correo.png" style="width: 20px" ></li>
+          <li class="list-inline-item text-responsive">Mensajes</li>
+        </ul>
+        <ul class="list-inline list-group-item list-group-item-action pointer" [routerLink]="['/grupos']">
+          <li class="list-inline-item" style="margin-left: 5%;"><img src="../assets/img/azules/Grupos.png" style="width: 20px" ></li>
+          <li class="list-inline-item text-responsive">Grupos</li>
+        </ul>
+        <ul class="list-inline list-group-item list-group-item-action pointer" [routerLink]="['/cargaBanners']">
+          <li class="list-inline-item" style="margin-left: 5%;"><img src="../assets/img/azules/Crear cursos.png" style="width: 20px" ></li>
+          <li class="list-inline-item text-responsive">Carga Banners</li>
+        </ul>
+         <ul class="list-inline list-group-item list-group-item-action pointer" [routerLink]="['/cambiar-contrasena']">
+          <li class="list-inline-item" style="margin-left: 5%;"><img src="../assets/img/azules/contraseña.png" style="width: 20px" ></li>
+          <li class="list-inline-item text-responsive">Cambiar Contraseñas</li>
+        </ul>
+
+        
+
+
+        
+        
+              
+      </div>      
+  </mat-sidenav>
+  <mat-toolbar class="background-blue text-white" style="width: 100%;
+  position: fixed; z-index: 10;">
+      <span><i class="fa fa-bars" (click)='sidenav.toggle()' style="cursor: pointer;"></i></span>  
+      <span>&nbsp; AppEdu</span>
+
+      <div class="col-md-1 col-auto text-center" *ngIf="identity">
+        <i class="fas fa-bell" style="cursor: pointer; font-size: 25px" matBadgeColor="warn" matBadge="{{notnum}}" [matMenuTriggerFor]="menu" (click)="getNotif(administrador.idAdministrador)"></i>
+        <div class="row" *ngIf='token == true'>
+          Registrado
+        </div>
+        <mat-menu #menu="matMenu" yPosition="below" xPosition="before">
+          <div *ngIf="notnum != 0">
+            <button mat-menu-item *ngFor="let noti of nonotif" (click)="Redirige(noti?.idNotifPersona, noti?.urlNotiPersona)" matTooltip="{{noti?.msgNotifPersona}}">
+              <mat-icon>
+                <i class="fas fa-chevron-right fa-1x" style="color: #007bff"></i>
+              </mat-icon>
+              <!-- {{noti?.fechaNotifPersona |date: "dd/MM/yyyy"}} - -->
+              {{(noti?.msgNotifPersona.length>30)? (noti?.msgNotifPersona | slice:0:30)+'..':(noti?.msgNotifPersona)}}
+            </button>
+            <!-- <button mat-menu-item *ngFor="let noti of notif" style="background-color: rgba(0,0,0,.1);" (click)="Redirige(noti?.urlNotiPersona)" matTooltip="{{noti?.msgNotifPersona}}">
+              <mat-icon><i class="fas fa-chevron-right fa-1x" style="color: #007bff"></i></mat-icon>
+              {{(noti?.msgNotifPersona.length>20)? (noti?.msgNotifPersona | slice:0:20)+'..':(noti?.msgNotifPersona)}}
+            </button> -->
+          </div>
+          <div *ngIf="notnum == 0">
+            <button mat-menu-item>        
+              No tienes nuevas notificaciones.
+            </button>
+          </div>
+        </mat-menu>        
+      </div> 
+
+      <span class="example-fill-remaining-space"></span>
+
+      <app-navbar (cerrarsesion)='logOut($event)'></app-navbar>
+  
+  </mat-toolbar>
+  <router-outlet *ngIf="identity"></router-outlet>
+  
+</mat-sidenav-container>
+
+
+
+
+ 
+
+<div class="background centrar" *ngIf="!identity">
+  
+      <app-login (sendIdentity)='getIdentity($event)'  (sendToken)='getToken($event)' (aparecerRegistro)='ocultar($event)' *ngIf='login'></app-login>
+
+      <app-register *ngIf='registro' (aparecerLogin)='regresaLogin($event)'></app-register>
+      
+  
+</div>

@@ -1,0 +1,160 @@
+<div class="container" style="padding-top: 10vh;">
+  <div class="row">
+    <div class="col-12"><br>
+      <h5 class="azul font-weight-bold nav-icons">Examen</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-9">
+      <h5 class="d-inline azul font-weight-bold nav-icons">Módulo</h5><br>
+      <h5 class="d-inline naranja nav-icons" > {{modulo?.nombreModulo}}</h5>
+      <p class="azul text-responsive" >Duración {{examen?.duracionExamen}} min.</p>
+    </div>
+    <div class="col-3 sticky" id="timer">
+      <h5 class="naranja text-responsive">Tiempo Restante</h5>
+      <mat-progress-bar mode="determinate" value="{{valuetiempo}}"></mat-progress-bar>
+      <h5 class="azul text-responsive" id="countdown"></h5>
+    </div>
+  </div>
+  <div class="row" id="start">
+    <div class="col-12 text-center">
+      <button class="btn carritoCurso mt-md-5 text-responsive" (click)="Iniciar()">Comenzar</button>
+    </div>
+  </div>
+  <div class="row" id="r">
+    <div class="col-12 contpreg">
+      <mat-horizontal-stepper [linear]=false #stepper class="numpreg" style="width: 100%">
+        <ng-template matStepperIcon="edit">
+          <i class="fas fa-check"></i>
+        </ng-template>
+        <mat-step [stepControl]="FormGroup1" *ngFor="let pregunta of preguntas; index as i" [editable]=true>
+<!--           <div class="col-1">
+            <button mat-button matStepperPrevious><span class="fas fa-arrow-circle-left fa-2x azul volver"></span></button>
+          </div>
+          <div class="col-1">
+            <button mat-button matStepperNext><span class="fas fa-arrow-circle-right fa-2x azul avanzar"></span></button>
+          </div> -->
+          <div class="col-10 offset-1">
+            <div class="form-group">
+              <h2 class="mb-3 nav-icons text-center">{{i+1}}. {{pregunta.pregunta.preguntaPreguntaexamen}}</h2>
+              <div class="cont{{i+1}}">
+                  <button class="form-control resp text-responsive" id="resp{{i+1}}_{{f+1}}" value="{{i+1}}" (click)="SeleccionaRespuesta(pregunta.pregunta.idPreguntaexamen, respuesta.idRespuestaexamen,i, pregunta.pregunta.preguntaPreguntaexamen, respuesta.retroRespuestaexamen,respuesta.respuestaRespuestaexamen,respuesta.statusRespuestaexamen);complete()" *ngFor="let respuesta of pregunta.respuestas; index as f">{{letras[f]}}) {{respuesta.respuestaRespuestaexamen}}</button>
+              </div>
+            </div>
+          </div>
+          <form [formGroup]="FormGroup1" class="formreq">
+            <mat-form-field>
+              <input matInput placeholder="Answer" formControlName="firstCtrl{{i+1}}" required>
+            </mat-form-field>
+          </form>
+          <div class="text-center" *ngIf="i == 9">
+              <button class="form-inline m-auto carritoCurso btn text-responsive terminar" (click)="calcular_calificacion()">Terminar</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+  </div>
+  <!--   <div class="row" id="dos">
+    <div class="col-10 offset-1">
+      <div class="form-group">
+        <h2 class="mb-3 nav-icons">2¿Que es una ruta en Node.Js?</h2>
+        <button class="form-control resp text-responsive" id="resp2_1" value="1" (click)="SeleccionaRespuesta2_1()">a) Es el codigo que le da funcionalidad</button>
+        <button class="form-control resp text-responsive" id="resp2_2"  value="2" (click)="SeleccionaRespuesta2_2()">b) Es el codigo que dirige la ruta</button>
+        <button class="form-control resp text-responsive" id="resp2_3" value="3" (click)="SeleccionaRespuesta2_3()">c) Es un parametro de entrada</button>
+        <button class="form-control resp text-responsive" id="resp2_4" value="4" (click)="SeleccionaRespuesta2_4()">d) La respuesta de la funcion</button>
+      </div> -->
+  <!--   <div class="form-row">
+        <button class="form-inline m-auto carritoCurso btn" (click)="RegresarPregunta1()">Regresar</button>
+        <button class="form-inline m-auto carritoCurso btn" (click)="PasarPregunta2()">Siguiente</button>
+      </div> -->
+  <!--     </div>
+  </div>
+  <div class="row" id="tres">
+    <div class="col-10 offset-1">
+      <div class="form-group">
+        <h2 class="mb-3 nav-icons">3¿Que es un modelo en Node.Js?</h2>
+        <button class="form-control resp text-responsive" id="resp3_1" value="1" (click)="SeleccionaRespuesta3_1()">a) Es el codigo que le da funcionalidad</button>
+        <button class="form-control resp text-responsive" id="resp3_2" value="2" (click)="SeleccionaRespuesta3_2()">b) Es el codigo que dirige la ruta</button>
+        <button class="form-control resp text-responsive" id="resp3_3" value="3" (click)="SeleccionaRespuesta3_3()">c)Es la respresentacion de una tabla </button>
+        <button class="form-control resp text-responsive" id="resp3_4" value="4" (click)="SeleccionaRespuesta3_4()">d) La respuesta de la funcion</button>
+      </div> -->
+  <!-- <div class="form-row">
+        <button class="form-inline m-auto carritoCurso btn" (click)="PasarPregunta1()" >Regresar</button>
+        <button class="form-inline m-auto carritoCurso btn" (click)="PasarPregunta3()">Siguiente</button>
+      </div> -->
+  <!--     </div>
+  </div>
+  <div class="row" id="cuatro">
+    <div class="col-10 offset-1">
+      <div class="form-group">
+        <h2 class="mb-3 nav-icons">4¿Que es un api en Node.Js?</h2>
+        <button class="form-control resp text-responsive" id="resp4_1" value="1" (click)="SeleccionaRespuesta4_1()">a) Es el codigo que le da funcionalidad</button>
+        <button class="form-control resp text-responsive" id="resp4_2" value="2" (click)="SeleccionaRespuesta4_2()">b) Es el codigo que dirige la ruta</button>
+        <button class="form-control resp text-responsive" id="resp4_3" value="3" (click)="SeleccionaRespuesta4_3()">c) Es un parametro de entrada</button>
+        <button class="form-control resp text-responsive" id="resp4_4" value="4" (click)="SeleccionaRespuesta4_4()">d) Un metodo el cual consulta el front end</button>
+      </div> -->
+  <!-- <div class="form-row">
+        <button class="form-inline m-auto carritoCurso btn" (click)="PasarPregunta2()" >Regresar</button>
+        <button class="form-inline m-auto carritoCurso btn" (click)="PasarPregunta4()">Siguiente</button>
+      </div> -->
+  <!-- </div>
+  </div> -->
+  <!--   <div class="row" id="cinco">
+    <div class="col-10 offset-1">
+      <div class="form-group">
+        <h2 class="mb-3 nav-icons">5¿Para que se utiliza "import" en Node.Js?</h2>
+        <button class="form-control resp text-responsive" id="resp5_1" value="1" (click)="SeleccionaRespuesta5_1()">a) Para importar una libreria</button>
+        <button class="form-control resp text-responsive" id="resp5_2" value="2" (click)="SeleccionaRespuesta5_2()">b) Es el codigo que dirige la ruta</button>
+        <button class="form-control resp text-responsive" id="resp5_3" value="3" (click)="SeleccionaRespuesta5_3()">c) Es un parametro de entrada</button>
+        <button class="form-control resp text-responsive" id="resp5_4" value="4" (click)="SeleccionaRespuesta5_4()">d) La respuesta de la funcion</button>
+      </div>
+      <div class="form-row"> -->
+  <!-- <button class="form-inline m-auto carritoCurso btn" (click)="PasarPregunta3()">Regresar</button> -->
+  <!--        <button class="form-inline m-auto carritoCurso btn text-responsive" (click)="calcular_calificacion()">Terminar</button>
+      </div>
+    </div>
+  </div> -->
+  <div class="row" id="calificacion">
+    <div class="col-12 text-center">
+      <h1 class="azul font-weight-bold">Resultado</h1>
+    </div>
+    <div class="col-12 text-center">
+      <h4 class="d-inline azul">Aciertos:</h4>
+      <h4 class="d-inline naranja">    {{aciertos}} de {{calificacion}}</h4>
+    </div>
+    <div class="col-12" id="gif" *ngIf="aciertos == 10">
+      
+    </div>
+    <hr>
+    <div class="row">
+                      <div class="col-12 text-center">
+                        <h3 style="color: #1686F5; font-weight: bold;">Comparte tu resultado</h3>
+                        <div class="row">
+                          <div class="col-6 text-right">
+                            <a class="icon-fb" (click)="win.open('https://www.facebook.com/sharer/sharer.php?u=https://www.google.com','sharer','toolbar=0,status=0,width=548,height=325')">
+                              <i class="fab fa-facebook-square shbut fa-2x" style="color: #4267b2; cursor: pointer;"></i>
+                            </a>
+                          </div>
+                          <div class="col-6 text-left">
+                            <a class="icon-tw" (click)="win.open('https://twitter.com/intent/tweet?text= Hey, obtuve '+ aciertos +' de calificación en mi examen Vía @CIHumana&amp; en;url='+locurl,'sharer','toolbar=0,status=0,width=548,height=325')">
+                              <i class="fab fa-twitter shbut fa-2x" style="color: #1da1f2; cursor: pointer;"></i>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+    <hr>
+    <div class="row" *ngFor="let resultado of respuestasUsuario; index as num">
+      
+        <p class="col-12 text-responsive" >{{num+1}} {{resultado.preg}}</p>
+        <p class="col-8 text-responsive"   [class.green]="resultado.status == '1'" [class.red]="resultado.status == '0'" >{{resultado.resp}}</p>
+        <p class="col-3 text-responsive"  [class.green]="resultado.status == '1'" [class.red]="resultado.status == '0'">{{resultado.retro}}</p>
+        
+     <hr class="separador2">
+      
+    </div>
+     <div class="text-center">
+              <button class="form-inline m-auto carritoCurso btn text-responsive terminar" (click)="enviarCalificacion(aciertos)">Terminar</button>
+          </div>
+  </div>
+</div>

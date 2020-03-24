@@ -1,0 +1,77 @@
+<a>Curso:{{nombreCurso}}/Modulos</a><br><br>
+<div class="row">
+	<div class="col-9"></div>
+	<div class="col-3">Evaluación</div>
+</div>
+<div>
+	<div *ngIf='modulos'>
+		<div class="col-12">
+			<div>
+				<div dragula="modulos" [(dragulaModel)]="modulos">
+					<div class="row" *ngFor="let modulo of modulos">
+						<div class="col-5">
+							<mat-card class="example-card">
+								<mat-card-header>
+									<div mat-card-avatar>
+										{{modulo.numeroModulo}}
+									</div>
+									<mat-card-title>
+										{{modulo.nombreModulo}}
+									</mat-card-title>
+									<mat-card-subtitle>
+										Duración: {{modulo.duracionModulo}}HRS
+									</mat-card-subtitle>
+								</mat-card-header>
+								<mat-card-actions>
+									<div class="row">
+										<div class="col-6">
+											<button class="btn cancelar" [routerLink]="['/temas/'+modulo.idModulo+'/'+modulo.nombreModulo+'/'+nombreCurso]">Ver Modulo</button>
+										</div>
+										<div class="col-6">
+											<button class="btn agregar" (click)='editarModulo(modulo.idModulo,modulo.nombreModulo,modulo.numeroModulo,modulo.idCurso_Modulo,modulo.statusModulo,modulo.duracionModulo)'>Editar Modulo</button>
+										</div>
+									</div>
+								</mat-card-actions>
+							</mat-card>
+						</div>
+						<div class="col-4">
+							<div *ngIf = 'valida == false'>
+								<button class="btn btn-primary" (click)='addExamen(modulo.idModulo,modulo.nombreModulo)'>Agregar Examen</button>
+							</div>
+							<div>
+								<div *ngIf='modulo.examen == true'>
+									<div class="row">
+										<div class="col-6">
+											<button class="btn cancelar" (click)='openExamen(modulo.idExamen)'>Ver Examen</button>
+										</div>
+										<div class="col-6">
+											<button class="btn cancelar">Eliminar examen</button>
+										</div>
+										<div class="col-12"><br></div>
+										<div class="col-12">
+											<button class="btn cancelar" [routerLink] = "['/examen-modulo/'+modulo.idExamen+'/'+nombreCurso+'/'+modulo.nombreModulo+'/'+modulo.idModulo]">Editar Examen</button>
+										</div>
+									</div>
+								</div>
+								<div *ngIf='modulo.examen == false'>
+									<button class="btn btn-primary" (click)='addExamen(modulo.idModulo,modulo.nombreModulo)'>Agregar Examen</button>	
+								</div>
+							</div>
+						</div>
+						<div class="col-3">
+							<label>20%</label>
+						</div>
+						<div class="col-12"><br></div>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div *ngIf='modulos == false' class="text-center">
+	<p>No hay Modulos registrados aún</p>
+</div>
+
+<button class="flotante btn btn-success btn-circle btn-xl" (click)="openDialog()">+</button>
+
+

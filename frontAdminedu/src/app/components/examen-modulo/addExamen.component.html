@@ -1,0 +1,21 @@
+<mat-card-title>Nombre del Exámen</mat-card-title>
+<input type="text" class="form-control" #nombre = 'ngModel' [(ngModel)] = 'examen.nombreExamen' name="">
+<br>
+<label>Evaluación</label>
+<ng5-slider [(value)]="value" [options]="options"></ng5-slider>
+<br>
+<label>Duración</label>
+<select id="duracion" class="form-control">
+	<option disabled="" value="">0 min.</option>	
+	<option *ngFor='let duracio of duracion' value="{{duracio}}" [selected]='duracio === examen.duracionExamen'>{{duracio}} min</option>
+	
+</select>
+<br>
+<div class="row text-center">
+	<div class="col-6">
+		<button class="btn cancelar" (click)='onNoClick()'>Cancelar</button>
+	</div>
+	<div class="col-6">
+		<button class="btn agregar" (click) = 'addExamen()'>Guardar</button>
+	</div>
+</div>

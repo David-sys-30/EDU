@@ -1,0 +1,65 @@
+<div class="container paddiging-up">
+  <div class="row">
+    <h4>Calificaciones</h4>
+  </div>
+  <div class="row mt-md-5">
+    <div class="col-md-2 text-center">
+      <img src="{{url+ 'getImageFileUsuario/' + Persona?.imagenUsuario}}" class="img-fluid  profile-img-card">
+    </div>
+    <div class="col-md-2">
+      <h3>{{Persona?.nombreUsuario+' '+ Persona?.apellidopaternoUsuario}}</h3>
+    </div>
+    <!-- <div class="col-md-2 offset-md-4">
+      <h3>Calificación</h3>
+    </div>
+    <div class="col-md-2">
+      <h3>{{promedio2}}</h3>
+    </div> -->
+  </div>
+  <div class="row mt-md-3">
+    <div class="col-md-10 offset-md-1 text-center">
+      <h3>{{nombreTema}}</h3>
+    </div>
+  </div>
+  <hr class="separador mt-md-2">
+  <div class="col-md-10 offset-md-1 mt-md-4 mb-md-4" *ngFor='let tarea of contenido; index as i'>
+    <hr class="separador2">
+    <div class="row">
+      <div class="col-md-4">
+        <h5>{{tarea?.nombreMaterialevalusuario}}</h5>
+      </div>
+      <div class="col-md-2">
+        <a target="_blank" href="{{url+'getDocumentoAlumno/'+tarea?.nombreMaterialevalusuario}}" download><button class="btn cancelar text-responsive">Descargar</button></a>
+      </div>
+      <div class="col-md-2 offset-md-4 text-center">
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <h4>{{tarea?.calificacionMaterialevalusuario}}</h4>
+          </li>
+          <li class="list-inline-item">
+            <i class="fas fa-edit ml-md-2" style="font-size: 1.5vw; cursor: pointer;" (click)=editarCalificacion(tarea?.idMaterialevalusuario,promModulo,numTemas)></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <button id="back" class="flotante btn btn-primary" [routerLink]="['/practicas/'+identity[0].admin.idAdministrador]"><i class="fas fa-chevron-left" style=" font-size: 30px; font-weight: bold; padding-top: 5px; padding-right: 5px"></i></button>
+  <!--   <div class="col-md-10 offset-md-1">
+    <hr class="separador2 mt-md-3">  
+
+    <div class="row mt-md-5">
+      <div class="col-md-12">
+        <h4>Examen</h4>
+      </div>
+    </div>
+    <hr class="separador2">
+    <div class="row">
+      <div class="col-md-6">
+        <h5>{{examen?.examen[0].nombreExamen}}</h5>
+      </div>
+      <div class="col-md-2 offset-md-4 text-center">
+        <h5>{{calificacionExamen}}</h5>
+      </div>
+    </div>
+  </div> -->
+</div>

@@ -1,0 +1,23 @@
+<!-- <div mat-dialog-title>
+	<h1>Iniciar Sesión</h1>
+</div> -->
+<div mat-dialog-content style="padding-top: 100px" *ngIf="statusLink == 1">
+  <form class="col-sm-12" #loginForm='ngForm' (ngSubmit)='cambiarPass()'>
+    <div class="col-12  text-center">
+      <div class="form-group">
+        <input type="text" class="form-control text-responsive" #password='ngModel' name="password" [(ngModel)]='user.contrasenaUsuario' placeholder="Contraseña" required />
+        <span *ngIf="!password.value && password.touched" class="alert-danger text-responsive">
+					La contraseña es obligatoria
+				</span>
+      </div>
+      <div class="form-row">
+        <div class="col-6">
+          <button class="btn btn-primary ">Cambiar</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div mat-dialog-content style="padding-top: 100px" *ngIf="statusLink == 0" class="col-12 text-center">
+	El link ha expirado por favor vuelve a solicitarlo
+</div>

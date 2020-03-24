@@ -1,0 +1,12 @@
+<mat-card-title>Evaluación</mat-card-title>
+<ng5-slider [(value)]="value" [options]="options"></ng5-slider>
+<div class="text-center">
+	<div class="row">
+		<div class="col-6">
+			<button class="btn cancelar" (click)='onNoClick()'>Cancelar</button>
+		</div>
+		<div class="col-6">
+			<button class="btn agregar" (click)='guardar()'>Guardar</button>
+		</div>
+	</div>
+</div>

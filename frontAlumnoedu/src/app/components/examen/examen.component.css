@@ -1,0 +1,23 @@
+.titulo{
+	color: #1686F5;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+.separar{
+	padding-top: 7%;
+}
+
+.nombre{
+	color: #FF9100;
+	font-size: 30px;
+}
+
+.duracion{
+	color: #1686F5;
+	font-size: 25px;
+}
+
+.butt{
+	border-radius: 40px;
+}

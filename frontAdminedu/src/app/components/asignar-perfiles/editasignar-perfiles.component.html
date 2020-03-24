@@ -1,0 +1,51 @@
+<div class="container paddiging-up">
+<div class="row">		
+	<div class="col-sm-12 text-center" *ngIf='persona?.imagenPersona != "default.png"' id="coso">
+			<img id="imagenPersona" src="{{url+ 'getImagenPersona/' +persona?.imagenPersona}}">
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-sm-12 text-center">
+		<h4>{{persona?.nombrePersona + ' ' + persona?.apellidopaternoPersona + ' ' + persona?.apellidomaternoPersona}}</h4>
+	</div>		
+</div>
+<div class="row">
+	<div class="col-sm-12 text-center">
+		<li class="list-inline-item" style="margin-right: 1%;"><img src="../assets/img/azules/Correo.png" style="width: 20px" ></li><label>{{persona?.correoPersona}}</label>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-12 text-center">
+		<li class="list-inline-item" style="margin-right: 1%;"><img src="../assets/img/azules/contraseña.png" style="width: 20px" ></li><label>{{persona?.contrasenaPersona}}</label>
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-sm-6 dos text-center">
+		<p>Cursos</p>
+		<div class="row">
+			<div class="col-sm-12" *ngFor="let cursos of cursos">
+				<div class="curso" (click)="getPerfiles(cursos.idCurso)">
+					<p>{{cursos.nombreCurso}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-6 uno text-center">
+		<p>Perfiles</p>
+		<div class="row">
+			<div class="col-sm-6" *ngFor="let perfil of perfil">
+				<div class="perf">
+					<p>{{perfil.nombrePerfil}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- <div class="row">
+	<div class="col-sm-12 text-center">
+		<button class="btn btn-primary" (click)="enviamePrro()" id="edit">Editar</button>
+	</div>
+</div> -->
+</div>

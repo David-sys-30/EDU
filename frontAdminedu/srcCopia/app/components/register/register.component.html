@@ -1,0 +1,35 @@
+<h1>Registrate</h1>
+<div *ngIf='alertRegister'>
+  <div class="alert alert-info" role="alert">
+    {{alertRegister}}
+  </div>
+</div>
+<form #registerForm = 'ngForm' (ngSubmit)= 'onSubmitRegister()' class="col-md-10" >
+  <p>
+    <label>Nombre:</label>
+    <input type="text" #name = 'ngModel' name="nombre" [(ngModel)] = 'administradorRegistro.nombreAdministrador' class="form-control">
+  </p>
+  <p>
+    <label>Apellido Paterno:</label>
+    <input type="text" #paterno = 'ngModel' name="paterno" [(ngModel)]='administradorRegistro.apellidopaternoAdministrador' class="form-control">
+  </p>
+  <p>
+    <label>Apellido Materno:</label>
+    <input type="text" #materno = 'ngModel' name="materno" [(ngModel)] = 'administradorRegistro.apellidomaternoAdministrador' class="form-control">
+  </p>
+  <p>
+    <label>Correo Electronico:</label>
+    <input type="text" #email = 'ngModel' name="email" [(ngModel)] = 'administradorRegistro.correoAdministrador' class="form-control">
+    
+  </p>
+  <p>
+    <label>Telefono:</label>
+    <input type="text" #telefono = 'ngModel' name="telefono" [(ngModel)] = 'administradorRegistro.telefonoAdministrador' class="form-control">
+  </p>
+  <p>
+    <label>Contraseña:</label>
+    <input type="password" #password = 'ngModel' name="password" [(ngModel)] = 'administradorRegistro.contrasenaAdministrador' class="form-control">
+  </p>
+  <input type="submit" value="Registrate" class="btn btn-primary">
+  <button type="button" class="btn btn-info" (click)="loginAdmin()">Volver</button>
+</form>

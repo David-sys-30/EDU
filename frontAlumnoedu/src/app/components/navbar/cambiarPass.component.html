@@ -1,0 +1,29 @@
+<!-- <div mat-dialog-title>
+	<h1>Iniciar Sesión</h1>
+</div> -->
+<div mat-dialog-content>
+  <div class="col-md-12 text-center azul">
+    Recuperación de Contraseña
+  </div><br>
+  <div class=" col-md-12 text-center azul">
+    Escribe tu correo
+  </div>
+  <form class="col-sm-12" #loginForm='ngForm' (ngSubmit)='onSubmitRegister()'>
+    <div class="col-12  text-center">
+      <div class="form-group ">
+        <input type="text" #email='ngModel' class="form-control text-responsive" placeholder="Correo" name="email" [(ngModel)]='usuarioRegistro.correoUsuario' required>
+        <span *ngIf="!email.valid && email.touched" class="alert-danger text-responsive">
+					El email es obligatorio
+				</span>
+      </div>
+      <div class="form-row">
+        <div class="col-6">
+          <button class="btn btn-primary ">Enviar</button>
+        </div>
+        <div class="col-6">
+          <label class="btn btn-danger " style="cursor: pointer" (click)="onNoClick()">Cancelar</label>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

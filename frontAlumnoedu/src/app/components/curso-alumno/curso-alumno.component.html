@@ -1,0 +1,266 @@
+<div class="container1" style="padding-top: 12vh;">
+	<mat-card class="example-card">
+		<div class="row">
+			<mat-card-header>
+				<div class="col-4">
+					<img width="100%" src="{{url+ 'getImagenCurso/' +curso?.imagenCurso}}" alt="">
+				</div>
+				<div class="col-8">
+					<mat-card-title class='titulo'>{{curso?.nombreCurso}}</mat-card-title>
+					<mat-card-subtitle class='desc'>{{curso?.resumenCurso}}</mat-card-subtitle>
+					<!-- <label class='instructor'>Iram Sosa</label> -->
+					<section class="example-section">
+						<label class='avance'>{{avance}}%</label>
+						<mat-progress-bar class="example-margin" style="width: 75%" [color]="color" [mode]="mode" [value]="avance" [bufferValue]="bufferValue">
+						</mat-progress-bar>
+					</section><br>
+					<ngb-rating [(rate)]="currentRate" [starTemplate]="t" max="5" *ngIf="currentRate == 0"></ngb-rating>
+					<ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" max="5" *ngIf="currentRate != 0"></ngb-rating>
+					<a (click)="evaluarCurso()" *ngIf="currentRate == 0"><button class="btn botonAzul">Enviar</button></a>
+				</div>
+			</mat-card-header>
+		</div>
+	</mat-card>
+</div>
+<div class="containermenu" *ngIf = 'numerito == 0'>
+	<mat-tab-group [selectedIndex]="selectedIndexMenu">
+		<mat-tab label="Descripción"> 
+			<div class="container detalles"><br>
+				<div class="naranja">
+					<a>Acerca de este curso</a>
+				</div>
+				<div class="asxs">
+					<label class="azul cursoContenido">
+						¿Qué aprenderas?
+					</label>
+					<ul>
+						<li *ngFor='let aprendizaje of aprendizajes'>
+							{{aprendizaje.descripcionCategoriaaprendizajeCurso}}
+						</li>
+					</ul>
+				</div>
+				<div>
+					<label class="azul cursoContenido">
+						Requisitos
+					</label>
+					<ul>
+						<li *ngFor='let requisito of requisitos'>
+							{{requisito.descripcionRequisitoCurso}}
+						</li>
+					</ul>
+				</div>
+				<div>
+					<label class="azul cursoContenido">Descripción</label>
+					<p>{{curso?.descripcionCurso}}</p>
+				</div>
+				<div>
+					<label class="azul cursoContenido">¿A quién esta dirigido?</label>
+					<p>{{curso?.dirigidoCurso}}</p>
+				</div>
+			</div>
+		</mat-tab>
+		<mat-tab label="Contenido">
+			<div class="container" id="contenido">
+				<div>
+					<label class="naranja cursoContenido">Contenido</label>
+					<mat-expansion-panel *ngFor='let modulo of modulos; index as i;' class="modulos" hideToggle="true" id="{{modulo.modulo.idModulo}}" [expanded]="step == modulo.modulo.idModulo" (click)='getTemas(modulo.modulo.idModulo);getidMod_idExa(modulo.modulo.idModulo)' #example>
+						<mat-expansion-panel-header>
+							<mat-panel-title class="text-responsive">
+								<div class="col-11">
+									<mat-icon class='float-left' *ngIf="!example.expanded"><i class="fas fa-plus azul" style="font-size: 19px"></i></mat-icon>
+									<mat-icon *ngIf="example.expanded"><i class="fas fa-minus azul" style="font-size: 19px"></i></mat-icon>
+									<label style="padding-left: 7px; padding-top: 4px ; font-size: 16px">{{(modulo?.modulo.nombreModulo.length>100)? (modulo?.modulo.nombreModulo | slice:0:100)+'..':(modulo?.modulo.nombreModulo)}}</label>
+								</div>
+								<div class="col-1">
+									<label class="azul" style="padding-top: 4px ; font-size: 16px">{{evalumods[i].evaluacionEvaluacionmodulo}} %</label>
+								</div>
+							</mat-panel-title>
+
+						</mat-expansion-panel-header>
+						<mat-card class="example-card2 modulos" *ngFor='let tema of modulo.modulo.temas; index as f' (click)="toTema(modulo.modulo.nombreModulo,tema.idTema,tema.nombreTema,tema.descripcionTema,modulo.modulo.numeroModulo, i)" id="visto{{tema.idTema}}">
+							<mat-card-header>
+								<mat-card-title class="azul">{{tema.nombreTema}}</mat-card-title>
+								<mat-card-subtitle class="naranja">{{tema.descripcionTema}}</mat-card-subtitle>
+								<div class="text-right unseen" id="unseen{{tema.idTema}}">
+										<i class="far fa-check-circle"></i>
+								</div>
+								<div class="text-right seen" id="seen{{tema.idTema}}">
+										<i class="fas fa-check-circle"></i>
+								</div>
+							</mat-card-header>
+						</mat-card>		
+					</mat-expansion-panel>
+				</div>
+			</div>
+		</mat-tab>
+		<mat-tab label="Mensajes">
+  			<div class="container" style="padding-top: 12vh;">
+              <div class="row">
+                  <div class="col-md-10 offset-md-1 msj-receptor">
+                      <img  src="{{url+'/getImagenPersona/'+instructor?.imagenPersona}}" alt="" id="profileimage"><label for="profileimage">{{instructor?.nombrePersona + " " + instructor?.apellidopaternoPersona}}</label>
+                  </div>
+              </div>
+    			<div class="row mt-md-1">
+      				<div class="col-md-10 offset-md-1 border-primary form-control" style="height: 400px; overflow: scroll;">
+      					<div *ngFor='let mensaje of mensajes2' [class.right]="mensaje.rolMensaje == 'alumno'" [class.left]="mensaje.rolMensaje == 'instructor'">
+
+      						<p >{{mensaje?.mensaje}}</p>
+      						<p>{{mensaje?.time}}</p>
+      					</div>
+
+      				</div>
+    			</div>
+    			<form method="POST" (ngSubmit)="enviarMensajeAlumno()">
+      			<div class="row mt-md-5">
+			        <div class="col-md-9 offset-1  form-group">
+			          <input type="textarea" style="height: 100px; margin-left: 0 !important;" #name = 'ngModel' [(ngModel)] = 'mensajeModel.mensaje' name="mensaje" class="form-control border-primary">
+			        </div>
+			        <div class="col-md-1 form-group">
+			          <input type="submit" name="" value="enviar" class="btn btn-primary">
+			        </div>
+			     </div>
+			    </form>
+ 			</div>
+		</mat-tab>
+		<mat-tab label="Compañeros">
+  			<div class="container" style="padding-top: 12vh;">
+    			<div class="col-7 col-md-7 alumnitos" *ngFor="let alumno of companero">
+			<mat-card>
+			  <mat-list>
+			    <mat-list-item>
+			    	<img src="{{url+ 'getImageFileUsuario/' +alumno?.alumno[0].imagenUsuario}}" class="img-fluid  profile-img-card ">
+			    	<a href="" class="col-md-6" [routerLink]="['/chatuser/'+ alumno?.alumno[0].idUsuario]+'/'+iduser+'/'+idCursoGlob"><h3 >{{alumno?.alumno[0].nombreUsuario + ' ' + alumno?.alumno[0].apellidopaternoUsuario + ' ' + alumno?.alumno[0].apellidomaternoUsuario}}</h3></a>
+			    </mat-list-item>
+			  </mat-list>
+			</mat-card>
+			<br>
+		</div>
+ 			</div>
+		</mat-tab>
+
+	</mat-tab-group>
+</div>
+<div class="container">
+	<div *ngIf="numerito == 1">
+		<br>
+		<button class="btn botonAzul" (click)="regresar()">Regresar a los Módulos</button>
+		<br>
+		<br>
+		<div class="row">
+			<div class="col-lg-7">
+				<h5 class=" azul">Módulo: {{nombreModulo}}</h5>
+				<p class=" naranja">{{nombreTema}}</p>
+				<p>{{descripcionTema}}</p>
+				<div *ngFor='let contenido of contenidoTema'>
+					<div *ngIf='contenido.idCategoriacontenido_Contenido == 1'>
+						<p class='azul contenido'>{{contenido.nombreContenido}}</p>
+						<iframe [src]="contenido.rutaContenido | safe" frameborder="0" allowfullscreen width="100%" height="200px"></iframe>
+						<hr>
+					</div>
+				</div>
+				<mat-card class='azul '>
+					Documentos
+					<i class="fas fa-file-alt icon"></i>
+
+				</mat-card>
+
+				<br>
+				<div *ngFor='let contenido of contenidoTema'>
+					<div *ngIf='contenido.idCategoriacontenido_Contenido == 2'>
+						<div class="row">
+							<div class="col-8">
+								<mat-card-header>
+									<div mat-card-avatar class="example-header-image"></div>
+									<mat-card-title class="text-responsive">
+									{{contenido.nombreContenido}}</mat-card-title>
+								</mat-card-header>
+							</div>
+							<div class="col-4 col-md-2">
+								<a target="_blank" href="{{url+'getDocumento/'+contenido.rutaContenido}}" download><button class="btn botonAzul text-responsive">Descargar</button></a>
+							</div>
+						</div>
+						<hr>
+					</div>
+				</div>
+				<mat-card class='azul '>
+					Prácticas
+					<i class="fas fa-tasks icon" ></i>
+				</mat-card>
+				<br>
+				<div *ngFor='let contenido of contenidoTema' class="container">
+					<div *ngIf='contenido.idCategoriacontenido_Contenido == 3'>
+						<div class="row">
+							<div class="col-8">
+								<mat-card-header>
+									<div mat-card-avatar class="example-header-image"></div>
+									<mat-card-title class="text-responsive">
+									{{contenido.nombreContenido}}</mat-card-title>
+								</mat-card-header>
+							</div>
+							<div class="col-4 col-md-2">
+								<a target="_blank" href="{{url+'getDocumento/'+contenido.rutaContenido}}" download><button class="btn botonAzul text-responsive">Descargar</button></a>
+							</div>
+							        <div class="row">
+							            <div class="col-12 text-center">
+							              <label class="btn botonAzul">Seleccionar Archivo <input type="file" accept=".pdf, .doc, .docx, .xls|docs/*" placeholder="Seleccionar Archivo..." hidden id="files" (change)='fileChangeEvent($event)'></label><br>
+							              <br>
+							              <output id="list"></output><br>
+							            </div>
+							          </div>
+							<div class="col-4 col-md-2">
+								<a target="_blank"><button class="btn botonAzul text-responsive" (click)="subirArchivos(contenido.idContenido)">Subir</button></a>
+							</div>
+						</div>							
+						<hr>
+					</div>
+				</div>
+				<mat-card class='azul '>
+					Proyectos
+					<i class="fas fa-clipboard-list icon"></i>
+				</mat-card>
+				<br>
+				<div *ngFor='let contenido of contenidoTema'>
+					<div *ngIf='contenido.idCategoriacontenido_Contenido == 4'>
+						<div class="row">
+							<div class="col-8">
+								<mat-card-header>
+									<div mat-card-avatar class="example-header-image"></div>
+									<mat-card-title class="text-responsive">
+									{{contenido.nombreContenido}}</mat-card-title>							
+								</mat-card-header>
+							</div>
+							<div class="col-4 col-md-2">
+								<a target="_blank" href="{{url+'getDocumento/'+contenido.rutaContenido}}" download><button class="btn botonAzul text-responsive">Descargar</button></a>
+							</div>
+							<div class="row">
+							            <div class="col-12 text-center">
+							              <label class="btn botonAzul">Seleccionar Archivo <input type="file" accept=".pdf, .doc, .docx, .xls|docs/*" placeholder="Seleccionar Archivo..." hidden id="files" (change)='fileChangeEvent($event)'></label><br>
+							              <br>
+							              <output id="list"></output><br>
+							            </div>
+							          </div>
+							<div class="col-4 col-md-2">
+								<a target="_blank"><button class="btn botonAzul text-responsive" (click)="subirArchivos(contenido.idContenido)">Subir</button></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-5">
+				<div class="sticky">
+					<p style="color:#FF9100">Temas</p>
+					<span *ngFor='let tema of temas'>
+						<p *ngIf = 'tema.idTema == idTema' class="azul text-left" style="color: #1686F5;">
+							{{tema.nombreTema}}
+						</p>
+						<p style="cursor: pointer; font-style: normal;" class="text-left" *ngIf = 'tema.idTema != idTema' (click)='toTema(nombreModulo,tema.idTema,tema.nombreTema,tema.descripcionTema)'>
+							{{tema.nombreTema}}
+						</p>
+					</span>
+					<button class="btn btn-info" style="background-color: #1686F5" [routerLink]="['/examen/'+idMod_idExa.idMod+'/'+idMod_idExa.idExa+'/'+idUsuarioPersonaCursoGlob]">Examen</button>
+				</div>							
+			</div>
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,58 @@
+<p>
+	Curso: {{nombreCurso}} / Modulo: {{nombreModulo}} / Tema: {{nombreTema}}
+</p>
+<label *ngIf="evaluacion < 10 && evaluacion > 0" style="color: red">
+	Evaluación del Tema: {{evaluacion}}<br>
+	Checa bien tus evaluaciones. Cada Practica y cada proyecto sumados te tienen que dar "10".
+</label>
+<label *ngIf="evaluacion == 10" style="color: green">
+	Evaluación del Tema: {{evaluacion}}
+</label>
+<label *ngIf="evaluacion == 0 || evaluacion == null" style="color: green">
+	Este Tema no tiene Evaluación
+</label>
+<label *ngIf="evaluacion > 10" style="color: red">
+	Evaluación del Tema: {{evaluacion}}<br>
+	La evaluacion no puede exeder de "10"
+</label>
+<mat-tab-group>
+	<mat-tab>
+		<ng-template mat-tab-label>
+			<mat-icon class="example-tab-icon">
+				<i class="fas fa-video"></i>
+			</mat-icon>
+			Video
+		</ng-template>
+		<app-video [idTema]='idTema'></app-video>
+	</mat-tab>
+
+	<mat-tab>
+		<ng-template mat-tab-label>
+			<mat-icon class="example-tab-icon">
+				<i class="fas fa-file"></i>
+			</mat-icon>
+			Documento
+		</ng-template>
+		<app-documento [idTema]='idTema'></app-documento>
+	</mat-tab>
+
+	<mat-tab>
+		<ng-template mat-tab-label>
+			<mat-icon class="example-tab-icon">
+				<i class="fas fa-file-alt"></i>
+			</mat-icon>
+			Práctica
+		</ng-template>
+		<app-practica (cambioEvaluacion)='cambio($event)' [idTema]='idTema'></app-practica>
+	</mat-tab>
+
+	<mat-tab>
+		<ng-template mat-tab-label>
+			<mat-icon class="example-tab-icon">
+				<i class="fas fa-project-diagram"></i>
+			</mat-icon>
+			Proyecto
+		</ng-template>
+		<app-proyecto (cambioEvaluacion)='cambio($event)' [idTema]='idTema'></app-proyecto>
+	</mat-tab>
+</mat-tab-group>

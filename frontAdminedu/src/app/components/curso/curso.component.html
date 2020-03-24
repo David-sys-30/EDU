@@ -1,0 +1,68 @@
+<!-- <input type="text" id="agrega" #prueba = 'ngModel' name="prueba" [(ngModel)] = 'pruebas.prueba' class="form-control"><br>
+<button (click)='add()'>Agregar</button>
+<button (click)='agregar()'>enviar</button>
+
+<div *ngIf='valida'>
+	<div *ngFor="let holo of hola">
+		<span>{{holo.prueba}} <button (click)='elimina(holo)'>X</button></span><br>
+	</div>
+</div> -->
+<div class="container paddiging-up">
+	<br>
+
+	<h3>Cursos</h3>
+	<br>
+<div class="row">
+	<div class="col-12 col-md-6 " *ngFor='let curso of cursos'>
+		<mat-card class="example-card card-margin-top " [class.cursoDesactivado]="curso.statusCurso == 0" >
+			<mat-card-header>
+				<mat-card-title>
+					<div class="row">
+						<div class="col-6">
+							<img src="{{url+'/getImagenCurso/'+curso.imagenCurso}}" style="width: 100%; height: 20vh;">
+						</div>
+						<div class="col-6 text-responsive">
+							{{curso.nombreCurso}}
+							<mat-card-subtitle class="text-responsive">
+								Categoria: {{curso.nombreCategoriacurso}}<br>
+								Subcategoria {{curso.nombreSubcategoriacurso}}
+							</mat-card-subtitle>
+						</div>
+					</div>
+				</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+				<p class="text-responsive">
+					Costo del curso: ${{curso.costoCurso}}
+				</p>
+			</mat-card-content>
+			<hr>
+			<mat-card-actions>
+				<div class="row">
+					<div class="col-4">
+						<button class="btn cancelar"  [routerLink]="['/modulos/'+curso.idCurso+'/'+curso.nombreCurso]" [class.opacitydisabled]="curso.statusCurso == 0">Ver Curso</button>
+					</div>
+					<div class="col-3 ml-md-5" *ngIf="EditarCursoperm == 1">
+						<button class="btn agregar" [routerLink] = "['/editaCurso',curso.idCurso]" [class.opacitydisabled]="curso.statusCurso == 0">Editar Curso</button>
+					</div>
+					<div *ngFor="let evals of evals">
+						<div class="col-3" *ngIf="curso.statusCurso == 0 && ActivarCursoperm == 1 && evals.idCurso == curso.idCurso && evals.suma[0].suma == 100">
+						<button class="btn btn-info"  (click)="ActivarCurso(curso.idCurso)">Activar Curso</button>
+						</div>
+					</div>
+
+					
+					<div class="col-3" *ngIf="curso.statusCurso == 1 && DesactivarCursoperm == 1">
+						<button class="btn btn-info"  (click)="DesactivarCurso(curso.idCurso)">Desactivar Curso</button>
+					</div>
+					
+					
+				</div>
+			</mat-card-actions>
+		</mat-card>
+	</div>
+</div>
+
+<button id="back" class="flotante btn btn-primary" [routerLink]="['/agregarCurso']"><i class="fas fa-plus" style=" font-size: 30px; font-weight: bold; padding-top: 5px; color: white"></i></button>
+
+</div>

@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Modificar Categoria</h1>
+<div mat-dialog-content>  
+    <!-- <input matInput [(ngModel)]="data.animal"> -->
+    <input type="text" #nombreCategoria = 'ngModel' name="nombreCategoria" [(ngModel)]='categorias.nombreCategoria' class="form-control" [class.is-invalid]="!nombreCategoria.valid && nombreCategoria.touched" maxlength="40" required>
+</div>
+<div mat-dialog-actions>
+  <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Agregar</button> -->
+  <div class="row">
+    <div class="col-lg-6">
+      <button class="cancelar btn" (click)="onNoClick()">Cancelar</button>
+    </div>
+    <div class="col-lg-6">
+      <button class="agregar btn" (click)='modificarCategoria()'  [disabled]="!nombreCategoria.valid">Modificar</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,92 @@
+<div class="container paddiging-up">
+<div class="row">
+	<div class="col-sm-12 text-center">
+		<h1>Modificar persona</h1>
+	</div>
+</div>
+<div class="row">		
+	<div class="col-sm-3 text-center">
+		<div *ngIf='catpersona.imagenPersona && catpersona.imagenPersonaa != "default.png"' class="">
+			<img id="imagenPersona" src="{{url+ 'getImagenPersona/' +catpersona.imagenPersona}}" class=" profile-img-card-square">
+		</div>
+			<label class="btn btn-info">
+				Examinar <input type="file" id="files" (change)='fileChangeEvent($event)' hidden>
+			</label>		
+	<output id="list"></output>	
+	</div>
+	<div class="col-sm-9">
+		<form #updateForm = 'ngForm' (ngSubmit)= 'onSubmitRegister()' class="col-sm-12">
+			<div class="form-row">
+				<div class="form-group col-sm-2">							
+					<label >Nombre:</label>
+				</div>
+				<div class="form-group col-sm-10">
+					<input type="text" #nombrePersona = 'ngModel' id="nombre" name="nombrePersona" [(ngModel)] = 'catpersona.nombrePersona' class="form-control col-sm-6" [class.is-invalid]="!nombrePersona.valid && nombrePersona.touched" maxlength="40" required>
+				</div>
+			</div>	
+			<div class="form-row">
+				<div class="form-group col-sm-2">							
+					<label>Apellido Paterno:</label>
+				</div>	
+				<div class="form-group col-sm-10">
+					<input type="text" #apellidopaternoPersona = 'ngModel' name="apellidopaternoPersona" [(ngModel)]='catpersona.apellidopaternoPersona' class="form-control col-sm-6" [class.is-invalid]="!apellidopaternoPersona.valid && apellidopaternoPersona.touched" maxlength="40" required>
+				</div>
+			</div>		
+			<div class="form-row">
+				<div class="form-group col-sm-2">
+					<label>Apellido Materno:</label>							
+				</div>
+				<div class=" form-group col-sm-10">
+					<input type="text" #apellidomaternoPersona = 'ngModel' name="apellidomaternoPersona" [(ngModel)] = 'catpersona.apellidomaternoPersona' class="form-control col-sm-6" [class.is-invalid]="!apellidomaternoPersona.valid && apellidomaternoPersona.touched" maxlength="40" required>		
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-sm-2">
+					<label>Correo Electronico:</label>
+				</div>
+				<div class="form-group col-sm-10">
+					<input type="text" #correoPersona = 'ngModel' name="correoPersona" [(ngModel)] = 'catpersona.correoPersona' class="form-control col-sm-6" [class.is-invalid]="!correoPersona.valid && correoPersona.touched" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-sm-2">
+					<label>Descripción:</label>
+				</div>
+				<div class="form-group col-sm-10">
+					<textarea type="text" #descripcionPersona = 'ngModel' name="descripcionPersona" [(ngModel)] = 'catpersona.descripcionPersona' [class.is-invalid]="!descripcionPersona.valid && descripcionPersona.touched" maxlength="250" class="form-control col-sm-6" required></textarea>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-sm-2">
+					<label>Telefono:</label>
+				</div>
+				<div class="form-group col-sm-10">
+					<input type="text" #telefonoPersona = 'ngModel' name="telefonoPersona" [(ngModel)] = 'catpersona.telefonoPersona' [class.is-invalid]="!telefonoPersona.valid && telefonoPersona.touched" class="form-control col-sm-6" pattern="[0-9]+" minlength="8" maxlength="10" required>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-sm-2">
+					<label>Especialidad:</label>
+				</div>
+				<div class="form-group col-sm-10">
+					<select
+					class="form-control col-sm-6" 
+					[(ngModel)] = 'catpersona.idCatalogoespecialidad_CatalogoespecialidadPersona'
+					#idCatalogoespecialidad_CatalogoespecialidadPersona = 'ngModel' name="idCatalogoespecialidad_CatalogoespecialidadPersona" [class.is-invalid]="!idCatalogoespecialidad_CatalogoespecialidadPersona.valid && idCatalogoespecialidad_CatalogoespecialidadPersona.touched" required>
+						<option *ngFor="let especialidad of especialidad"
+						 [value]="especialidad.idCatalogoespecialidad">{{especialidad.descripcionCatalogoespecialidad}}
+						</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-row">				
+						
+					<button type="submit" class="btn btn-primary offset-2 col-auto" [disabled]="!updateForm.valid && updateForm.touched ">Modificar</button>
+						
+					<button class="btn btn-info offset-2 offset-md-1" [routerLink]='["/persona"]'>Volver</button>
+							
+			</div>
+		</form>
+	</div>		
+</div>	
+</div>

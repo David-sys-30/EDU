@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Editar Modulo</h1>
+<div mat-dialog-content>
+	<label>Nombre Modulo</label>
+	<input type="text" #nombre = 'ngModel' name="nombre" [(ngModel)] = 'modulo.nombreModulo' class="form-control">
+	<br>
+	<p>Duración</p>
+	<input type="text" #nombre = 'ngModel' name="nombre" [(ngModel)] = 'modulo.duracionModulo' class="form-control">
+</div>
+<div mat-dialog-actions>
+	<!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Agregar</button> -->
+	<div class="row">
+		<div class="col-lg-6">
+			<button class="cancelar btn" (click)="onNoClick()">Cancelar</button>
+		</div>
+		<div class="col-lg-6">
+			<button class="agregar btn" (click)="actualizaModulo()">Guardar</button>
+		</div>
+	</div>
+</div>

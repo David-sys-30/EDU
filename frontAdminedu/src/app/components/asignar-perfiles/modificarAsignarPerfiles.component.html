@@ -1,0 +1,57 @@
+<div class="container paddiging-up">	
+	<label>{{personas?.nombrePersona}}</label>
+	<br>
+	<label>Curso Asignado</label>
+	<br>
+	<select [(ngModel)] = 'idPerfilPersonaCurso'
+				#id = 'ngModel' id="selectcurso">
+		<option *ngFor='let curso of cursos' [value]="curso.idCurso" [selected]='curso.idCurso === idCurso2'>
+			{{curso.nombreCurso}}
+		</option>	
+	</select>
+	<br>
+	<label>Perfiles Agregados</label>
+	<div class="row">
+		<div class="col-3" *ngFor="let perfilPersona of perfilesPersona">
+			<li>
+				{{perfilPersona.nombrePerfil}}
+				<span (click)='eliminarBase(perfilPersona.idPersonaPerfil,perfilPersona.idPerfil_PersonaPerfil)'><i class="far fa-times-circle"></i></span>
+			</li>
+		</div>
+	</div>
+
+	<div class="parent">
+		<div>
+			<div class="row">
+				<div class="col-5 prueba text-left">
+					<div class='container2' dragula="Perfil" id="left" [(dragulaModel)]="left">
+						<div *ngFor="let perfil of left" id="{{perfil.idPerfil}}">
+							<label class="form-control">{{perfil.nombrePerfil}}</label>
+						</div>
+					</div>
+				</div>
+				<div class="col-2 text-center">
+					<label><</label><br>
+					<label>></label>
+				</div>
+				<div class="col-5 prueba">
+					<div class='container2' dragula="Perfil" id="right" [(dragulaModel)]="right">
+						<div *ngIf="right.length > 0">
+							<div *ngFor="let perfil of right">
+								<label class="float-right" (click)='eliminaPerfil(perfil)'>
+									<i class="far fa-times-circle"></i>
+								</label>
+								<label class="form-control">{{perfil.nombrePerfil}}</label>
+							</div>
+						</div>
+						<div *ngIf='right.length < 1'>
+							<label>nada</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<button (click)='actualizarCurso()' >Guardar</button>
+</div>
+<!-- (click)='guarda()' -->

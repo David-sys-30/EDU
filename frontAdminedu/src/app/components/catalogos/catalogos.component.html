@@ -1,0 +1,40 @@
+<div class="container paddiging-up">
+	<br>
+
+	<h3>Catálogo</h3>
+	<br>
+
+	<div class="row">
+		<div class="col-12 col-md-6">
+			<mat-card class="example-card">
+				<mat-card-header>
+					<mat-card-title>Categorias</mat-card-title>
+					<mat-card-subtitle *ngIf="VerCategoriasperm == 1"><a [routerLink]="['/categorias']">Ver Categorias</a></mat-card-subtitle>
+				</mat-card-header>
+				
+			</mat-card>
+			<br><br>
+		</div>
+
+		<!-- <div class="col-12 col-md-6">
+			<mat-card class="example-card">
+				<mat-card-header>
+					<mat-card-title>Requisitos</mat-card-title>
+					<mat-card-subtitle><a [routerLink]="['/requisitos']">Ver Requisitos</a></mat-card-subtitle>
+				</mat-card-header>
+
+			</mat-card>
+			<br><br>
+		</div> -->
+
+		<div class="col-12 col-md-6">
+			<mat-card class="example-card">
+				<mat-card-header>
+					<mat-card-title>Especialidades</mat-card-title>
+					<mat-card-subtitle *ngIf="VerEspecialidadesperm == 1"><a [routerLink]="['/especialidades']">Ver Especialidades</a></mat-card-subtitle>
+				</mat-card-header>
+
+			</mat-card>
+		</div>
+	</div>	
+</div>

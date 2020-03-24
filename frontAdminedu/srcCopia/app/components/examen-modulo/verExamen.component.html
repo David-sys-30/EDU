@@ -1,0 +1,17 @@
+<mat-card-title>Examen: {{examen.nombreExamen}}</mat-card-title>
+<mat-card-subtitle>Duración: {{examen.duracionExamen}}</mat-card-subtitle>
+<mat-dialog-content>
+	<div *ngFor='let pregunta of preguntas; let i = index'>
+		<label>{{pregunta.pregunta.preguntaPreguntaexamen}}</label><br>		
+		<ol>
+			<li *ngFor='let respuestas of pregunta.respuestas'>
+				<p *ngIf='respuestas.statusRespuestaexamen == 1' style="color: green">
+					{{respuestas.respuestaRespuestaexamen}}
+				</p>
+				<p *ngIf='respuestas.statusRespuestaexamen == 0' style="color: black">
+					{{respuestas.respuestaRespuestaexamen}}
+				</p>
+			</li>
+		</ol>		
+	</div>
+</mat-dialog-content>

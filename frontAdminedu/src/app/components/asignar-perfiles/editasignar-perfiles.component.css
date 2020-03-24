@@ -1,0 +1,58 @@
+#imagenPersona{
+	border-radius: 50%;
+	width: 150px;
+    height: 150px;
+	margin-top: 2%;
+}
+
+#coso{
+	background-image: url("../../../assets/img/cubos.jpg");
+	margin-top: -1%;
+	height: 170px;
+}
+
+.perf{
+	background-color: #D9D4D4;
+	cursor: pointer;
+	border-radius: 5%;
+}
+
+.curso{
+	cursor: pointer;
+	border-radius: 5%;
+	color: #3D8CDA;
+}
+
+.curso:hover{
+	background-color: #BFD8F8;
+}
+
+.uno{
+	right: 50%;
+}
+
+.dos{
+	left: 50%;
+}
+
+button{
+	visibility: hidden;
+}
+
+@media only screen and (max-width: 600px) {
+	#imagenPersona{
+		margin-top: 4%;
+	}
+
+	#coso{
+		margin-top: -7%;
+	}
+
+	.uno{
+		right: 0;
+	}
+
+	.dos{
+		left: 0;
+	}
+}

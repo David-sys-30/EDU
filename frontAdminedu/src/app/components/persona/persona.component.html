@@ -1,0 +1,29 @@
+<div class="container paddiging-up">
+	<br>
+
+	<h3>Personas</h3>
+	<br>
+	<div class="row">
+		<div class="col-12 col-md-6" *ngFor="let persona of persona">
+			<mat-card [class.personaDesactivada]="persona.statusPersona == 0">
+			  <mat-list>
+			    <mat-list-item>
+			      <img mat-list-avatar src="{{url+ 'getImagenPersona/' +persona.imagenPersona}}" class="img-fluid  profile-img-card">
+			      <h3 mat-line>{{persona.nombrePersona + ' ' + persona.apellidopaternoPersona + ' ' + persona.apellidomaternoPersona}}</h3>
+			      <p mat-line>
+			        <span>{{persona.correoPersona}}</span>
+			      </p>
+			      <a *ngIf="EditarPersonaperm == 1" [routerLink]="['/editPersona/'+persona.idPersona]"><img class="edit" src="http://simpleicon.com/wp-content/uploads/pencil.png"></a>
+			    </mat-list-item>
+			  </mat-list>
+			  <div class="col-12 text-right" *ngIf="persona.statusPersona == 1">
+			  	<button class="btn btn-danger"  (click)="BajaPersona(persona.idPersona)">Dar de baja</button>
+			  </div>
+			  <div class="col-12 text-left" *ngIf="persona.statusPersona == 0">
+			  	<button class="btn btn-info"  (click)="AltaPersona(persona.idPersona)">Dar de alta</button>
+			  </div>
+			</mat-card>
+		</div>
+	</div>
+	<button id="back" class="flotante btn btn-primary" *ngIf="CrearPersonaperm == 1" [routerLink]="['/regPersona']"><i class="fas fa-plus" style=" font-size: 30px; font-weight: bold; padding-top: 5px;"></i></button>
+</div>

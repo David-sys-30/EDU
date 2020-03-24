@@ -1,0 +1,27 @@
+<div class="container paddiging-up">
+	<br>
+
+	<h3>Mensajes</h3>
+	<br>
+	<div class="row">
+		<div class="col-6 col-md-6 cursitos" *ngFor="let curso of cursos">
+			<!-- <mat-card style="height: 140px; cursor: pointer;" (click)="mostrarAlumnos(curso.idCurso)"> -->
+				<mat-card style="height: 140px; cursor: pointer;" class="cursos" (click)="mostrarAlumnos(curso.idCurso)" >
+			      <img mat-avatar src="{{url+ 'getImagenCurso/' + curso.imagenCurso}}" class="img-fluid  profile-img-card" alt="{{curso.imagenCurso}}" width="120px" height="120px" style="float: left; border-radius: 50%; padding-right: 1%">
+			      <h3 mat-line>{{curso.nombreCurso}}</h3>
+			</mat-card>
+		</div>
+				<div style="display:hide"class="col-7 col-md-7 alumnitos" *ngFor="let alumno of alumnosreales">
+			<mat-card>
+			  <mat-list>
+			    <mat-list-item >
+			    	<img src="{{url+ 'getImageFileUsuario/' +alumno?.imagenUsuario}}" class="img-fluid  profile-img-card ">
+			    	<a href="" class="col-md-6" [routerLink]="['/chatinstructor/'+idPersona+'/'+alumno.idUsuario+'/'+idCurso]" ><h3 >{{alumno?.nombreUsuario + ' ' + alumno?.apellidopaternoUsuario + ' ' + alumno?.apellidomaternoUsuario}}</h3></a>
+			    </mat-list-item>
+			  </mat-list>
+			</mat-card>
+			<br>
+		</div>
+		<button id="back" class="flotante btn btn-primary" style="display: none;" (click)="volver()"><i class="fas fa-chevron-left" style=" font-size: 30px; font-weight: bold; padding-top: 5px; padding-right: 5px"></i></button>
+	</div>
+</div>

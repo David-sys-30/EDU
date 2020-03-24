@@ -1,0 +1,9 @@
+@media (max-width: 400px) {
+  .text-responsive{
+    font-size: 3vw;
+  }
+}
+.card-margin-top{
+  margin-bottom: 5%;
+  
+}

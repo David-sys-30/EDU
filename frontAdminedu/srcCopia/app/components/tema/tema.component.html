@@ -1,0 +1,51 @@
+<a>Curso: {{nombreCurso}} / Modulo: {{nombreModulo}} / Tema</a><br><br>
+<div class="row">
+	<div class="col-7"></div>
+	<div class="col-5">Evaluación</div>
+</div>
+<div>
+	<div *ngIf='temas'>
+		<div class="col-12">
+			<div>
+				<div dragula="temas" [(dragulaModel)]="temas">
+					<div class="row" *ngFor="let tema of temas">
+						<div class="col-7">
+							<mat-card class="example-card">
+								<mat-card-header>
+									<div mat-card-avatar>
+										{{tema.numeroTema}}
+									</div>
+									<mat-card-title>
+										{{tema.nombreTema}}
+									</mat-card-title>
+									<mat-card-subtitle>
+										Descripción: {{tema.descripcionTema}}
+									</mat-card-subtitle>
+								</mat-card-header>
+								<mat-card-actions>
+									<div class="row">
+										<div class="col-6">
+											<button class="btn cancelar" [routerLink]="['/contenido/'+tema.idTema+'/'+tema.nombreTema+'/'+nombreModulo+'/'+nombreCurso]">Ver Tema</button>
+										</div>
+										<div class="col-6">
+											<button class="btn agregar" (click)='editarTema(tema.idTema,tema.nombreTema,tema.idModulo_Tema,tema.descripcionTema,tema.numeroTema,tema.statusTema)'>Editar Tema</button>
+										</div>
+									</div>
+								</mat-card-actions>
+							</mat-card>
+						</div>
+						<div class="col-5">
+							<label>20%</label>
+						</div>
+						<div class="col-12"><br></div>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div *ngIf='temas == false' class="text-center">
+	<p>No hay Temas registrados aún</p>
+</div>
+
+<button class="flotante btn btn-success btn-circle btn-xl" (click)="openDialog()">+</button>

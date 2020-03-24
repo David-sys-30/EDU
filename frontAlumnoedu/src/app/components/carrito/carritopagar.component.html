@@ -1,0 +1,63 @@
+<div class="container">
+<div class="row" style="padding-top: 12vh;">
+	<div class="col-12">
+		<div class="float-left carrito">
+			<img src='../../assets/material/icono_carrito.png' class="imgpublicidad">&nbsp;&nbsp;&nbsp;
+			CARRITO / PAGAR
+		</div>
+	</div>
+</div>
+<hr class="separador">
+<div class="row">
+	<div class="col-3 text-center numcursos2">
+		 Tus ArtÍculos ({{numcarrito}})
+	</div>
+</div>
+
+	<div class="row">		
+		<div class="col-lg-7" >
+			<div class="card" *ngFor="let items of items" >
+				<mat-list >			  	
+				    <mat-list-item  style="height: 20vh;">
+				    	<div class="col-md-3 col-12">
+				    		<img class="img-fluid"  src="{{url+ 'getImagenCurso/' +items.curso.imagenCurso}}">
+				    	</div>
+				    	<div class="col-md-6 col-12">
+				    		<h3 class="text-responsive" mat-line>{{items.curso.nombreCurso}}</h3>
+				      <p mat-line>
+				        <span class="text-responsive">{{items.curso.resumenCurso}}</span>
+				      </p>
+				    	</div>
+				      
+				      
+							<div class="col-md-3 col-12">
+									<p class="costo text-responsive">
+										${{items.curso.costoCurso}} MXN
+									</p>
+							</div>	    
+				    </mat-list-item>
+			 	</mat-list>
+			 	<br>
+			 	<mat-divider></mat-divider>
+			</div>	
+		</div>
+		<div class="col-lg-3 col-12 total text-responsive">
+			Total:<br>
+			<p>
+				${{total()}} MXN&nbsp;&nbsp;&nbsp;
+				<!-- <button mat-raised-button class="btn">Realizar Pago
+				</button> -->
+			</p>
+			<!-- <p>
+				<button mat-raised-button class="btn">Agregar Tarjeta
+				</button>
+			</p> -->
+
+		</div>
+		<div class="col-md-2 col-12 pay">
+			<div id="paypal-checkout-btn">
+			</div>
+		</div>
+	</div>
+
+	</div>

@@ -1,0 +1,63 @@
+.cursos:hover {
+	background-color: rgba(0,0,0,0.1);
+}
+
+#coso{
+	background-image: url("../../../assets/img/cubos.jpg");
+	margin-top: -4%;
+	height: 175px;
+}
+
+#imagenUsuario{
+	border-radius: 50%;
+	width: 150px;
+    height: 150px;
+	margin-top: 2%;
+	margin-left: 15%;
+}
+
+.volver{
+	border-radius: 30px;
+	float: right;
+	margin-top: 2%;
+}
+
+.modulos{
+  -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.25);
+-moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.25);
+box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.25);
+border-radius: 10px; 
+cursor: pointer;
+background-color: white;
+}
+
+
+
+.title-blue-bold{
+  font-size: 4vw;
+  color: #1686F5;
+  font-weight: bold;
+}
+.title-blue{
+  font-size: 3em;
+  color: #1686F5;
+  
+}
+.text-orange{
+  font-size: 3vw;
+  color: #FF9100;
+}
+.azul{
+     color: #1686F5;
+   }
+
+   .naranja{
+     color: #FF9100;
+   }
+::ng-deep .mat-progress-bar-fill::after {
+    background-color: #1686F5;
+}
+::ng-deep .mat-progress-bar-buffer {
+    background: #E4E8EB;
+}
+

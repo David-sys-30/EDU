@@ -1,0 +1,126 @@
+.img-container{
+  width:155px;
+  height:155px;
+  overflow:hidden;
+}
+.responsive{
+  width:100%;
+  height:auto
+}
+
+.red{
+	background-color: red;
+}
+
+.item-center{
+	align-items: center;
+	display: flex;
+  justify-content: center;
+}
+.profile-img-card {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+a:link{
+  color: white;
+}
+
+#rowlogin{
+  width: 100%;
+  height: 20vw;
+  float: left;
+}
+
+#loginb1{
+  width: 20%;
+  float: left;
+ height: 20vw;
+  text-align: center;
+margin-left: 25%;
+  
+  
+}
+#loginb1 i{
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 10vw;
+ 
+}
+#loginb1 label{
+  text-align: center;
+  width: 100%;
+  font-size: 2vw;
+  font-weight: bold;
+  color: #fff;
+}
+#loginb2{
+  width: 20%;
+  margin-left: 40%;
+  text-align: center;
+  height: 20vw;
+
+}
+#loginb2 i{
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 10vw;
+   
+}
+
+#loginb2 label{
+  text-align: center;
+  width: 100%;
+  font-size: 2vw;
+  font-weight: bold;
+  color: #fff;
+}
+
+.titulo_login{
+  font-size: 2vw;
+  font-weight: bold;
+  color: #fff;
+
+}
+
+@media (max-width: 400px) {
+  #loginb1{
+  width: 100%;
+  margin-left: 0;
+
+  
+
+  
+  
+}
+  #loginb1 i{
+  font-size: 20vh;
+  margin-left: 10%;
+  
+}
+  #loginb2 i{
+  font-size: 20vh;
+  
+}
+  #loginb2{
+  width: 100%;
+
+  margin-left: 0;
+  margin-top: 20vh;
+  
+  
+}
+#rowlogin{
+  width: 100%;
+  height: 80vh;
+  float: left;
+}
+
+}

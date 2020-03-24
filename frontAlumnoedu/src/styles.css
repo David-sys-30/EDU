@@ -1,0 +1,207 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+/* angular-cli file: src/styles.css */
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+/*.cdk-overlay-pane{
+	margin-top: 55% !important;
+    margin-left: -40% !important;
+    }*/
+
+ .separador{
+  border: 2px solid lightgray;
+}
+.separador2{
+  border: 2px solid lightgray;
+  width: 100%;
+}
+    .mat-menu-item:hover:not([disabled]) {
+     color: #1686F5;
+   }
+
+   .azul{
+     color: #1686F5;
+   }
+
+   .naranja{
+     color: #FF9100;
+   }
+/*.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+  }*/
+
+  .botonAzul{
+    background-color: #1686F5;
+    color: white;
+  } 
+  
+  .botonCurso{
+   border: solid 1px #1686F5;
+   color: #FF9100;
+
+   cursor: pointer;
+
+ }
+ .puntador{
+  cursor:pointer;
+}
+.imgpublicidad{
+  width: 70%;
+  
+}
+.imgpublicidad2{
+  width: 100%;
+  
+}
+
+.yellow{
+  color:  #FFC300 ;
+}
+.gray{
+  color: gray;
+}
+
+.separador{
+  border: 2px solid lightgray;
+}
+.aviso{
+  margin-top: 10%;
+  
+} 
+
+.title-blue-bold{
+  font-size: 4vw;
+  color: #1686F5;
+  font-weight: bold;
+}
+.title-blue{
+  font-size: 3.5vw;
+  color: #1686F5;
+  
+}
+.text-orange{
+  font-size: 3vw;
+  color: #FF9100;
+}
+
+.profile-img-card2 {
+  width: 10vw;
+  height: 10vw;
+  
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+
+
+}
+
+.aviso2{
+  margin-top:7%;
+  text-align: center;
+}
+
+.activeResp{
+  background: #1686F5 !important;
+  color: #fff;
+}
+
+
+
+.carritoCurso{
+  background-color: #1686F5;
+  color: white;
+} 
+
+.profile-img-card {
+  width: 5vw;
+  height: 5vw;
+
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+
+
+}
+.profile-img-card-ad {
+  width: 7vw;
+  height: 7vw;
+
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+
+
+}
+
+.poweredBy{
+  display: none !important;
+  visibility: hidden;
+}
+
+mat-ink-bar.mat-ink-bar {
+ background-color: #FF9100 !important; 
+}
+
+.example-card{
+  height: 60vh;
+}
+.example-card img{
+  width: 100%;
+  height: 200px;
+}
+.example-card mat-card-content{
+  height: 15vh;
+}
+
+.example-card2{
+  height: 80vh;
+}
+.example-card2 img{
+  width: 100%;
+  height: 200px;
+}
+.example-card2 mat-card-content{
+  height: 15vh;
+}
+
+
+
+@media (max-width: 767px) {
+  .text-responsive{
+    font-size: 3vw;
+  }
+
+  .nav-icons{
+    font-size: 5vw;
+  }
+  .profile-img-card {
+    width: 10vw;
+    height: 10vw;
+    margin-top: 2vw;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+
+
+  }
+
+  #cont-btnCursos{
+    display: none;
+  }
+
+  .title-blue{
+  font-size: 7vw;
+  color: #1686F5;
+  
+}
+  
+
+}

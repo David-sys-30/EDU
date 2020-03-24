@@ -1,0 +1,12 @@
+.separador{
+	border: 2px solid rgb(22, 134, 245);
+	width: 100%;
+	margin-top: 0;
+}
+
+.separador2{
+		border: 1px solid rgb(22, 134, 245,.5);
+	width: 100%;
+	margin-top: 0;
+	
+}

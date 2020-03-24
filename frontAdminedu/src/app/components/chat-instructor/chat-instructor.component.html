@@ -1,0 +1,23 @@
+<div class="container" style="padding-top: 12vh;">
+    			<div class="row mt-md-1">
+      				<div class="col-md-10 offset-md-1 border-primary form-control" style="height: 400px; overflow: scroll;">
+      					<div *ngFor='let mensaje of mensajes2' [class.right]="mensaje.rolMensaje == 'instructor'" [class.left]="mensaje.rolMensaje == 'alumno'">
+
+      						<p >{{mensaje?.mensaje}}</p>
+      						<p>{{mensaje?.time}}</p>
+      					</div>
+
+      				</div>
+    			</div>
+    			<form method="POST" (ngSubmit)="enviarMensajeInstructor()">
+      			<div class="row mt-md-5">
+			        <div class="col-md-9 offset-1  form-group">
+			          <input type="textarea" #name = 'ngModel' [(ngModel)] = 'mensajeModel.mensaje' style="height: 100px; margin-left: 0 !important;" id="mensaje" name="mensaje" class="form-control border-primary">
+			        </div>
+			        <div class="col-md-1 form-group">
+			          <input type="submit" name="" value="enviar" class="btn btn-primary">
+			        </div>
+			     </div>
+			    </form>
+          <button id="back" class="flotante btn btn-primary" [routerLink]="['/mensajes/'+idUsuario]"><i class="fas fa-chevron-left" style=" font-size: 30px; font-weight: bold; padding-top: 5px"></i></button>
+ 			</div>

@@ -1,0 +1,65 @@
+.carrito img{
+	width: 15%;
+}
+.carrito{
+	color: #1686F5;
+	font-size: 15pt;
+}
+.separador{
+	margin-top: -1%;
+	border: 2px solid lightgray;
+}
+.card{
+	margin-left: 2%;
+	border:none;
+	margin-bottom: 2%;
+}
+.elim{
+	margin-left: -50%; 
+}
+.mat-list-avatar{
+	border-radius: 0 !important;
+	height: auto !important;
+}
+.btn{
+	background-color: #1686F5;
+	color: white;
+	font-size: 10pt;
+	width: 43%;
+}
+.costo{
+	vertical-align: middle;
+	font-size: 15pt;
+	font-weight: bold;
+	padding-top: 10%;
+}
+.numcursos{
+	font-size: 15pt;
+	color: #FF9100;
+}
+.numcursos2{
+	font-size: 17pt;
+}
+.total p{
+	font-size: 15pt;
+	font-weight: bold;
+}
+
+.titcur{
+	color: #1686F5;
+	font-weight: bold;
+}
+
+@media (max-width: 767px) {
+	.elim{
+		margin-right: 35%;
+		padding-top: 32%;
+	}
+}
+
+@media (max-width: 599px){
+		.mat-card {
+		    padding: inherit;
+		    height: 130px;
+		}
+}

@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Agrega una Categoria</h1>
+<div mat-dialog-content>
+  <p>Nombre de la categoria:</p>
+  
+    <!-- <input matInput [(ngModel)]="data.animal"> -->
+    <input type="text" #nombreCategoriacurso = 'ngModel' name="nombreCategoriacurso" [(ngModel)] = 'categorias.nombreCategoriacurso' [class.is-invalid]="!nombreCategoriacurso.valid && nombreCategoriacurso.touched" class="form-control" required maxlength="40">
+  
+</div>
+<div mat-dialog-actions>
+  <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Agregar</button> -->
+  <div class="row">
+  	<div class="col-lg-6">
+  		<button class="cancelar btn" (click)="onNoClick()">Cancelar</button>
+  	</div>
+  	<div class="col-lg-6">
+  		<button class="agregar btn" (click)="agregarCategoria()" [disabled]="!nombreCategoriacurso.valid">Agregar</button>
+  	</div>
+  </div>
+</div>

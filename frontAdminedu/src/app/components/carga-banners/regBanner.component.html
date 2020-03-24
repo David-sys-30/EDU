@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Registra un nuevo Banner</h1>
+
+<label>Titulo de Banner:</label>
+<input #tituloBanner [(ngModel)]='banner.tituloPublicidad' id="divo" rows="2" class="form-control">
+<label>Descripcion de Banner:</label>
+<input #descripcionBanner [(ngModel)]='banner.descripcionPublicidad' id="divo1" rows="2" class="form-control">
+<br>
+      <label class="btn btn-info">
+        Elegir Imagen <input type="file" id="files" (change)='fileChangeEvent($event)' hidden>
+      </label>
+      <output id="list"></output>
+<div class="row">
+	<div class="col-lg-6">
+		<button class="cancelar btn" (click)="onNoClick()">Cancelar</button>
+	</div>
+	<div class="col-lg-6">
+		<button class="agregar btn" (click)="agregarBanner()">Agregar</button>
+	</div>
+</div>

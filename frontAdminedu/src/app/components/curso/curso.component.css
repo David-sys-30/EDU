@@ -1,0 +1,48 @@
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+ul {
+  list-style: none;
+  padding-left: 0;
+  /*margin-top: 25px;*/
+}
+
+li {
+  border: 1px solid black;
+  display: inline-block;
+  padding: 5px 10px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  text-transform: capitalize;
+}
+
+i{
+	color: red;
+	cursor: pointer
+}
+
+.cursoDesactivado{
+  background: rgb(0, 0, 0, .3);
+}
+
+.opacitydisabled{
+  opacity: .5;
+}
+
+@media (max-width: 400px) {
+  .text-responsive{
+    font-size: 3vw;
+  }
+}
+
+.card-margin-top{
+  margin-bottom: 5%;
+  
+}

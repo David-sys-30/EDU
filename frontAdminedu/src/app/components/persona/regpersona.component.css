@@ -1,0 +1,19 @@
+.red{
+	background-color: red;
+}
+.blue{
+	background-color: blue;
+}
+.green{
+	background-color: green;
+}
+.profile-img-card-square {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 10px;
+    display: block;
+}
+.frm{
+	padding-left: 10%;
+	padding-top: 2%;
+}

@@ -1,0 +1,70 @@
+<div class="row">
+	<div class="col-6">
+		<br>
+		<input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,.xml,.xlsx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" id="custom-input" type="file" (change)="fileChangeListener($event)" ><br><br>
+		<div *ngIf='fileList'>
+			<input #nombre = 'ngModel' [(ngModel)] = "contenido.nombreContenido" type="text" class="form-control" placeholder="Nombre Documento" name="">
+			<br>
+			<label>Evaluación</label>
+			<!-- <div class="text-center">
+				<p [(ngModel)]="value">{{value}}:</p>
+			</div> -->
+			<ng5-slider [(value)]="value" [options]="options"></ng5-slider>
+			<br>
+			<div class="row">
+				<div class="col-6">
+					<button (click) = 'cancelar()' class="btn cancelar">Cancelar</button>
+				</div>
+				<div class="col-6">
+					<button class="btn agregar" (click)='guardarProyecto()'>Guardar</button>
+				</div>	
+			</div>
+		</div>
+	</div>
+	<div class="col-6 text-center" *ngIf='fileList'>
+		<div *ngIf='muestra'>
+			<img src="../../../assets/img/loading5.gif" style="width: 20%">
+		</div>
+		<br>
+		<label>{{nombreProyecto}}</label><br>
+		<label>{{tamano | number:'2.0-2'}}mb</label>
+	</div>
+	<div class="col-12" *ngIf='fileList'>
+		<br>
+		<div class="progress">
+			<div class="progress-bar progress-bar-striped active" role="progressbar">
+
+			</div>
+		</div>
+		<hr>
+	</div>
+</div>
+<mat-card class="example-card">
+	<div *ngFor='let contenido of contenidoProyecto'>
+		<div *ngIf='contenido.idCategoriacontenido_Contenido == 4'>
+			<div class="row">
+				<div class="col-7">
+					<mat-card-header>
+						<div mat-card-avatar class="example-header-image"></div>
+						<mat-card-title>
+						{{contenido.nombreContenido}}</mat-card-title>
+						<mat-card-subtitle>Nombre del archivo: {{contenido.rutaContenido}}</mat-card-subtitle>
+					</mat-card-header>
+					<button class="btn agregar" (click)='openModificar(contenido.idContenido, contenido.idCategoriacontenido_Contenido, contenido.nombreContenido, contenido.idFormatodocumento_Contenido, contenido.rutaContenido, contenido.idTema_Contenido, contenido.statusContenido, contenido.idEvaluacioncontenido, contenido.porcentajeEvaluacioncontenido)'>Modificar</button>
+				</div>
+				<div class="col-3">
+					<label>Evaluación</label><br>
+					<label>{{contenido.porcentajeEvaluacioncontenido}}</label>
+				</div>
+				<div class="col-2">
+					<div class="float-right">
+						<i class="far fa-trash-alt"></i>
+					</div>
+					<br>
+					<a target="_blank" href="{{url+'getDocumento/'+contenido.rutaContenido}}" download><button class="btn cancelar">Descargar</button></a>
+				</div>
+			</div>
+			<hr>
+		</div>
+	</div>
+</mat-card>

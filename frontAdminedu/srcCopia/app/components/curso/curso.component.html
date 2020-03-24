@@ -1,0 +1,51 @@
+<!-- <input type="text" id="agrega" #prueba = 'ngModel' name="prueba" [(ngModel)] = 'pruebas.prueba' class="form-control"><br>
+<button (click)='add()'>Agregar</button>
+<button (click)='agregar()'>enviar</button>
+
+<div *ngIf='valida'>
+	<div *ngFor="let holo of hola">
+		<span>{{holo.prueba}} <button (click)='elimina(holo)'>X</button></span><br>
+	</div>
+</div> -->
+<div class="row">
+	<div class="col-6" *ngFor='let curso of cursos'>
+		<mat-card class="example-card">
+			<mat-card-header>
+				<mat-card-title>
+					<div class="row">
+						<div class="col-6">
+							<img src="{{url+'/getImagenCurso/'+curso.imagenCurso}}" style="width: 100%">
+						</div>
+						<div class="col-6">
+							{{curso.nombreCurso}}
+							<mat-card-subtitle>
+								Categoria: {{curso.nombreCategoriacurso}}<br>
+								Subcategoria {{curso.nombreSubcategoriacurso}}
+							</mat-card-subtitle>
+						</div>
+					</div>
+				</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+				<p>
+					Costo del curso: ${{curso.costoCurso}}
+				</p>
+			</mat-card-content>
+			<hr>
+			<mat-card-actions>
+				<div class="row">
+					<div class="col-6">
+						<button class="btn cancelar" [routerLink]="['/modulos/'+curso.idCurso+'/'+curso.nombreCurso]">Ver Curso</button>
+					</div>
+					<div class="col-6">
+						<button class="btn agregar" [routerLink] = "['/editaCurso',curso.idCurso]">Editar Curso</button>
+					</div>
+				</div>
+			</mat-card-actions>
+		</mat-card>
+	</div>
+</div>
+
+<button class="flotante btn btn-primary btn-circle btn-xl" [routerLink]="['/agregarCurso']">+</button>
+
+

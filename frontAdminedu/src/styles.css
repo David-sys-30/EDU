@@ -1,0 +1,126 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+*{
+  margin: 0;
+  padding: 0;
+}
+.contenedor-img-nav{
+    display: flex;
+    align-items: center;
+    height: 100px;
+}
+.profile-img-card {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 10px !important;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+
+}
+.example-card {
+	max-width: 100%;
+}
+.flotante{
+	display:scroll;
+  position:fixed;
+	bottom: 50px;
+	right: 20px;
+	z-index: 10000;
+	border-radius: 50%;
+	
+	background-color: #1686F5;
+	color: white;
+  width: 65px;
+  height: 65px;
+  
+ 
+}
+
+.flotantesecond{
+  display:scroll;
+  position:fixed;
+  bottom: 125px;
+  right: 20px;
+  z-index: 10000;
+  border-radius: 50%;
+  
+  background-color: #1686F5;
+  color: white;
+  width: 65px;
+  height: 65px;
+  
+ 
+}
+
+
+.azul{
+     color: #1686F5;
+   }
+
+.btn-circle.btn-xl {
+  
+  padding: 1px 1px;
+  line-height: 1.33;
+  border-radius: 35px;
+}
+
+.cancelar{
+	background-color: #1686F5;
+	color: white;
+}
+.agregar{
+	color: white;
+	background-color: #FF9100;
+}
+
+
+
+
+/* in-flight clone */
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+  pointer-events: none;
+}
+/* high-performance display:none; helper */
+.gu-hide {
+  left: -9999px !important;
+}
+/* added to mirrorContainer (default = body) while dragging */
+.gu-unselectable {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+/* added to the source element while its mirror is dragged */
+.gu-transit {
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+}
+
+@media (max-width: 400px) {
+  .text-responsive{
+    font-size: 3vw;
+  }
+}
+
+.card-margin-top{
+  margin-bottom: 5%;
+  
+}
+.paddiging-up{
+  padding-top: 74px;
+}
+
+.pointer{
+  cursor: pointer;
+}

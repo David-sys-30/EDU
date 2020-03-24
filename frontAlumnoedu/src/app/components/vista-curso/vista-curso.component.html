@@ -1,0 +1,141 @@
+<div class="container-fluid" style="padding-top: 12vh;">
+	
+
+<div class="col-md-3 col-sm-12 celular sticky " >
+	<div class="row">
+		<div class="col-7">
+			<img src="{{url+'/getImagenCurso/'+curso?.imagenCurso}}" class="img-fluid" [routerLink]="['/vista-curso/'+curso?.idCurso]" >
+		</div>
+		<div class="col-5">
+			<label class="azul">{{curso?.nombreCurso}}</label>
+			<button class="mr-sm-5 botonCurso" id="btnshow" (click)="getCurso(curso.idCurso, identity.usuario[0].idUsuario)">Añadir al portafolio</button>
+			<button class="mr-sm-5 botonCurso" id="btnhide" [routerLink]="['/carrito']">Ir al portafolio</button>
+			<button class="mr-sm-5 botonCurso" id="btnhide3" [routerLink]="['/mi-perfil/'+identity.usuario[0].idUsuario]">Ir a mis Cursos</button>
+		</div>
+	</div>
+</div>
+<div class="row">
+
+	<div class=" offset-md-1 col-md-7 col-sm-12">
+		<div class="container">
+			<p class="azul titulo">{{curso?.nombreCurso}}</p>
+			<p class="naranja subtitulo">{{curso?.resumenCurso}}</p>
+			<br>
+			<div id='app-wrapper'>
+				<iframe  width="100%" height="345" [src]="curso?.urlpresentacionCurso | safe" frameborder="0" allowfullscreen id="app"></iframe>
+			</div>
+			<div class="asxs">
+				<label class="azul cursoContenido">
+					¿Qué aprenderas?
+				</label>
+				<ul>
+					<li *ngFor='let aprendizaje of aprendizajes'>
+						{{aprendizaje.descripcionCategoriaaprendizajeCurso}}
+					</li>
+				</ul>
+			</div>
+			<div>
+				<label class="azul cursoContenido">
+					Requisitos
+				</label>
+				<ul>
+					<li *ngFor='let requisito of requisitos'>
+						{{requisito.descripcionRequisitoCurso}}
+					</li>
+				</ul>
+			</div>
+			<div>
+				<label class="azul cursoContenido">Descripción</label>
+				<p>{{curso?.descripcionCurso}}</p>
+			</div>
+			<div>
+				<label class="azul cursoContenido">¿A quién esta dirigido?</label>
+				<p>{{curso?.dirigidoCurso}}</p>
+			</div>
+			<div>
+				<label class="naranja cursoContenido">Contenido</label>
+				<mat-expansion-panel *ngFor='let modulo of modulos' class="modulos" hideToggle="true" #example>
+					<mat-expansion-panel-header>
+						<mat-panel-title>
+							<mat-icon class='float-left' *ngIf="!example.expanded"><i class="fas fa-plus azul"></i></mat-icon>
+							<mat-icon *ngIf="example.expanded"><i class="fas fa-minus azul"></i></mat-icon>
+							{{modulo.modulo.nombreModulo}}
+						</mat-panel-title>
+						<i class="fas fa-lock naranja"></i>
+					</mat-expansion-panel-header>
+					<mat-card class="example-card modulos" *ngFor='let tema of modulo.modulo.temas'>
+						<mat-card-header>
+							<mat-card-title>{{tema.nombreTema}}</mat-card-title>
+							<mat-card-subtitle>{{tema.descripcionTema}}</mat-card-subtitle>
+						</mat-card-header>
+					</mat-card>		
+				</mat-expansion-panel>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<h1 class="azul titulo">Instructor</h1>
+				</div>
+				<div class="offset-4 col-4 col-md-12 text-center">
+					<img src="{{url+'/getImagenPersona/'+instructor?.imagenPersona}}" class="img-fluid profile-img-card2 ml-md-5" >
+				</div>
+				<div class="col-12 col-md-12">
+					<div class="col-12 text-center">
+						<h1 class="naranja subtitulo">{{instructor?.nombrePersona + ' '+ instructor?.apellidopaternoPersona}}</h1>
+					</div>
+					<div class="row">
+						<button class="btn botonAzul text-responsive" [routerLink]="['/instructor/'+ instructor?.idPersona]">Ver perfil</button>
+					</div>
+					<div class="row">
+						<p>{{instructor?.descripcionPersona}}</p>
+					</div>
+					<div class="row">
+						<div class="col-4">
+							<ul class="list-inline">
+								<li class="list-inline-item naranja text-responsive">4.3</li>
+								<li class="list-inline-item">
+									<i class="fas fa-star yellow text-responsive"></i>
+									<i class="fas fa-star yellow text-responsive"></i>
+									<i class="fas fa-star yellow text-responsive"></i>
+									<i class="fas fa-star yellow text-responsive"></i>
+									<i class="fas fa-star gray text-responsive"></i>
+								</li>
+							</ul>
+						</div>
+						<div class="col-5 text-center">
+							<ul class="list-inline">
+								<li class="list-inline-item">
+									<i class="fas fa-user-friends azul"></i>
+									<label class="naranja text-responsive" style="margin-left: .5vw;">  1800 alumnos</label>
+								</li>
+							</ul>
+						</div>
+						<div class="col-3 ">
+							<ul class="list-inline">
+								<li class="list-inline-item">
+									<i class="fas fa-atlas azul"></i>
+									<label class="naranja text-responsive" style="margin-left: .5vw;">  5 cursos</label>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-3 col-sm-12 compu">
+		<div class="sticky">
+			<!-- <label class="azul titulo">${{curso?.costoCurso}} MXN</label> -->
+			<img mat-card-image src="{{url+'/getImagenCurso/'+curso?.imagenCurso}}" class="img-fluid puntador" [routerLink]="['/vista-curso/'+curso?.idCurso]" id="imga">
+			
+			<label class="azul">{{curso?.nombreCurso}}</label>
+
+			<button class="mr-sm-5 botonCurso" id="btnshow2" (click)="getCurso(curso.idCurso,this.identity.idUsuario)">Añadir al portafolio</button>
+			<button class="mr-sm-5 botonCurso" id="btnhide2" [routerLink]="['/carrito']">Ir al portafolio</button>
+			<button class="mr-sm-5 botonCurso" id="btnhide4" [routerLink]="['/mi-perfil/'+identity.usuario[0].idUsuario]">Ir a Mis Cursos</button>
+			<!-- <button class="mr-sm-5 botonCurso">Comprar Ahora</button> -->
+		</div>
+	</div>
+	
+</div>
+
+</div>

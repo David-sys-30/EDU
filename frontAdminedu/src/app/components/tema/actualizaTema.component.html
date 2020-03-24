@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Editar Tema</h1>
+<div mat-dialog-content>
+	<label>Nombre Tema</label>
+	<input type="text" #nombreTema = 'ngModel' name="nombreTema" [(ngModel)] = 'temas.nombreTema' class="form-control" [class.is-invalid]="!nombreTema.valid && nombreTema.touched" placeholder="Agrega un nombre al tema" maxlength="40" required="">
+	<br>
+	<p>Descripción</p>
+	<textarea rows="3" type="text" #nombre = 'ngModel' name="nombre" [(ngModel)] = 'temas.descripcionTema' class="form-control"></textarea>
+</div>
+<div mat-dialog-actions>
+	<!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Agregar</button> -->
+	<div class="row">
+		<div class="col-lg-6">
+			<button class="cancelar btn" (click)="onNoClick()">Cancelar</button>
+		</div>
+		<div class="col-lg-6">
+			<button class="agregar btn" [disabled]="!nombreTema.valid" (click)="actualizaTema()">Guardar</button>
+		</div>
+	</div>
+</div>

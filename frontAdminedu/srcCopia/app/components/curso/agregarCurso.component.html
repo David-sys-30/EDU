@@ -1,0 +1,95 @@
+<mat-dialog-content class='hola'>
+	<p mat-dialog-title>Crear curso</p>
+	<div>
+		<div class="container">
+			<div class="row">
+				<div class="col-6">
+					<label>Nombre del Curso</label>
+					<input type="text" #nombreCurso = 'ngModel' [(ngModel)] = 'curso.nombreCurso' name = "nombreCurso" class="form-control">
+				</div>
+				<div class="col-6">
+					<label>Costo del curso</label>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text">$</span>
+						</div>
+						<input type="text" class="form-control" #costo = 'ngModel' [(ngModel)] = 'curso.costoCurso' name="costo">
+					</div>
+				</div>
+				<label>Resumen Curso</label>
+				<textarea rows="3" class="form-control" #resumen = 'ngModel' [(ngModel)] = 'curso.resumenCurso' name="resumen"></textarea>
+				<label>Descripción Curso</label>
+				<textarea rows="7" class="form-control" #descripcion = 'ngModel' [(ngModel)] = 'curso.descripcionCurso' name="descripcion"></textarea>
+				<label>¿A quien esta dirijido este curso?</label>
+				<input type="text" class="form-control" name="dirigido" #dirigido = 'ngModel' [(ngModel)] = 'curso.dirigidoCurso'>
+				<label>Tipo de curso:</label>
+				<select class="form-control" #tipo = 'ngModel' [(ngModel)] = 'curso.idTipocurso_Curso' name = "tipo">
+					<option value="" selected=""></option>
+					<option value="1">Normal</option>
+					<option value="2">Certificación</option> 
+				</select>
+				<label>Categoria:</label>
+				<select id="categoria" (change)='cargaSubcategoria()' class="form-control">
+					<option value="" selected></option>
+					<option *ngFor='let categoria of categorias' value="{{categoria.idCategoriacurso}}">{{categoria.nombreCategoriacurso}}</option>
+				</select>
+				<label>Sub categoria:</label>
+				<select id="subCategoria" class="form-control" #subCategoria = 'ngModel' [(ngModel)] = 'curso.idSubcategoriacurso_Curso' name="subCategoria">
+					<option value="" disabled="" selected></option>
+					<option *ngFor='let subCategoria of subCategorias' value="{{subCategoria.idSubcategoriacurso}}">{{subCategoria.nombreSubcategoriacurso}}</option>
+				</select>
+				<label>Requisitos del curso</label>
+				<div class="col-12"></div>
+				<div class="col-4 input-group mb-3">
+					<input placeholder="Agrega requisitos" (keyup)='$event.keyCode === 13 && [addRequisito()]' type="text" #requisitos = 'ngModel' name="requisito" [(ngModel)] = 'requisitoCurso.descripcionRequisitoCurso' class="form-control">
+					<div class="input-group-append">
+						<button class="btn btn-primary" (click)='addRequisito()'>+</button>
+					</div>
+				</div>
+				<div class="col-8"></div>
+				<div *ngIf='valida1'>
+					<ul>
+						<li *ngFor="let requisito of arrRequisito">
+							<span>{{requisito.descripcionRequisitoCurso}} <i class="far fa-times-circle" (click)='eliminaRequisito(requisito)'></i></span>
+						</li>
+					</ul>
+				</div>
+				<!-- <div class="col-12"></div>
+				<div *ngIf='requisitos'>
+					<section class="example-section">
+						<div *ngFor='let requisito of requisitos'>
+							<mat-checkbox class="example-margin" [(ngModel)]="requisito.checked" (change)='getCheckboxes()'> {{requisito.descripcionRequisito}} </mat-checkbox>
+						</div>
+					</section>
+				</div> -->
+				<!-- <div *ngIf='requisitos == false'>
+					<p>Lo sentimos, no podras agregar este gurso ya que no tiene Requisitos registrados</p>
+				</div> -->
+				<div class="col-12"></div>
+				<label>¿Qué se aprendera en el Curso?</label>
+				<div class="col-12"></div>
+				<div class="col-4 input-group mb-3">
+					<input (keyup)='$event.keyCode === 13 && [addAprendizaje()]' type="text" #aprendizajes = 'ngModel' name="aprendizaje" [(ngModel)] = 'aprendizaje.descripcionCategoriaaprendizajeCurso' class="form-control">
+					<div class="input-group-append">
+						<button class="btn btn-primary" (click)='addAprendizaje()'>+</button>
+					</div>
+				</div>
+				<div class="col-8"></div>
+				<div *ngIf='valida2'>
+					<ul>
+						<li *ngFor="let aprendizaje of arrAprendizaje">
+							<span>{{aprendizaje.descripcionCategoriaaprendizajeCurso}} <i class="far fa-times-circle" (click)='eliminaAprendizaje(aprendizaje)'></i></span>
+						</li>
+					</ul>
+				</div>
+				<div class="col-12">
+					<label>Cambiar Imagen</label><br>
+					<input type="file" placeholder="Sube una imagen..." id="files" (change)='fileChangeEvent($event)'>
+					<output id="list"></output>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<button (click)='agregaCurso()' class="btn agregar">Agregar</button>
+</mat-dialog-content>

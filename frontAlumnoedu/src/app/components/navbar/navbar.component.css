@@ -1,0 +1,231 @@
+.bun{
+  right: 12%;
+}
+.btncu{
+  width: 300%;
+}
+i {
+  color: #1686F5;
+}
+
+.carrito {
+  cursor: pointer;
+}
+
+.logo {
+  width: 7%;
+  cursor: pointer;
+}
+  
+
+
+.buscar {
+
+  border-radius: 8px 8px 8px 8px;
+  -moz-border-radius: 8px 8px 8px 8px;
+  -webkit-border-radius: 8px 8px 8px 8px;
+  border: 1px solid #B2B2B2;
+  height: 30px;
+  width: 50%;
+    left: 28%;
+
+}
+
+.navBar {
+  -webkit-box-shadow: 0px 3px 12px 0px rgba(0, 0, 0, 0.46);
+  -moz-box-shadow: 0px 3px 12px 0px rgba(0, 0, 0, 0.46);
+  box-shadow: 0px 3px 12px 0px rgba(0, 0, 0, 0.46);
+  position: fixed;
+  z-index: 99;
+}
+
+button {
+  background-color: white;
+}
+
+.numcar {
+  margin-left: -210%;
+  z-index: 5;
+  color: red;
+  font-size: 15pt;
+  font-weight: bold;
+}
+
+.zero {
+  padding: 0;
+}
+
+.btn {
+  background-color: #1686F5;
+  color: white;
+  font-size: 15pt;
+  width: 100%;
+  margin-bottom: 5%;
+  border: none;
+}
+
+#olvpass {
+  color: #FF9100;
+}
+
+#termcond {
+  color: #D8D8D8;
+  font-size: 8pt;
+}
+
+#register {
+  color: #1686F5;
+  font-weight: bolder;
+  font-size: 12pt;
+}
+
+#aregister {
+  color: #FF9100;
+  text-decoration: none;
+}
+
+#aolvpass {
+  text-decoration: none;
+}
+
+.imgavatar {
+  width: 30%;
+}
+
+.avat {
+  width: 30%;
+}
+
+
+#icono-buscar {
+  display: none;
+}
+
+#barra-buscar {
+  display: block;
+}
+
+@media (max-width: 767px) {
+
+  .btn {
+    background-color: #1686F5;
+    color: white;
+    font-size: 3vw;
+    width: 100%;
+    margin-bottom: 5%;
+    border: none;
+  }
+
+  #termcond {
+    color: #D8D8D8;
+    font-size: 2vw;
+  }
+
+  #register {
+    color: #1686F5;
+    font-weight: bolder;
+    font-size: 2.4vw;
+  }
+
+  #olvpass {
+    color: #FF9100;
+    font-size: 2vw;
+  }
+
+  #icono-buscar {
+    display: block;
+    cursor: pointer;
+    margin-left: 2%
+  }
+
+  #barra-buscar {
+    display: none;
+  }
+  .logo{
+    width: 20%;
+    cursor: pointer;
+  }
+
+
+
+
+}
+
+/* i{
+	color: #1686F5;
+}
+.carrito{
+	cursor: pointer;
+}
+.logo{
+	width: 10%;
+	cursor: pointer;
+}
+
+.botonCurso{
+	border: solid 1px #1686F5;
+	color: #FF9100;
+	width: 120px;
+	cursor: pointer;
+
+}
+.buscar{
+	width: 550px;
+	height: 40px;
+	border-radius: 8px 8px 8px 8px;
+	-moz-border-radius: 8px 8px 8px 8px;
+	-webkit-border-radius: 8px 8px 8px 8px;
+	border: 1px solid #B2B2B2;
+	padding-left: 20px;
+
+}
+
+.navBar{
+	-webkit-box-shadow: 0px 3px 12px 0px rgba(0,0,0,0.46);
+	-moz-box-shadow: 0px 3px 12px 0px rgba(0,0,0,0.46);
+	box-shadow: 0px 3px 12px 0px rgba(0,0,0,0.46);
+}
+button{
+	background-color: white;
+}
+.numcar{
+	margin-left: -210%;
+	z-index: 5;
+	color: red;
+	font-size: 15pt;
+	font-weight: bold;
+}
+.btn{
+	background-color: #1686F5;
+	color: white;
+	font-size: 15pt;
+	width: 100%;
+	margin-bottom: 5%;
+	border: none;
+}
+#olvpass{
+	color: #FF9100;
+}
+#termcond{
+	color: #D8D8D8;
+	font-size: 8pt;
+}
+#register{
+	color:#1686F5;
+	font-weight: bolder;
+	font-size: 12pt;
+}
+#aregister{
+	color: #FF9100;
+	text-decoration: none;
+}
+#aolvpass{
+	text-decoration: none;
+}
+.imgavatar{
+	width: 30%;
+}
+.avat{
+	width: 30%;
+}
+ */

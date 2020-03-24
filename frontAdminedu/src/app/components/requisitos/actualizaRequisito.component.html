@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Actualizar Requisito</h1>
+<label>Categoria a la que pertenece:</label>
+<select #categoria = 'ngModel' name="idCategoriacurso" [(ngModel)]='requisitos.idCategoria' id="categoria" class="form-control" (change)='cargaSubcategoria()'>
+  <option value="null">
+  <option *ngFor='let categoria of categorias' value="{{categoria.idCategoriacurso}}" [selected]='categoria.idCategoriacurso === requisitos.idCategoria'>{{categoria.nombreCategoriacurso}}
+</select>
+
+<label>Sub Categoria a la que pertenece:</label>
+<select #subCategoria = 'ngModel' name="idSubcategoria" [(ngModel)]='requisitos.idSubcategoriacurso_Requisito' id="subCategoria" class="form-control">
+	<option value="null">
+	<option *ngFor='let subCategoria of subCategorias' value="{{subCategoria.idSubcategoriacurso}}" [selected]='subCategoria.idSubcategoriacurso === requisitos.idSubcategoriacurso_Requisito'>{{subCategoria.nombreSubcategoriacurso}}
+</select><br>
+<label>Descripción requisito</label>
+<textarea #descripcionRequisito name="descripcionRequisito" [(ngModel)]='requisitos.descripcionRequisito' id="divo" rows="2" class="form-control"></textarea>
+<br>
+<div class="row">
+	<div class="col-lg-6">
+		<button class="cancelar btn" (click)="onNoClick()">Cancelar</button>
+	</div>
+	<div class="col-lg-6">
+		<button class="agregar btn" (click)="modificarRequisito()">Modificar</button>
+	</div>
+</div>

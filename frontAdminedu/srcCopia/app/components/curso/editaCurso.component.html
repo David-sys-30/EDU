@@ -1,0 +1,111 @@
+<mat-dialog-content>
+	<p mat-dialog-title>Modificar curso</p>
+	<div>
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<img style="width: 50%" src="{{url+ 'getImagenCurso/'+curso.imagenCurso}}">
+				</div>
+				<div class="col-6">
+					<label>Nombre del Curso</label>
+					<input type="text" #nombreCurso = 'ngModel' [(ngModel)] = 'curso.nombreCurso' name = "nombreCurso" class="form-control">
+				</div>
+				<div class="col-6">
+					<label>Costo del curso</label>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text">$</span>
+						</div>
+						<input type="text" class="form-control" #costo = 'ngModel' [(ngModel)] = 'curso.costoCurso' name="costo">
+					</div>
+				</div>
+				<label>Resumen Curso</label>
+				<textarea rows="3" class="form-control" #resumen = 'ngModel' [(ngModel)] = 'curso.resumenCurso' name="resumen"></textarea>
+				<label>Descripción Curso</label>
+				<textarea rows="7" class="form-control" #descripcion = 'ngModel' [(ngModel)] = 'curso.descripcionCurso' name="descripcion"></textarea>
+				<label>¿A quien esta dirijido este curso?</label>
+				<input type="text" class="form-control" name="dirigido" #dirigido = 'ngModel' [(ngModel)] = 'curso.dirigidoCurso'>
+				<label>Tipo de curso:</label>
+				<select class="form-control" #tipo = 'ngModel' [(ngModel)] = 'curso.idTipocurso_Curso' name = "tipo">
+					<option value="null" disabled=""></option>
+					<option *ngFor='let tipo of tipoCurso' value="{{tipo.valor}}" [selected]='tipo.valor === curso.idTipocurso_Curso'>{{tipo.descripcion}}</option>
+				</select>
+				<label>Categoria a la que pertenece:</label>
+				<select id="categoria" class="form-control" (change)='cargaSubcategoria()'>
+					<option value="null" disabled=""></option>
+					<option *ngFor='let categoria of categorias' value="{{categoria.idCategoriacurso}}" [selected]='categoria.idCategoriacurso === idCategoria.idCategoriacurso'>{{categoria.nombreCategoriacurso}}</option>
+				</select>
+
+				<label>Sub Categoria a la que pertenece:</label>
+				<select #subCategoria = 'ngModel' name="idSubcategoria" [(ngModel)]='curso.idSubcategoriacurso_Curso' id="subCategoria" class="form-control">
+					<option value="null" disabled=""></option>
+					<option *ngFor='let subCategoria of subCategorias' value="{{subCategoria.idSubcategoriacurso}}" [selected]='subCategoria.idSubcategoriacurso === idSubCategoria.idSubcategoriacurso'>{{subCategoria.nombreSubcategoriacurso}}</option>
+				</select><br>
+				<label>Requisitos del curso</label>
+				<div>
+					<label>Requisitos agregados</label>
+					<ul>						
+						<div class="row">
+							<div *ngFor="let requisito of requisitos" class="col-4">
+								<li>
+									<span>{{requisito.descripcionRequisitoCurso}} <i class="far fa-times-circle" (click)='eliminaRequisitoBase(requisito.idRequisitoCurso,requisito.descripcionRequisitoCurso)'></i></span>	
+								</li>
+							</div>
+						</div>						
+					</ul>
+				</div>
+				<div class="col-12"></div>
+				<div class="col-4 input-group mb-3">
+					<input placeholder="Agrega nuevos requisitos" (keyup)='$event.keyCode === 13 && [addRequisito()]' type="text" #addrequisitos = 'ngModel' name="requisito" [(ngModel)] = 'requisitoCurso.descripcionRequisitoCurso' class="form-control">
+					<div class="input-group-append">
+						<button class="btn btn-primary" (click)='addRequisito()'>+</button>
+					</div>
+				</div>
+				<div class="col-8"></div>
+				<div *ngIf='valida1'>
+					<ul>
+						<li *ngFor="let requisito of arrRequisitos">
+							<span>{{requisito.descripcionRequisitoCurso}} <i class="far fa-times-circle" (click)='eliminaRequisito(requisito)'></i></span>
+						</li>
+					</ul>
+				</div>
+				<div class="col-12"></div>
+				<label>¿Qué se aprendera en el Curso?</label>
+				<div>
+					<label>Aprendizajes Registrados</label>
+					<ul>			
+						<div class="row">
+							<div class="col-4" *ngFor="let aprendizaje of aprendizajes">
+								<li>
+									<span>{{aprendizaje.descripcionCategoriaaprendizajeCurso}} <i class="far fa-times-circle" (click)='eliminaAprendizajeBase(aprendizaje.idCategoriaaprendizajeCurso,aprendizaje.descripcionCategoriaaprendizajeCurso)'></i></span>
+								</li>	
+							</div>
+						</div>
+					</ul>
+				</div>
+				<div class="col-12"></div>
+				<div class="col-4 input-group mb-3">
+					<input placeholder="Agrega nuevo aprendizaje" (keyup)='$event.keyCode === 13 && [addAprendizaje()]' type="text" #addAprendizajes = 'ngModel' name="aprendizaje" [(ngModel)] = 'aprendizaje.descripcionCategoriaaprendizajeCurso' class="form-control">
+					<div class="input-group-append">
+						<button class="btn btn-primary" (click)='addAprendizaje()'>+</button>
+					</div>
+				</div>
+				<div class="col-8"></div>
+				<div *ngIf='valida2'>
+					<ul>
+						<li *ngFor="let aprendizaje of arrAprendizaje">
+							<span>{{aprendizaje.descripcionCategoriaaprendizajeCurso}} <i class="far fa-times-circle" (click)='eliminaAprendizaje(aprendizaje)'></i></span>
+						</li>
+					</ul>
+				</div>
+				<div class="col-12">
+					<label>Cambiar Imagen</label><br>
+					<input type="file" placeholder="Sube una imagen..." id="files" (change)='fileChangeEvent($event)'>
+					<output id="list"></output>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<button (click)='editarCurso()' class="btn agregar">Agregar</button>
+</mat-dialog-content>

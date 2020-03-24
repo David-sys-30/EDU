@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Modificar Sub Categoria</h1>
+<div mat-dialog-content>  
+    <!-- <input matInput [(ngModel)]="data.animal"> -->
+    <input type="text" #categoria = 'ngModel' name="nombreSubcategoria" [(ngModel)]='subCategoria.nombreSubcategoriacurso' class="form-control" required>
+</div>
+<div mat-dialog-actions>
+  <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Agregar</button> -->
+  <div class="row">
+    <div class="col-lg-6">
+      <button class="cancelar btn" (click)="onNoClick()">Cancelar</button>
+    </div>
+    <div class="col-lg-6">
+      <button class="agregar btn" (click)='modificarSubcategoria()'>Modificar</button>
+    </div>
+  </div>
+</div>

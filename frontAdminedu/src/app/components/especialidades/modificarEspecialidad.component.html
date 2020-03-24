@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Modificar Especialidad</h1>
+<div mat-dialog-content>  
+    <!-- <input matInput [(ngModel)]="data.animal"> -->
+    <input type="text" #descripcionCatalogoespecialidad = 'ngModel' name="descripcionCatalogoespecialidad" [(ngModel)]='especialidades.descripcionCatalogoespecialidad' class="form-control" [class.is-invalid]="!descripcionCatalogoespecialidad.valid && descripcionCatalogoespecialidad.touched" maxlength="40" required="">
+</div>
+<div mat-dialog-actions>
+  <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Agregar</button> -->
+  <div class="row text-center">
+    <div class="col-6 col-md-6 col-lg-6">
+      <button class="agregar btn" [disabled]="!descripcionCatalogoespecialidad.valid" (click)='modificarCategoria()'>Modificar</button>
+    </div>
+    <div class="col-6 col-md-6 col-lg-6">
+      <button class="cancelar btn" (click)="onNoClick()">Cancelar</button>
+    </div>
+  </div>
+</div>

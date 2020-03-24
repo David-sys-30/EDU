@@ -1,0 +1,123 @@
+<div class="container paddiging-up">
+	<div class="row" style="margin-top: 2%;">
+		<div class="col-6">
+			<label class="btn cancelar">Adjuntar imagen
+				<input type="file" placeholder="Sube una imagen..." id="files" (change)='fileChangeEvent($event)' hidden>
+				
+			</label>
+			<output id="list"></output>
+			
+		</div>
+	</div>
+	<form >
+	<div class="row">
+		<div class="col-12 col-md-6">
+			<label>Nombre del Curso</label>
+			<input type="text" #nombreCurso = 'ngModel' [(ngModel)] = 'curso.nombreCurso' name = "nombreCurso" class="form-control" [class.is-invalid]="!nombreCurso.valid && nombreCurso.touched" placeholder="Ej. Curso basico de programación" maxlength="40" required="">
+		</div>
+		<div class="col-12 col-md-6">
+			<label>Costo del curso</label>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">$</span>
+				</div>
+				<input type="text" class="form-control" #costoCurso = 'ngModel' [(ngModel)] = 'curso.costoCurso' name="costoCurso" [class.is-invalid]="!costoCurso.valid && costoCurso.touched"  pattern="([0-9,]+(.[0-9]{2})?)" placeholder="Ej. 125.85" required="">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<label>Resumen Curso</label>
+			<textarea rows="3" class="form-control" #resumenCurso = 'ngModel' [(ngModel)] = 'curso.resumenCurso' name="resumenCurso" [class.is-invalid]="!resumenCurso.valid && resumenCurso.touched" placeholder=" Ej. En este curso aprenderas los conceptos basicos de programacion" maxlength="250" required=""></textarea>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<label>Descripción Curso</label>
+			<textarea rows="7" class="form-control" #descripcionCurso = 'ngModel' [(ngModel)] = 'curso.descripcionCurso' name="descripcionCurso" [class.is-invalid]="!descripcionCurso.valid && descripcionCurso.touched" placeholder=" Ej. -Algoritmos, Diagrama de flujo, etc ... Todo lo que tendra tu curso" maxlength="250" required=""></textarea>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<label>¿A quien esta dirijido este curso?</label>
+			<input type="text" class="form-control" name="dirigidoCurso" #dirigidoCurso = 'ngModel' [(ngModel)] = 'curso.dirigidoCurso' placeholder="Ej. A cualquier persona que quiera comenzar a programar" maxlength="250" required="">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<label>Tipo de curso:</label>
+			<select class="form-control" #idTipocurso_Curso = 'ngModel' [(ngModel)] = 'curso.idTipocurso_Curso'  name = "idTipocurso_Curso"  >
+				<option value="" disable selected>Selecciona una opcion</option>
+				<option value="1">Normal</option>
+				<option value="2">Certificación</option> 
+			</select>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 col-md-6">
+			<label>Categoria:</label>
+			<select id="categoria" name="categoria" #categoria (change)='cargaSubcategoria()' class="form-control" >
+				<option value="" disabled="" selected>Selecciona una categoria</option>
+				<option *ngFor='let categoria of categorias' value="{{categoria.idCategoriacurso}}">{{categoria.nombreCategoriacurso}}</option>
+			</select>
+		</div>
+		<div class="col-12 col-md-6">
+			<label>Sub categoria:</label>
+			<select id="subCategoria" class="form-control" #subCategoria = 'ngModel' [(ngModel)] = 'curso.idSubcategoriacurso_Curso' name="subCategoria" >
+				<option value="" disabled="" selected>Selecciona una subcategoria</option>
+				<option *ngFor='let subCategoria of subCategorias' value="{{subCategoria.idSubcategoriacurso}}">{{subCategoria.nombreSubcategoriacurso}}</option>
+			</select>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<label>Requisitos del curso</label>
+			<div class="input-group mb-3">
+				<input placeholder="Agrega requisitos" (keyup)='$event.keyCode === 13 && [addRequisito()]' type="text" #requisitos = 'ngModel' name="requisito" [(ngModel)] = 'requisitoCurso.descripcionRequisitoCurso' class="form-control">
+				<div class="input-group-append">
+					<button class="btn btn-primary" (click)='addRequisito()'>+</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div *ngIf='valida1'>
+		<ul>
+			<li *ngFor="let requisito of arrRequisito">
+				<span>{{requisito.descripcionRequisitoCurso}} <i class="far fa-times-circle" (click)='eliminaRequisito(requisito)'></i></span>
+			</li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<label>¿Qué se aprendera en el Curso?</label>		
+			<div class="input-group mb-3">
+				<input (keyup)='$event.keyCode === 13 && [addAprendizaje()]' type="text" #aprendizajes = 'ngModel' name="aprendizaje" [(ngModel)] = 'aprendizaje.descripcionCategoriaaprendizajeCurso' class="form-control" placeholder="Agrega aprendizaje del curso">
+				<div class="input-group-append">
+					<button class="btn btn-primary" (click)='addAprendizaje()'>+</button>
+				</div>
+			</div>
+		</div>
+	</div>		
+	<div *ngIf='valida2'>
+		<ul>
+			<li *ngFor="let aprendizaje of arrAprendizaje">
+				<span>{{aprendizaje.descripcionCategoriaaprendizajeCurso}} <i class="far fa-times-circle" (click)='eliminaAprendizaje(aprendizaje)'></i></span>
+			</li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<label>Url video de  presentación del curso</label>
+			<input type="text" class="form-control" name="url" #url = 'ngModel' [(ngModel)] = 'curso.urlpresentacionCurso' placeholder=" Ej. https://www.youtube.com/embed/2axiYQYJMUU">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 text-right">			
+			<button (click)='agregaCurso()' [disabled]="!nombreCurso.valid" class="btn agregar">Agregar</button>			
+		</div>
+	</div>	</form>
+	
+<button id="back" class="flotante btn btn-primary" [routerLink]="['/crearCurso']"><i class="fas fa-chevron-left" style=" font-size: 30px; font-weight: bold; padding-top: 5px; padding-right: 5px; color: white"></i></button>
+
+
+</div>

@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand"></a>
+    <div class="form-inline">
+      <div class="dropdown" style="float:right;">
+        <button class="dropbtn btn btn-outline-success my-2 my-sm-0">Opciones</button>
+          <div class="dropdown-content">
+            <a [routerLink]='["/mis-datos"]'>Mis datos</a>
+            <a href="#" (click)='logOut()'>Cerrar sesion</a>
+          </div>
+      </div>
+    </div>
+  </nav>
+</div>

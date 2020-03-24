@@ -1,0 +1,52 @@
+<div class="container">
+<div class="row">
+    <div class="col-12 text-center">
+      <a><label class="title-blue-bold">--</label></a>
+    </div>
+  </div>
+</div>
+<!-- <div class="container">
+  <div class="row form-group">
+    <div class="col-12">
+      <label>Buscar por Categoría:</label>
+        <select class="form-control" name="categ" id="cat" (change)="filtra()">
+          <option value="" disabled selected>Elija una categoría</option>
+          <option *ngFor="let curso of cursos"
+           [value]="curso.nombreCategoriacurso">
+           {{curso.nombreCategoriacurso}}
+          </option>
+        </select>
+    </div>
+  </div>
+</div> -->
+<hr>
+    <div class="container" id="all">
+      <div class="row">
+      <div class="col-12 col-md-4 {{curso.nombreCategoriacurso}}{{curso.idCurso}}" *ngFor='let curso of cursos'>
+        <mat-card class="example-card text-center">
+          <img mat-card-image src="{{url+'/getImagenCurso/'+curso.imagenCurso}}" class="img-fluid" [routerLink]="['/vista-curso/'+curso.idCurso]">
+          <mat-card-content>
+            <p class="text-responsive puntador" style="color: #1686F5" [routerLink]="['/vista-curso/'+curso.idCurso]">
+              {{curso.nombreCurso}}
+            </p>
+            <p class="text-responsive puntador" style="color:#FF9100" [routerLink]="['/vista-curso/'+curso.idCurso]">
+              {{curso.resumenCurso}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <div class="row">
+              <div class="col-12 text-right">
+                <button class="btn carritoCurso text-responsive" id="{{curso.idCurso}}" (click)="getCurso(curso.idCurso,identity.idUsuario)" *ngIf="charImg == 'https'">
+                  <i class="fas fa-briefcase nav-item active carrito nav-icons "></i>&nbsp; Agregar
+                </button>
+                <button class="btn carritoCurso text-responsive" id="{{curso.idCurso}}" (click)="getCurso(curso.idCurso,identity.usuario[0].idUsuario)" *ngIf="charImg != 'https'">
+                  <i class="fas fa-briefcase nav-item active carrito nav-icons "></i>&nbsp; Agregar
+                </button>
+              </div>
+            </div>
+          </mat-card-actions>
+        </mat-card>
+        <br>
+      </div>
+    </div>
+    </div>

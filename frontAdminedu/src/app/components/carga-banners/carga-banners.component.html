@@ -1,0 +1,23 @@
+<div class="container paddiging-up">
+  <br>
+  <div class="text-center col-12 azul">
+  	<h3>Carga de Banners</h3>
+  </div>
+  <br>
+  <div class="row">
+    <div *ngFor="let ban of banners" class="col-4 text-center">
+      <mat-card [class.bannerDesactivado]="ban.statusPublicidad == 0">
+        <label>{{ban.tituloPublicidad}}</label>
+        <img src="{{url+ '/getImagenBanner/' +ban.imagenPublicidad}}" class=" profile-img-card-square">
+        <button class="btn btn-info" style="margin-right: 5px" *ngIf="ban.statusPublicidad == 0" (click)="activaBanner(ban.idPublicidad)">Activar</button>
+        <button class="btn btn-danger" *ngIf="ban.statusPublicidad == 1" (click)="desactivaBanner(ban.idPublicidad)">Desactivar</button>
+      </mat-card>
+    </div>
+  </div>
+  <!--       <label class="btn btn-info">
+        Examinar <input type="file" id="files" (change)='fileChangeEvent($event)' hidden>
+      </label> -->
+    <div class="row">
+    <button id="back" class="flotante btn btn-primary" (click)="openDialog()"><i class="fas fa-plus" style=" font-size: 30px; font-weight: bold; padding-top: 5px;"></i></button>
+  </div>
+</div>

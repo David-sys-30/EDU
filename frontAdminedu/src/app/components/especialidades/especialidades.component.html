@@ -1,0 +1,18 @@
+<div class="container paddiging-up">
+	<a>Especialidades</a><br><br>
+	<div class="row">
+		<div class="col-lg-3" *ngFor='let especialidad of especialidades'>
+			<mat-card class="example-card">
+				<mat-card-header>
+					<mat-card-title>{{especialidad.descripcionCatalogoespecialidad}}</mat-card-title>
+				</mat-card-header>
+				<mat-card-actions>
+					<button mat-button (click)= "openModificar(especialidad.idCatalogoespecialidad,especialidad.descripcionCatalogoespecialidad)" class="cancelar" *ngIf="ModificarEspeperm == 1">Modificar</button>
+				</mat-card-actions>
+			</mat-card>
+			<br><br>
+		</div>
+	</div>
+	<button id="back" class="flotantesecond btn btn-primary" (click)="openDialog()" *ngIf="AnadirEspeperm == 1"><i class="fas fa-plus" style=" font-size: 30px; font-weight: bold; padding-top: 5px;"></i></button>
+	<button id="back" class="flotante btn btn-primary" [routerLink]="['/catalogos']"><i class="fas fa-chevron-left" style=" font-size: 30px; font-weight: bold; padding-top: 5px; padding-right: 5px"></i></button>
+</div>

@@ -1,0 +1,19 @@
+<div class="container paddiging-up">
+	<br>
+
+	<h3>Asignar Personas</h3>
+	<br>
+	<div class="row">
+		<div class="col-12 col-md-6" *ngFor="let persona of persona">
+			<mat-card>
+			  <mat-list>
+			    <mat-list-item class="row">
+			      <img mat-list-avatar src="{{url+ 'getImagenPersona/' +persona.imagenPersona}}">
+			      <a href="" mat-list [routerLink]="['/editasignarperf/'+persona.idPersona]" id="texto"><h4 mat-line>{{persona.nombrePersona + ' ' + persona.apellidopaternoPersona + ' ' + persona.apellidomaternoPersona}}</h4></a>
+			    </mat-list-item>
+			  </mat-list>
+			</mat-card>
+		</div>
+	</div>
+	<button id="back" class="flotante btn btn-primary" [routerLink]="['/registra-perfil-persona']"><i class="fas fa-plus" style=" font-size: 30px; font-weight: bold; padding-top: 5px;"></i></button>
+</div>

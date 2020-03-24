@@ -1,0 +1,93 @@
+<nav class="navbar navbar-expand-md bg-white  col-12 navBar" style="width: 100%;height: 70px;">
+  <img class="logo " src="../assets/image/logoEdu.png" [routerLink]="['']" >
+  <div class="col-auto text-left " id="icono-buscar">
+    <i class="fas fa-search fa-2x nav-icons text-left" [matMenuTriggerFor]="search"></i>
+    <mat-menu #search="matMenu">
+      <input class="buscar" type="text" placeholder="Search" matInput [formControl]="myControl" [matAutocomplete]="auto" mat-menu-item>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let curso of filteredOptions | async" [value]="curso.nombreCurso">
+          <div (click)='getCursos()' [routerLink]="['/vista-curso/'+ curso.idCurso]">
+            <img class="example-option-img" aria-hidden src="{{url+'/getImagenCurso/'+curso.imagenCurso}}" height="25">
+            <span> {{curso.nombreCurso}}</span>
+          </div>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-menu>
+  </div>
+  <div class="col-md-7 text-center" id="barra-buscar">
+    <input class="buscar col-8" type="text" placeholder="Buscar" matInput [formControl]="myControl" [matAutocomplete]="auto" mat-menu-item>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let curso of filteredOptions | async" [value]="curso.nombreCurso">
+          <div (click)='getCursos(curso.idCurso)'>
+            <span><i class="fas fa-search" style="color: gray"></i> {{curso.nombreCurso}}</span>
+          </div>
+        </mat-option>
+      </mat-autocomplete>
+  </div>
+  <div class="col-1 text-center bun" id="cont-btnCursos">
+    <a >
+      <button  class="botonCurso nav-item active text-responsive btncu" [routerLink]="['/cursos']">Cursos</button>
+    </a>
+  </div>
+  <div class="col-md-1 col-auto text-center">
+    <i class="fas fa-briefcase nav-item active carrito fa-2x nav-icons " [routerLink]="['/carrito']"  matBadge="{{numcarrito}}" matBadgeColor="warn"></i>
+    <div class="row" *ngIf='token == true'>
+      Registrado
+    </div>
+  </div>
+  <div class="col-md-1 col-auto text-center" *ngIf="identity">
+    <i class="fas fa-bell nav-item active carrito fa-2x nav-icons" matBadgeColor="warn" matBadge="{{notnum}}" [matMenuTriggerFor]="menu" (click)="getNotif(identity.usuario[0].idUsuario)"></i>
+    <div class="row" *ngIf='token == true'>
+      Registrado
+    </div>
+    <mat-menu #menu="matMenu" yPosition="below" xPosition="before">
+      <div *ngIf="notnum != 0">
+        <button mat-menu-item *ngFor="let noti of nonotif" (click)="Redirige(noti?.idNotifUsuario, noti?.urlNotiUsuario)" matTooltip="{{noti?.msgNotifUsuario}}">
+          <mat-icon>
+            <i class="fas fa-chevron-right active carrito fa-1x nav-icons"></i>
+          </mat-icon>
+          {{(noti?.msgNotifUsuario.length>20)? (noti?.msgNotifUsuario | slice:0:20)+'..':(noti?.msgNotifUsuario)}}
+        </button>
+        <!-- <button mat-menu-item *ngFor="let noti of notif" style="background-color: rgba(0,0,0,.1);" (click)="Redirige(noti?.idNotifUsuario, noti?.urlNotiUsuario)" matTooltip="{{noti?.msgNotifUsuario}}">
+          <mat-icon><i class="fas fa-chevron-right active carrito fa-1x nav-icons"></i></mat-icon>
+          {{(noti?.msgNotifUsuario.length>20)? (noti?.msgNotifUsuario | slice:0:20)+'..':(noti?.msgNotifUsuario)}}
+        </button> -->
+      </div>
+      <div *ngIf="notnum == 0">
+        <button mat-menu-item>
+          No tienes nuevas notificaciones.
+        </button>
+      </div>
+    </mat-menu>
+  </div>
+  <div class="col-md-2 col-auto" *ngIf="!identity">
+    <button  class=" botonCurso nav-item active text-responsive" (click)='inicia()'>Iniciar Sesión</button>
+  </div>
+  
+  <div class="col-md-1 col-auto" *ngIf="identity">
+    <img  src="{{identity.usuario[0].imagenUsuario}}" class="img-fluid profile-img-card" [matMenuTriggerFor]="menu" id="imagenUsuarionav" *ngIf="charImg == 'https'" style="cursor: pointer;">
+
+        <img src="{{url+ '/getImageFileUsuario/' +identity.usuario[0].imagenUsuario}}"class="img-fluid profile-img-card" [matMenuTriggerFor]="menu" id="imagenUsuarionav" *ngIf="charImg != 'https'" style="cursor: pointer;">
+    
+
+
+    <!-- <img src="{{url+ '/getImageFileUsuario/' + identity.usuario[0].imagenUsuario}}" class="img-fluid profile-img-card" [matMenuTriggerFor]="menu"> -->
+            <mat-menu #menu="matMenu" yPosition="below" xPosition="before">
+              <button mat-menu-item [routerLink]="['/mi-perfil/'+identity.usuario[0].idUsuario]" *ngIf="charImg == 'https'">
+                Mi Perfil
+              </button>
+               <button mat-menu-item [routerLink]="['/mi-perfil/'+identity.usuario[0].idUsuario]" *ngIf="charImg != 'https'">
+                Mi Perfil
+              </button>
+              <button mat-menu-item>
+                Ayuda
+              </button>
+              <button mat-menu-item [routerLink]="['/agenda']">
+                Agenda
+              </button>
+              <button mat-menu-item (click)='logOut(null)'>
+                Cerrar Sesión
+              </button>
+            </mat-menu>
+  </div>
+</nav>

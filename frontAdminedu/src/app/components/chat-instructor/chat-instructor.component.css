@@ -1,0 +1,11 @@
+.right{
+	
+	background: rgb(255, 145, 0, .5);
+	max-width: 60%;
+	margin-left: 40%;
+}
+.left{
+	background: rgb(22, 134, 245,.5);
+	max-width: 60%;
+	
+}

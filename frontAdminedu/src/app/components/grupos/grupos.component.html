@@ -1,0 +1,17 @@
+<div class="container paddiging-up">
+  <br>
+
+  <h3>Grupos</h3>
+  <br>
+
+  <div class="text-center" *ngFor="let grupo of grupos">
+      <mat-card style="cursor: pointer;" class="cursos" [routerLink]="['/grupo/'+grupo.idGrupo]">
+        <h4 mat-line>{{grupo?.nombreGrupo}}</h4>
+      </mat-card>
+      <hr>
+   </div>
+
+  <div class="row">
+    <button id="back" class="flotante btn btn-primary" (click)="openDialog()"><i class="fas fa-plus" style=" font-size: 30px; font-weight: bold; padding-top: 5px;"></i></button>
+  </div>
+</div>

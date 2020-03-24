@@ -1,0 +1,52 @@
+<div class="container paddiging-up">
+	<label>
+		Nombre del Perfil
+	</label>
+	<input type="text" class="form-control" id="nombrePerfil" name="nombrePerfil"  id="nombrePerfil" maxlength="40" required>
+	<br>
+	<label>Permisos Agregados</label>
+	<div class="row">
+		<div class="col-3" *ngFor="let rol of roles">
+			<li>
+				{{rol.nombreRol}}
+				<span (click)='eliminarBase(rol)'><i class="far fa-times-circle"></i></span>
+			</li>
+		</div>
+	</div>
+	<br>
+	<label>Agrega más Permisos</label>
+	<div class="parent">
+		<div>
+			<div class="row">
+				<div class="col-5 prueba text-left">
+					<div class='container2' dragula="Rol" id="left" [(dragulaModel)]="left">
+						<div *ngFor="let rol of left" id="{{rol.idRol}}">
+							<label class="form-control">{{rol.nombreRol}}</label>
+						</div>
+					</div>
+				</div>
+				<div class="col-2 text-center">
+					<label><</label><br>
+					<label>></label>
+				</div>
+				<div class="col-5 prueba">
+					<div class='container2' dragula="Rol" id="right" [(dragulaModel)]="right">
+						<div *ngIf="right.length > 0">
+							<div *ngFor="let rol of right">
+								<label class="float-right" (click)='eliminaPerfil(rol)'>
+									<i class="far fa-times-circle"></i>
+								</label>
+								<label class="form-control">{{rol.nombreRol}}</label>
+							</div>
+						</div>
+						<div *ngIf='right.length < 1'>
+							<label>nada</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<button (click)='guarda()' class="btn cancelar">Guardar</button>
+	<button id="back" class="flotante btn btn-primary" [routerLink]="['/verPerfiles']"><i class="fas fa-chevron-left" style=" font-size: 30px; font-weight: bold; padding-top: 5px; padding-right: 5px"></i></button>
+</div>

@@ -1,0 +1,70 @@
+<div class="container paddiging-up">
+  <div class="row">
+    <div class="col-sm-12 text-center">
+      <h1>{{titulo}}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 text-center">
+      <div *ngIf='administrador.imagenAdministrador && administrador.imagenAdministrador != "default.jpg"&& identity.length != 1' class="">
+        <img src="{{url+ '/getImagen/' +administrador.imagenAdministrador}}" class=" profile-img-card-square">
+      </div>
+      <div *ngIf='administrador.imagenAdministrador && administrador.imagenAdministrador != "default.jpg" && identity.length == 1' class="">
+        <img src="{{url+ '/getImagenPersona/' +administrador.imagenAdministrador}}" class=" profile-img-card-square">
+      </div>
+      <label class="btn btn-info">
+        Examinar <input type="file" id="files" (change)='fileChangeEvent($event)' hidden>
+      </label>
+      <output id="list"></output>
+    </div>
+    <div class="col-sm-9">
+      <form #updateForm='ngForm' (ngSubmit)='onSubmit()' class="col-sm-12">
+        <div class="form-row">
+          <div class="form-group col-sm-2">
+            <label>Nombre:</label>
+          </div>
+          <div class="form-group col-sm-10">
+            <input type="text" #nombreAdministrador='ngModel' name="nombreAdministrador" [(ngModel)]='administrador.nombreAdministrador' [class.is-invalid]="!nombreAdministrador.valid && nombreAdministrador.touched" class="form-control col-sm-6" maxlength="40" minlength="1" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-sm-2">
+            <label>Apellido Paterno:</label>
+          </div>
+          <div class="form-group col-sm-10">
+            <!-- <input type="text" #paterno = 'ngModel' name="apellidopaternoAdministrador" [(ngModel)]='administrador.apellidopaternoAdministrador' class="form-control col-sm-6" required *ngIf='identity.idPersona'> -->
+            <input type="text" #apellidopaternoAdministrador='ngModel' name="apellidopaternoAdministrador" [(ngModel)]='administrador.apellidopaternoAdministrador' class="form-control col-sm-6" [class.is-invalid]="!apellidopaternoAdministrador.valid && apellidopaternoAdministrador.touched" maxlength="40" minlength="1" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-sm-2">
+            <label>Apellido Materno:</label>
+          </div>
+          <div class=" form-group col-sm-10">
+            <input type="text" #apellidomaternoAdministrador='ngModel' name="apellidomaternoAdministrador" [(ngModel)]='administrador.apellidomaternoAdministrador' class="form-control col-sm-6" [class.is-invalid]="!apellidomaternoAdministrador.valid && apellidomaternoAdministrador.touched" maxlength="40" minlength="1" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-sm-2">
+            <label>Correo Electronico:</label>
+          </div>
+          <div class="form-group col-sm-10">
+            <input type="text" #correoAdministrador='ngModel' name="correoAdministrador" [(ngModel)]='administrador.correoAdministrador' [class.is-invalid]="!correoAdministrador.valid && correoAdministrador.touched" class="form-control col-sm-6" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-sm-2">
+            <label>Telefono:</label>
+          </div>
+          <div class="form-group col-sm-10">
+            <input type="text" #telefonoAdministrador='ngModel' name="telefonoAdministrador" [class.is-invalid]="!telefonoAdministrador.valid && telefonoAdministrador.touched" [(ngModel)]='administrador.telefonoAdministrador' class="form-control col-sm-6" pattern="[0-9]+" minlength="8" maxlength="10" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <input type="submit" value="Actualizar" [disabled]="!updateForm.valid" class="btn btn-primary offset-2 col-auto">
+          <a [routerLink]="['/mi-perfil']" class="btn btn-danger offset-2 offset-md-1">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

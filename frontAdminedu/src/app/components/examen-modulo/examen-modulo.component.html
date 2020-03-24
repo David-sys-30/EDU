@@ -1,0 +1,78 @@
+<div class="container paddiging-up">
+	<label>Curso: {{nombreCurso}}/Modulo: {{nombreModulo}}</label><br>
+	<label>Examen: {{examen.nombreExamen}}</label>
+	<br>
+	<button class="btn agregar" (click)='openModificar(examen.idExamen,examen.idModulo_Examen)'>Datos del examen</button><br>
+	<div class="row">
+		<div class="col-3">
+			<div class="row">
+				<div class="col-12">
+					<mat-card (click) = 'nuevaPregunta()' style="cursor: pointer;">Nueva Pregunta</mat-card><br>
+					<div *ngFor='let pregunta of preguntas; let i = index'>
+						<mat-card style="cursor: pointer;" (click)='cargaRepuestas(pregunta.idPreguntaexamen)'>
+							{{pregunta.preguntaPreguntaexamen}}
+						</mat-card>
+						<br>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-7">
+			<mat-card *ngIf='nueva == true'>
+				<mat-card-title>Pregunta</mat-card-title>
+				<input #preguntas = 'ngModel' [(ngModel)]='pregunta.preguntaPreguntaexamen' type="text" class="form-control" name="">
+				<mat-card-title>Respuesta Correcta</mat-card-title>
+				<input id="correcta" type="text" class="form-control" name="correcta" >
+				<mat-card-title>Explicación Respuesta Correcta</mat-card-title>
+				<input id="retrocorrecta" type="text" class="form-control" name="retrocorrecta" >
+				<mat-card-title>Respuesta Incorrecta 1</mat-card-title>
+				<input id="incorrecta1" type="text" class="form-control" name=""><br>
+				<mat-card-title>Explicación Respuesta Incorrecta 1</mat-card-title>
+				<input id="retroincorrecta1" type="text" class="form-control" name=""><br>
+				<mat-card-title>Respuesta Incorrecta 2</mat-card-title>
+				<input id="incorrecta2" type="text" class="form-control" name="">
+				<br>
+				<mat-card-title>Explicación Respuesta Incorrecta 2</mat-card-title>
+				<input id="retroincorrecta2" type="text" class="form-control" name=""><br>
+				<mat-card-title>Respuesta Incorrecta 3</mat-card-title>
+				<input id="incorrecta3" type="text" class="form-control" name="">
+				<br>
+				<mat-card-title>Explicación Respuesta Incorrecta 3</mat-card-title>
+				<input id="retroincorrecta3" type="text" class="form-control" name=""><br>
+				<div class="row text-center">
+					<div class="col-12">
+						<button class="btn cancelar" (click)='guardarExamen()'>Guardar</button>
+					</div>
+				</div>
+			</mat-card>
+
+			<mat-card *ngIf='nueva == false'>
+				<div>
+					<mat-card-title>Pregunta</mat-card-title>
+					<input #preguntas = 'ngModel' [(ngModel)]='pregunta.preguntaPreguntaexamen' type="text" class="form-control" name="">
+					<mat-card-title>Respuesta Correcta</mat-card-title>
+					<div *ngFor = 'let respuesta of respuestas; let i = index'>					
+						<div *ngIf= 'respuesta.statusRespuestaexamen == 1'>
+							<input id="correcta" type="text" class="form-control" value="{{respuesta.respuestaRespuestaexamen}}" name="correcta.{{respuesta.idRespuestaexamen}}" >
+						</div>
+					</div>
+					<mat-card-title>Respuestas Incorrectas</mat-card-title>
+					<div *ngFor = 'let respuesta of respuestas; let i = index'>					
+						<div *ngIf='respuesta.statusRespuestaexamen == 0'>
+							<input id="incorrecta{{i+1}}" type="text" class="form-control" value="{{respuesta.respuestaRespuestaexamen}}" name="incorrecta.{{respuesta.idRespuestaexamen}}">
+						</div><br>
+					</div>
+					<div class="row text-center">
+					<!-- <div class="col-6">
+						<button class="btn cancelar">Eliminar</button>
+					</div> -->
+					<div class="col-12">
+						<button class="btn cancelar" (click)='modificarPreguntaExamen()'>Modificar</button>
+					</div>
+				</div>
+			</div>
+		</mat-card>
+	</div>
+	<div class="col-2"></div>
+</div>
+</div>

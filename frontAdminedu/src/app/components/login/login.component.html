@@ -1,0 +1,100 @@
+<div id="rowlogin">
+  <!-- <div id="loginb1" >
+    <i (click)="apareceadmin()" class="fas fa-user-cog fa-8x"></i>
+    <label>Administrador</label>
+  </div> -->
+  <div id="loginb2">
+    <i (click)="aparecepersona()" class="fas fa-user fa-8x"></i>
+    <label>Inicia Sesión</label>
+  </div>
+</div>
+<div class="col-sm-12" id="loginadmin">
+  <div class="col-sm-4 offset-sm-4">
+    <div class="form-row">
+      <img src="../../../assets/img/default.jpg" class="img-fluid profile-img-card">
+    </div>
+    <div class="col-md-12 text-center titulo_login">
+    	Administrador
+    </div>
+    <form class="col-sm-12" #loginForm='ngForm' (ngSubmit)='onSubmitAdministrador()'>
+      <div class="form-group">
+        <input type="text" #correoAdministrador='ngModel'  [class.is-invalid]="!correoAdministrador.valid && correoAdministrador.touched" class="form-control" placeholder="Usuario" name="correoAdministrador" [(ngModel)]='administrador.correoAdministrador' required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+        <span *ngIf="correoAdministrador.errors?.required && correoAdministrador.touched" class="alert-danger">
+          El email es obligatorio 
+
+        </span>
+
+        <span *ngIf="correoAdministrador.errors?.pattern" class="alert-danger">
+          Ingresa un email valido
+        </span>
+
+        
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" #contrasenaAdministrador='ngModel' name="contrasenaAdministrador" [(ngModel)]='administrador.contrasenaAdministrador' placeholder="Contraseña"  [class.is-invalid]="!contrasenaAdministrador.value && contrasenaAdministrador.touched" required  >
+        <span *ngIf="!contrasenaAdministrador.valid && contrasenaAdministrador.touched" class="alert-danger">
+          La contraseña es obligatoria
+        </span>
+      </div>
+      <div class="form-inline item-center">
+        <input type="submit" value="Entrar" class="btn cancelar col-4" [disabled]="!correoAdministrador.value && !contrasenaAdministrador.value" >
+        <label (click)="aparecelogin()" class="btn btn-danger ml-5">Regresar</label>
+      </div>
+      <div class="col-12 text-center " (click)="recuperaContrasena()">
+        <a class="text-white" style="cursor: pointer;" >
+          <h5>¿Olvidaste tu contraseña?</h5>
+        </a>
+      </div>    
+    </form>
+  </div>
+</div>
+<div class="col-sm-12" id="recuperaContrasena" style="display: none">
+  <div class="col-sm-4 offset-sm-4">
+    <div class="col-sm-12 text-center text-white" style="font-size: 15pt">
+      Indique su Correo
+    </div>
+          <form class="col-sm-12" #recuperarForm='ngForm' (ngSubmit)='onSubmitRecuperar()'>
+             <input type="text" class="form-control" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Correo" >
+             <div class="col-sm-12 text-center" style="padding-top:10px">
+              <input type="submit" value="Enviar Link de Recuperación" class="btn cancelar col-8 text-center">
+              <label (click)="aparecelogin()" class="btn btn-danger ml-5">Regresar</label>
+             </div>
+          </form>
+  </div> 
+</div>
+<div class="col-sm-12" id="loginpersona">
+  <div class="col-sm-4 offset-sm-4">
+    <div class="form-row">
+      <img src="../../../assets/img/default.jpg" class="img-fluid profile-img-card">
+    </div>
+    <!-- <div class="col-md-12 text-center titulo_login">
+    	Persona
+    </div> -->
+    <form class="col-sm-12" #loginForm='ngForm' (ngSubmit)='onSubmitPersona()'>
+      <div class="form-group">
+        <input type="text" #correoPersona='ngModel' [class.is-invalid]="!correoPersona.valid && correoPersona.touched" class="form-control" placeholder="Usuario" name="correoPersona" [(ngModel)]='persona.correoPersona' required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+        <span *ngIf="correoPersona.errors?.required && correoPersona.touched" class="alert-danger">
+          El email es obligatorio
+        </span>
+        <span *ngIf="correoPersona.errors?.pattern" class="alert-danger">
+          Ingresa un email valido
+        </span>
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" #contrasenaPersona='ngModel' name="contrasenaPersona" [(ngModel)]='persona.contrasenaPersona' [class.is-invalid]="!contrasenaPersona.value && contrasenaPersona.touched" placeholder="Contraseña" required />
+        <span *ngIf="!contrasenaPersona.valid && contrasenaPersona.touched" class="alert-danger">
+          La contraseña es obligatoria
+        </span>
+      </div>
+      <div class="form-inline item-center">
+        <input type="submit" value="Entrar" class="btn cancelar col-4" [disabled]="!correoPersona.value && !contrasenaPersona.value" >
+        <label (click)="aparecelogin()" class="btn btn-danger ml-5">Regresar</label>
+      </div>
+      <div class="col-12 text-center " (click)="recuperaContrasena()">
+        <a class="text-white" style="cursor: pointer;" >
+          <h5>¿Olvidaste tu contraseña?</h5>
+        </a>
+      </div>  
+    </form>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div *ngIf='alertRegister'>
+    <div class="alert alert-info" role="alert">
+      {{alertRegister}}
+   </div>
+  </div>
+<div class="col-sm-12">
+  <div class="card col-sm-6 offset-sm-3">
+    <div class="card-header">
+      Registro
+    </div>
+    <div class="card-body border-success">      
+      <form class="col-sm-12" #registerForm = 'ngForm' (ngSubmit)= 'onSubmitRegister()'>
+        <div class="form-group ">
+            <input type="text" #name = 'ngModel' name="nombre" [(ngModel)] = 'administradorRegistro.nombreAdministrador' class="form-control" placeholder="Nombre(s)" required/>      
+        </div>
+        <div class="form-row">
+          <div class="form-group col-sm-6">
+            <input type="text" #paterno = 'ngModel' name="paterno" [(ngModel)]='administradorRegistro.apellidopaternoAdministrador' class="form-control " placeholder="Apellido Paterno" required/>
+          </div>
+          <div class="form-group col-sm-6">
+            <input type="text" #materno = 'ngModel' name="materno" [(ngModel)] = 'administradorRegistro.apellidomaternoAdministrador' class="form-control " placeholder="Apellido Materno" required/>
+          </div>      
+        </div>
+        
+        <div class="form-group">
+          <input type="email" #email = 'ngModel' name="email" [(ngModel)] = 'administradorRegistro.correoAdministrador' class="form-control" placeholder="Correo" required/>         
+        </div>
+        <div class="form-group">
+          <input type="text" #telefono = 'ngModel' name="telefono" [(ngModel)] = 'administradorRegistro.telefonoAdministrador' class="form-control" placeholder="Numero Telefonico (10 Digitos)" required/>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-sm-6">
+            <input type="password" #password = 'ngModel' name="password" [(ngModel)] = 'administradorRegistro.contrasenaAdministrador' class="form-control " placeholder="Contraseña" required/>
+          </div>
+          <div class="form-group col-sm-6">
+            <input type="password"  name="ConfirmaPassword"  class="form-control" placeholder="Confirma Contraseña" required>          
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <input type="submit" value="Registrate" class="btn btn-outline-primary  col-12">
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-outline-danger  col-12 " (click)="loginAdmin()">Cancelar</button>
+        </div>        
+      </form>    
+    </div>
+  </div>
+</div>

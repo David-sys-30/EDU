@@ -1,0 +1,145 @@
+.imgpublicidad{
+	width: 70%;
+	
+}
+.imgpublicidad2{
+	width: 70%;
+	
+}
+.info p{
+	-webkit-line-clamp: 3;
+	display: -webkit-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	/* autoprefixer: ignore next */
+	-webkit-box-orient: vertical;
+}
+.carousel-control-prev-icon{
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23FF9100' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+
+}
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23FF9100' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+.aviso{
+	margin-top: 10%;
+	
+}	
+
+.title-blue-bold{
+	font-size: 4vw;
+	color: #1686F5;
+	font-weight: bold;
+}
+
+.text-orange{
+	font-size: 3vw;
+	color: #FF9100;
+}
+
+
+.aviso2{
+	margin-top:7%;
+	text-align: center;
+}
+
+.pointer:hover{
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+
+
+
+.carritoCurso{
+	background-color: #1686F5;
+	color: white;
+} 
+.checked{
+	color: orange;
+}
+.unchecked{
+	color: lightgrey;
+}
+
+
+.ir-arriba {
+    display: none;
+    padding: 2px;
+    background: #1686F5;
+    font-size: 45px;
+    color: #fff;
+    cursor: pointer;
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+}
+#sincurso{
+	color: lightgray;
+	opacity: .7;
+	font-size: 36px;
+	font-weight: bold;
+	
+}
+
+
+/* .imgpublicidad{
+	width: 70%;
+	
+}
+.imgpublicidad2{
+	width: 100%;
+	margin-left: -6%;
+}
+.separador{
+	border: 2px solid lightgray;
+}
+.aviso{
+	margin-top: 150px;
+	margin-left: 100px;
+}
+
+.aviso a{
+	font-size: 50px;
+	color: #1686F5;
+	font-weight: bold;
+}
+
+.aviso p{
+	font-size: 30px;
+	color: #FF9100;
+}
+.aviso button{
+	border: solid 1px #1686F5;
+	color: #FF9100;
+	width: 140px;
+	cursor: pointer;
+	font-size: 25px
+}
+.aviso2{
+	margin-top:100px;
+	text-align: center;
+}
+.aviso2 a{
+	font-size: 50px;
+	color: #1686F5;
+}
+.aviso2 p{
+	padding-right: 100px;
+	padding-left: 100px;
+}
+
+.cursos a{
+	font-size: 50px;
+	color: #1686F5;
+	font-weight: bold;	
+}
+
+.carritoCurso{
+	background-color: #1686F5;
+	color: white;
+}
+
+.puntador{
+	cursor:pointer;
+} */

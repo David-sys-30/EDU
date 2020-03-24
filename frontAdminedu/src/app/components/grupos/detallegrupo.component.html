@@ -1,0 +1,57 @@
+<div class="container paddiging-up">
+  <br>
+
+  <!-- <input type="text" #nombreGrupo='ngModel' name="nombreGrupo" [(ngModel)]='grupo.nombreGrupo' class="form-control col-sm-6" maxlength="200" minlength="1"> -->
+
+  <h2>{{grupo?.nombreGrupo}}</h2>
+<!--   <h4>Creado por {{grupo?.persona_idPersona}}</h4>
+  <h5>Estatus: <h4 *ngIf="grupo?.statusGrupo==1">Activo</h4><h4 *ngIf="grupo?.statusGrupo!=1">Inactivo</h4></h5> -->
+
+  <hr>
+
+  <div class="now">
+    <h5>Usuarios en el grupo: </h5>
+
+    <div class="row text-center">
+      <div class="col-6" *ngFor="let usuario of usuarios">
+
+        <mat-card>
+          <mat-card-title>
+            <div class="row">
+              <div class="col-10 col-md-11 text-responsive">
+                <h4>{{usuario?.nombreUsuario + ' ' + usuario?.apellidopaternoUsuario + ' ' + usuario?.apellidomaternoUsuario}}</h4>
+              </div>
+              <div class="col-1 col-md-1 text-right">
+                <i class="fas fa-minus-circle close" style="cursor: pointer;" (click)="Quita(usuario?.idUsuario)"></i>
+              </div>
+            </div>
+          </mat-card-title>
+        </mat-card>
+
+        <br>
+      </div>
+    </div>
+  </div>
+
+  <div class="users" style="display: none;">
+    <h5>Usuarios: </h5>
+
+    <div class="row text-center">
+      <div class="col-6" *ngFor="let todo of todos; let i = index">
+        <input type="checkbox" id="{{todo?.idUsuario}}" name="user{{i}}" value="{{todo?.idUsuario}}"><h5>{{todo?.nombreUsuario + ' ' + todo?.apellidopaternoUsuario + ' ' + todo?.apellidomaternoUsuario}}</h5><br>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="text-center now">
+    <button class="btn btn-primary" (click)="Esconde()">Editar Usuarios</button>
+  </div>
+
+  <div class="text-center users" style="display: none;">
+    <button class="btn btn-primary" (click)="Guarda()">Guardar Usuarios</button>
+  </div>
+
+  <button id="back" class="flotante btn btn-primary" [routerLink]="['/grupos']"><i class="fas fa-chevron-left" style=" font-size: 30px; font-weight: bold; padding-top: 5px; padding-right: 5px"></i></button>
+</div>

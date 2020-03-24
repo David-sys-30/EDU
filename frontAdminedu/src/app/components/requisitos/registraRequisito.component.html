@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Registra un requisito para el curso</h1>
+<label>Categoria a la que pertenece:</label>
+<select id="categoria" class="form-control" (change)='cargaSubcategoria()'>
+  <option value="null" selected="">
+  <option *ngFor='let categoria of categorias' id="{{categoria.idCategoriacurso}}" value="{{categoria.idCategoriacurso}}">{{categoria.nombreCategoriacurso}}
+</select>
+
+<label>Sub Categoria a la que pertenece:</label>
+<select id="subCategoria" class="form-control">
+	<option value="null">
+	<option *ngFor='let subCategoria of subCategorias' value="{{subCategoria.idSubcategoriacurso}}">{{subCategoria.nombreSubcategoriacurso}}
+</select><br>
+<label>Descripción requisito</label>
+<textarea #descripcionRequisito [(ngModel)]='requisitos.descripcionRequisito' id="divo" rows="2" class="form-control"></textarea>
+<br>
+<div class="row">
+	<div class="col-lg-6">
+		<button class="cancelar btn" (click)="onNoClick()">Cancelar</button>
+	</div>
+	<div class="col-lg-6">
+		<button class="agregar btn" (click)="agregarRequisito()">Agregar</button>
+	</div>
+</div>

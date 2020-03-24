@@ -1,0 +1,48 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
+mat-menu {
+  width: 120% !important;
+}
+
+.background{
+
+	background-image: url(/assets/img/background-login.png);
+	width: 100%;
+	min-height: 100%;
+	height: auto !important;
+	position: fixed;
+	top:0;
+	left:0;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	
+}
+.centrar{
+	padding-top: 10%;
+}
+.background-blue{
+	background-color:#1686F5;
+
+}
+
+
+.backgound-gray{
+  background-color: gray;
+}
+
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox. 
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+@media (max-width: 400px) {
+  .text-responsive{
+    font-size: 3vw;
+  }
+}

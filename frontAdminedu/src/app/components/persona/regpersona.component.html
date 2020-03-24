@@ -1,0 +1,84 @@
+<div class="container paddiging-up">
+<div class="row">
+	<div class="col-sm-12 text-center">
+		<h1>Agregar persona</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-12 text-center frm">
+		<form #updateForm = 'ngForm' (ngSubmit)= 'onSubmitRegister()' class="col-sm-12">
+			<div class="form-row">
+				<div class="form-group col-sm-2">							
+					<label >Nombre:</label>
+				</div>
+				<div class="form-group col-sm-10">
+					<input type="text" #nombrePersona = 'ngModel' id="nombre" name="nombrePersona" [(ngModel)] = 'persona.nombrePersona' class="form-control col-sm-10" [class.is-invalid]="!nombrePersona.valid && nombrePersona.touched" maxlength="40" required>
+				</div>
+			</div>	
+			<div class="form-row">
+				<div class="form-group col-sm-2">							
+					<label>Apellido Paterno:</label>
+				</div>
+				<div class="form-group col-sm-10">
+					<input type="text" #apellidopaternoPersona = 'ngModel' name="apellidopaternoPersona" [(ngModel)]='persona.apellidopaternoPersona' class="form-control col-sm-10" [class.is-invalid]="!apellidopaternoPersona.valid && apellidopaternoPersona.touched" maxlength="40" required>
+				</div>
+			</div>		
+			<div class="form-row">
+				<div class="form-group col-sm-2">
+					<label>Apellido Materno:</label>							
+				</div>
+				<div class=" form-group col-sm-10">
+					<input type="text" #apellidomaternoPersona = 'ngModel' name="apellidomaternoPersona" [(ngModel)] = 'persona.apellidomaternoPersona' class="form-control col-sm-10" [class.is-invalid]="!apellidomaternoPersona.valid && apellidomaternoPersona.touched" maxlength="40" required>		
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-sm-2">
+					<label>Correo Electronico:</label>
+				</div>
+				<div class="form-group col-sm-10">
+					<input type="text" #correoPersona = 'ngModel' name="correoPersona" [(ngModel)] = 'persona.correoPersona' class="form-control col-sm-10" [class.is-invalid]="!correoPersona.valid && correoPersona.touched" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-sm-2">
+					<label>Descripción:</label>
+				</div>
+				<div class="form-group col-sm-10">
+					<textarea type="text" #descripcionPersona = 'ngModel' name="descripcionPersona" [(ngModel)] = 'persona.descripcionPersona' [class.is-invalid]="!descripcionPersona.valid && descripcionPersona.touched" maxlength="250" class="form-control col-sm-10" required></textarea>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-sm-2">
+					<label>Telefono:</label>
+				</div>
+				<div class="form-group col-sm-10">
+					<input type="text" #telefonoPersona = 'ngModel' name="telefonoPersona" [(ngModel)] = 'persona.telefonoPersona' [class.is-invalid]="!telefonoPersona.valid && telefonoPersona.touched" class="form-control col-sm-10" pattern="[0-9]+" minlength="8" maxlength="10" required>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-sm-2">
+					<label>Especialidad:</label>
+				</div>
+				<div class="form-group col-sm-10">
+					<select
+					class="form-control col-sm-10" 
+					[(ngModel)] = 'catespecialidad.idCatalogoespecialidad_CatalogoespecialidadPersona'
+					#idCatalogoespecialidad_CatalogoespecialidadPersona = 'ngModel' name="idCatalogoespecialidad_CatalogoespecialidadPersona" [class.is-invalid]="!idCatalogoespecialidad_CatalogoespecialidadPersona.valid && idCatalogoespecialidad_CatalogoespecialidadPersona.touched" required>
+						<option value disabled selected hidden>Elija una especialidad</option>
+						<option *ngFor="let especialidad of especialidad"
+						 [value]="especialidad.idCatalogoespecialidad">{{especialidad.descripcionCatalogoespecialidad}}
+						</option>
+					</select>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary" [disabled]="!updateForm.valid">Crear</button>
+			<!-- <div class="row text-center">				
+						
+					<button type="submit" class="btn btn-primary" [disabled]="!updateForm.valid">Crear</button>
+							
+			</div> -->
+		</form>
+		<button id="back" class="flotante btn btn-primary" [routerLink]='["/persona"]'><i class="fas fa-chevron-left" style=" font-size: 30px; font-weight: bold; padding-top: 5px; padding-right: 5px"></i></button>
+	</div>		
+</div>	
+</div>

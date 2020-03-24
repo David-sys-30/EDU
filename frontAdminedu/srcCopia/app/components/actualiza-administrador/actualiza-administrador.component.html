@@ -1,0 +1,43 @@
+
+<div class="col-lg-12 text-center">
+	<h1>{{titulo}}</h1>
+	<div *ngIf='alertUpdate'>
+		<div class="alert alert-info" role="alert">
+			{{alertUpdate}}
+		</div>
+	</div>
+	<div class="container">
+		<form #updateForm = 'ngForm' (ngSubmit)= 'onSubmit()' class="col-md-12">
+			<div class="image_for_edit" *ngIf='administrador.imagenAdministrador && administrador.imagenAdministrador != "default.jpg"'>
+				<img src="{{url+'getImagen/' +administrador.imagenAdministrador}}">
+			</div>
+			<p>
+				<label>Nombre:</label>
+				<input type="text" #name = 'ngModel' name="nombreAdministrador" [(ngModel)] = 'administrador.nombreAdministrador' class="form-control" required>
+			</p>
+			<p>
+				<label>Apellido Paterno:</label>
+				<input type="text" #paterno = 'ngModel' name="apellidopaternoAdministrador" [(ngModel)]='administrador.apellidopaternoAdministrador' class="form-control" required>
+			</p>
+			<p>
+				<label>Apellido Materno:</label>
+				<input type="text" #materno = 'ngModel' name="apellidomaternoAdministrador" [(ngModel)] = 'administrador.apellidomaternoAdministrador' class="form-control" required>
+			</p>
+			<p>
+				<label>Correo Electronico:</label>
+				<input type="text" #email = 'ngModel' name="correoAdministrador" [(ngModel)] = 'administrador.correoAdministrador' class="form-control" required>
+
+			</p>
+			<p>
+				<label>Telefono:</label>
+				<input type="text" #telefono = 'ngModel' name="telefonoAdministrador" [(ngModel)] = 'administrador.telefonoAdministrador' class="form-control" required>
+			</p>
+			<p>
+				<label>Cambiar Imagen</label><br>
+				<input type="file" placeholder="Sube una imagen..." id="files" (change)='fileChangeEvent($event)'>
+				<output id="list"></output>
+			</p>
+			<input type="submit" value="Actualizar" class="btn btn-primary">
+		</form>
+	</div>
+</div>

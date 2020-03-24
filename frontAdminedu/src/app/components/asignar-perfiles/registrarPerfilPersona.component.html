@@ -1,0 +1,63 @@
+<div class="container paddiging-up">
+	<div class="row">
+		<div class="col-12 form-group">		
+			<label>Persona:</label>
+		</div>
+		<div class="col-12 form-group">	
+			<select id="personas" class="form-control">
+				<option value="" selected="" disabled="">Selecciona una persona</option>
+				<option *ngFor='let persona of personas' value="{{persona.idPersona}}">{{persona.nombrePersona +" "+persona.apellidopaternoPersona + " " + persona.apellidomaternoPersona}}</option>
+
+			</select>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 form-group">		
+			<label>Curso:</label>
+		</div>
+		<div class="col-12 form-group">		
+			<select id="cursoPerfil" class="form-control">
+				<option value="" selected="" disabled=""></option>
+				<option *ngFor='let curso of cursosMost' value="{{curso.idCurso}}">
+				{{curso.nombreCurso}}</option>
+
+			</select>
+		</div>
+	</div>
+<!-- 	<label>Perfiles</label>
+	<div class="parent">
+		<div>
+			<div class="row">
+				<div class="col-5 prueba text-left">
+					<div class='container2' dragula="Perfil" id="left" [(dragulaModel)]="left">
+						<div *ngFor="let perfil of left" id="{{perfil.idPerfil}}">
+							<label class="form-control">{{perfil.nombrePerfil}}</label>
+						</div>
+					</div>
+				</div>
+				<div class="col-2 text-center">
+					<label><</label><br>
+					<label>></label>
+				</div>
+				<div class="col-5 prueba">
+					<div class='container2' dragula="Perfil" id="right" [(dragulaModel)]="right">
+						<div *ngIf="right.length > 0">
+							<div *ngFor="let perfil of right">
+								<label class="float-right" (click)='eliminaPerfil(perfil)'>
+									<i class="far fa-times-circle"></i>
+								</label>
+								<label class="form-control">{{perfil.nombrePerfil}}</label>
+							</div>
+						</div>
+						<div *ngIf='right.length < 1'>
+							<label>nada</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	 -->
+	<button (click)='agregaPerfil()' class="btn cancelar">Guardar</button>
+
+	<button id="back" class="flotante btn btn-primary" [routerLink]='["/asignarperfiles"]'><i class="fas fa-chevron-left" style=" font-size: 30px; font-weight: bold; padding-top: 5px; padding-right: 5px"></i></button>
+</div>

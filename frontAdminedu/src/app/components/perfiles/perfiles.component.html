@@ -1,0 +1,29 @@
+<div class="container paddiging-up">
+	<br>
+
+	<h3>Perfiles</h3>
+	<br>
+
+	<div class="row">
+		<div class="col-12 col-md-6" *ngFor='let perfil of perfiles'>
+			<mat-card [class.perfilDesactivado]="perfil.statusPerfil == 0">
+			  <mat-list>
+			    <mat-list-item>
+			    	<h3 mat-line>{{perfil.nombrePerfil}}</h3>
+			    	<a [routerLink]='["/modificaPerfil/"+perfil.idPerfil]'><img class="edit" src="http://simpleicon.com/wp-content/uploads/pencil.png"></a>
+			    </mat-list-item>
+			  </mat-list>
+			  <div class="col-12 text-right" *ngIf="perfil.statusPerfil == 1">
+			  	<button class="btn btn-danger"  (click)="BajaPerfil(perfil.idPerfil)">Dar de baja</button>
+			  </div>
+			  <div class="col-12 text-left" *ngIf="perfil.statusPerfil == 0">
+			  	<button class="btn btn-info"  (click)="AltaPerfil(perfil.idPerfil)">Dar de alta</button>
+			  </div>
+			</mat-card>
+		</div>
+	</div>
+	
+	<div class="row">
+		<button id="back" class="flotante btn btn-primary" [routerLink]="['/registraPerfil']"><i class="fas fa-plus" style=" font-size: 30px; font-weight: bold; padding-top: 5px;"></i></button>
+	</div>
+</div>

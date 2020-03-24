@@ -1,0 +1,59 @@
+.container2 {
+  display: table-cell;
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 1%;
+}
+.container2:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.2);
+
+}
+.container2 div, .gu-mirror:not(.container2) {
+  margin: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: opacity 0.4s ease-in-out;
+}
+.container2 div {
+  cursor: move;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+.container2 .ex-moved {
+  background-color: #e74c3c;
+}
+.container2.ex-over {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.parent {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+}
+.wrapper {
+  display: table;
+}
+
+.hol{
+  pointer-events: none;
+  opacity: 0.4;
+}
+.prueba{
+  overflow-y:auto;
+  height: 300px;
+}
+
+mat-card{
+  margin-bottom: 5%;
+  margin-left: 9%;
+}
+
+.edit{
+  float: right;
+  width: 5vh;
+  height: 5vh;
+  cursor: pointer;
+}
+
+.perfilDesactivado{
+  background: rgb(0, 0, 0, .3);
+}

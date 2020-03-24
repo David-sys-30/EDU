@@ -1,0 +1,40 @@
+.titulo{
+	color: #1686F5;
+	font-weight: bold;
+}
+
+#avatar{
+	border-radius: 50%;
+	width: 55%;
+	border: 1px gray solid;
+}
+
+.separar{
+	padding-top: 2%;
+}
+
+.fa-linkedin-in{
+	margin-top: 5%;
+	font-size: 15px;
+	color: #1686F5;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.nombre{
+	color: #FF9100;
+}
+
+.cargo{
+	color: #1686F5;
+}
+
+.subtitulo{
+	font-size: 13px;
+	color: #1686F5;
+}
+
+.numero{
+	font-size: 13px;
+	color: gray;
+}

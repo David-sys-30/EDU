@@ -1,0 +1,156 @@
+<span class="ir-arriba fas fa-arrow-circle-up fa-4x" style="position: fixed; display: scroll; z-index: 10000; border-radius: 50%; opacity: .8;"></span>
+<br>
+<div id="carousel" class="carousel slide" style="margin-top: 9vh; height: 40vh" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carousel" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel" data-slide-to="1"></li>
+    <li data-target="#carousel" data-slide-to="2"></li>
+    <li data-target="#carousel" data-slide-to="3"></li>
+    <li data-target="#carousel" data-slide-to="4"></li>
+  </ol>
+  <div class="carousel-inner">
+    
+      <div class="carousel-item active" >
+      <img class="d-block w-100 img-fluid" style="height: 40vh;" src="../../assets/material/banner3.png" alt="First slide">
+      </div>
+ <!--      <div > -->
+      <div class="carousel-item" *ngFor="let banner of banners;let i = index">
+        <img class="d-block w-100 img-fluid" style="height: 40vh;" src="{{url+'/getImagenBanner/'+banner.imagenPublicidad}}">
+      </div>
+      
+    <!-- </div> -->
+    
+<!--     <div class="carousel-item">
+      <img class="d-block w-100 img-fluid" style="height: 40vh;" src="../../assets/material/banner3.png" alt="Third slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100 img-fluid" style="height: 40vh;" src="../../assets/material/banner4.png" alt="Third slide">
+    </div> -->
+    
+  </div>
+</div>
+<div class="container">
+  <div class="row ">
+  </div>
+  <hr class="separador" *ngIf="identity">
+  <div class="cursos" id="curdest" *ngIf="identity">
+    <div class="col-12 text-center">
+      <a><label class="title-blue-bold">Mis Cursos</label></a>
+      <div class="col-12 text-center" style="margin-top: 5%; margin-bottom:5%; " *ngIf="cursosadquiridos == ''">
+        <label id="sincurso">Aun no tienes cursos adquiridos :(</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-4"  *ngFor='let adquirido of cursosadquiridos'>
+        <mat-card class="example-card text-center" >
+          <img mat-card-image src="{{url+'/getImagenCurso/'+adquirido.imagenCurso}}" class="img-fluid puntador" [routerLink]="['/vista-curso/'+adquirido.idCurso]">
+          <mat-card-content >
+            <p class="text-responsive puntador" style="color: #1686F5" [routerLink]="['/vista-curso/'+adquirido.idCurso]">
+              {{adquirido.nombreCurso}}
+            </p>
+            <p class="text-responsive puntador" style="color:#FF9100" [routerLink]="['/vista-curso/'+adquirido.idCurso]">
+              {{adquirido.resumenCurso}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button class="botonCurso text-responsive " style="background: #fff;" (click)="continuarCurso(adquirido.idCurso,identity.usuario[0].idUsuario)">Continuar curso</button>
+          </mat-card-actions>
+        </mat-card>
+        <br>
+      </div>
+    </div>
+  </div>
+  <hr class="separador">
+  <div class="row">
+    <div class="col-12 col-md-7 text-center">
+      <img src='../../assets/material/imagenedu002-01.png' class="imgpublicidad2 img-fluid">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" style="margin-top: 5vh;" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active text-center" >
+            <ul class="list-inline">
+              <!-- <li class="list-inline-item"> <img src="{{url+ '/getImageFileUsuario/' +usuDes[0].imagenUsuario}}" class="d-block img fluid profile-img-card-ad" alt="" *ngIf="usuDes[0]"></li> -->
+              <li class="list-inline-item ml-4" *ngFor="let usu of usuDes;let i = index"> <img src="{{url+ '/getImageFileUsuario/' +usu?.imagenUsuario}}" class="d-block img fluid profile-img-card-ad" alt="" *ngIf="i < 3"></li>
+              <!-- <li class="list-inline-item ml-4"><img src="../../../assets/image/IMG-20160216-WA0001.jpg" class="d-block img fluid profile-img-card-ad" alt=""></li> -->
+              <!-- <li class="list-inline-item ml-4"><img src="../../../assets/image/IMG-20150125-WA0005.jpg" class="d-block img fluid profile-img-card-ad" alt=""></li> -->
+            </ul>
+          </div>
+          <div class="carousel-item">
+            <ul class="list-inline">
+              <li class="list-inline-item ml-4" *ngFor="let usu of usuDes;let i = index"> <img src="{{url+ '/getImageFileUsuario/' +usu?.imagenUsuario}}" class="d-block img fluid profile-img-card-ad" alt="" *ngIf="i > 2 && i < 6"></li>
+              <!-- <li class="list-inline-item"> <img src="../../../assets/image/IMG_31975295980114.jpeg" class="d-block img fluid profile-img-card-ad" alt=""></li>
+              <li class="list-inline-item ml-4"><img src="../../../assets/image/IMG-20150125-WA0005.jpg" class="d-block img fluid profile-img-card-ad" alt=""></li>
+              <li class="list-inline-item ml-4"><img src="../../../assets/image/IMG-20160216-WA0001.jpg" class="d-block img fluid profile-img-card-ad" alt=""></li> -->
+            </ul>
+          </div>
+         <!--  <div class="carousel-item">
+            <ul class="list-inline">
+              <li class="list-inline-item"> <img src="../../../assets/image/IMG_0004.jpg" class="d-block img fluid profile-img-card-ad" alt=""></li>
+              <li class="list-inline-item ml-4"><img src="../../../assets/image/IMG_31975295980114.jpeg" class="d-block img fluid profile-img-card-ad" alt=""></li>
+              <li class="list-inline-item ml-4"><img src="../../../assets/image/IMG-20150125-WA0005.jpg" class="d-block img fluid profile-img-card-ad" alt=""></li>
+            </ul>
+          </div> -->
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleSlidesOnly" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleSlidesOnly" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+    </div>
+
+    <div class="col-12 col-md-5">
+      <div class="aviso2">
+        <a [routerLink]="['/alumnos_destacados']"><label class="title-blue pointer">Alumnos destacados</label></a>
+        <p class="text-responsive">Nuestros alumnos destacados nos demuestran que
+          siempre hay tiempo para alcanzar sus metas profesionales
+          enfocando su desempeño y habilidades para ser profesionales con éxito ya que en este portal educativa moderno e innovador, esta orientada al futuro para formar personas productivas que agreguen valor a la sociedad.
+          Ampliamos el acceso a educación de calidad global para formar personas productivas que agregan valor a la sociedad misma.</p>
+      </div>
+    </div>
+  </div><br><br>
+  <hr class="separador">
+  <div class="cursos" id="curdest">
+    <div class="col-12 text-center">
+      <a><label class="title-blue-bold">Cursos Destacados</label></a>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-4" *ngFor='let curso of cursos'>
+        <mat-card class="example-card text-center" >
+          <!-- <div class="text-center"> -->
+          <img mat-card-image src="{{url+'/getImagenCurso/'+curso.imagenCurso}}" class="img-fluid puntador" [routerLink]="['/vista-curso/'+curso.idCurso]">
+          <!-- </div> -->
+          <mat-card-content>
+            <p class="text-responsive puntador" style="color: #1686F5" [routerLink]="['/vista-curso/'+curso.idCurso]">
+              {{curso.nombreCurso}}
+            </p>
+            <p class="text-responsive puntador" style="color:#FF9100" [routerLink]="['/vista-curso/'+curso.idCurso]">
+              {{curso.resumenCurso}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <div class="row">
+              <div class="col-12 text-right">
+                <button class="btn carritoCurso text-responsive" id="{{curso.idCurso}}" (click)="getCurso(curso.idCurso,identity.idUsuario)" *ngIf="charImg == 'https' && identity != null">
+                  <i class="fas fa-briefcase nav-item active carrito nav-icons "></i>&nbsp; Agregar
+                </button>
+                <button class="btn carritoCurso text-responsive" id="{{curso.idCurso}}" (click)="getCurso(curso.idCurso,identity.usuario[0].idUsuario)" *ngIf="charImg != 'https' && identity != null">
+                  <i class="fas fa-briefcase nav-item active carrito nav-icons "></i>&nbsp; Agregar
+                </button>
+                <button class="btn carritoCurso text-responsive" id="{{curso.idCurso}}" (click)="inicia()" *ngIf="identity == null">
+                  <i class="fas fa-briefcase nav-item active carrito nav-icons "></i>&nbsp; Agregar
+                </button>
+                
+              </div>
+            </div>
+          </mat-card-actions>
+        </mat-card>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 

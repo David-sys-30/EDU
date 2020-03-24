@@ -1,0 +1,23 @@
+<div class="container paddiging-up">
+<a>Categorias/SubCategorias</a><br><br>
+<div *ngIf="subCategoria">
+	<div class="row">
+		<div class="col-lg-3" *ngFor='let subCategoria of subCategoria'>
+			<mat-card class="example-card">
+				<mat-card-header>
+					<mat-card-title>{{subCategoria.nombreSubcategoriacurso}}</mat-card-title>
+				</mat-card-header>
+				<mat-card-actions>
+					<button mat-button (click)= "openModificar(subCategoria.idSubcategoriacurso,subCategoria.idCategoriacurso_Subcategoriacurso,subCategoria.nombreSubcategoriacurso)" class="cancelar">Modificar</button>
+				</mat-card-actions>
+			</mat-card>
+			<br><br>
+		</div>
+	</div>
+</div>
+<div *ngIf='subCategoria == false' class="text-center">
+	<p>Aun no hay subcategorias en esta Categoria</p>
+</div>
+<button id="back" class="flotantesecond btn btn-primary" (click)="agregarSubcategoria()"><i class="fas fa-plus" style=" font-size: 30px; font-weight: bold; padding-top: 5px;"></i></button>
+<button id="back" class="flotante btn btn-primary" [routerLink]="['/categorias']"><i class="fas fa-chevron-left" style=" font-size: 30px; font-weight: bold; padding-top: 5px; padding-right: 5px"></i></button>
+</div>

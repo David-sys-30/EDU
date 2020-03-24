@@ -1,0 +1,40 @@
+
+<!-- imagen lateral -->
+<div class="row" *ngIf="identity">
+  <div  class="text-center col-sm-2">
+    <nav id="admin_logged">
+      <div *ngIf='identity.imagenAdministrador && administrador.imagenAdministrador != "default.jpg"'>
+        <img id="imagenAdministrador" src="{{url+ '/getImagen/' +identity.imagenAdministrador}}" class="img-fluid rounded-circle">
+      </div><br>
+      <a [routerLink]="['/catalogos']">Catalogos</a><br>
+      <a [routerLink]="['/crearCurso']">Crear curso</a> 
+    </nav>
+  </div>
+
+<!-- LogOut -->
+  <div *ngIf="identity" class="col-lg-10">
+    <app-navbar (cerrarsesion)='logOut($event)'></app-navbar>
+    <div class="container"><hr>
+      <router-outlet></router-outlet>
+    </div>
+    
+  </div>
+</div>
+
+
+<!-- Login -->
+<div class="row-fluid text-center background" *ngIf="!identity">
+  <div class="col-sm-4 offset-4 centrar">
+    <div>
+      
+    </div>
+    
+    <app-login (sendIdentity)='getIdentity($event)'  (sendToken)='getToken($event)' (aparecerRegistro)='ocultar($event)' *ngIf='login'></app-login>
+    <app-register *ngIf='registro' (aparecerLogin)='regresaLogin($event)'></app-register>
+    
+  </div>   
+</div>
+
+
+
+

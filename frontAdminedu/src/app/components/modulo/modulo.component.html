@@ -1,0 +1,174 @@
+<div class="container paddiging-up">
+  <div class="row">
+    <div class="col-12">
+      <a>Curso: {{nombreCurso}}/Modulos</a><br>
+      <label *ngIf="suma < 100 && suma > 0" style="color: red">
+        Evaluación del Modulo: {{suma}}%<br>
+        Checa bien tus evaluaciones. La suma de la evaluacion que le proporciones a cada Modulo tiene que darte el "100%".
+      </label>
+      <label *ngIf="suma == 100" style="color: green">
+        Evaluación del Modulo: {{suma}}%
+      </label>
+      <label *ngIf="suma == 0 || suma == null" style="color: green">
+        Este Modulo no tiene Evaluación
+      </label>
+      <label *ngIf="suma > 100" style="color: red">
+        Evaluación del Modulo: {{suma}}%<br>
+        La evaluacion no puede exeder de "100%"
+      </label>
+    </div>
+  </div>
+  <br>
+  <div class="row" *ngIf='modulos'>
+    <div class="col-12">
+      <div dragula="modulos" [(dragulaModel)]="modulos">
+        <div class="row" *ngFor="let modulo of modulos">
+          <div class="col-12 col-md-4">
+            <mat-card class="example-card card-margin-top">
+              <mat-card-header>
+                <div mat-card-avatar class="text-responsive">
+                  {{modulo.numeroModulo}}
+                </div>
+                <mat-card-title class="text-responsive">
+                  {{modulo.nombreModulo}}
+                </mat-card-title>
+                <mat-card-subtitle class="text-responsive">
+                  Duración: {{modulo.duracionModulo}}HRS
+                </mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-actions>
+                <div class="row">
+                  <div class="col-6 ">
+                    <button class="btn cancelar text-responsive" [routerLink]="['/temas/'+modulo.idModulo+'/'+modulo.nombreModulo+'/'+nombreCurso]">Ver Modulo</button>
+                  </div>
+                  <div class="col-6 " *ngIf='EditarModuloperm == 1'>
+                    <button class="btn agregar text-responsive" (click)='editarModulo(modulo.idModulo,modulo.nombreModulo,modulo.numeroModulo,modulo.idCurso_Modulo,modulo.statusModulo,modulo.duracionModulo)'>Editar Modulo</button>
+                  </div>
+                </div>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+          <div class="col-4 col-md-4">
+            <div *ngIf='valida == false'>
+              <!-- <button class="btn btn-primary" (click)='addExamen(modulo.idModulo,modulo.nombreModulo)'>Agregar Examen</button> -->
+              <i class="fas fa-plus-square  pointer " (click)='addExamen(modulo.idModulo,modulo.nombreModulo)'></i>
+            </div>
+            <div *ngIf='modulo.examen == true'>
+              <div class="row">
+                <div class="col-4 ">
+                  <!-- <button class="btn cancelar" (click)='openExamen(modulo.idExamen)'>Ver Examen</button> -->
+                  <i class="fas fa-eye  icon-blue pointer" (click)='openExamen(modulo.idExamen)' aria-label="ver examen" aria-expanded="false" title="ver examen"></i>
+                </div>
+                <div class="col-4 " *ngIf='EditarCursoperm == 1'>
+                  <!-- <button class="btn cancelar" [routerLink] = "['/examen-modulo/'+modulo.idExamen+'/'+nombreCurso+'/'+modulo.nombreModulo+'/'+modulo.idModulo]">Editar Examen</button> -->
+                  <i class="fas fa-edit  icon-orange pointer" [routerLink]="['/examen-modulo/'+modulo.idExamen+'/'+nombreCurso+'/'+modulo.nombreModulo+'/'+modulo.idModulo]" aria-label="editar examen" aria-expanded="false" title="editar examen"></i>
+                </div>
+                <div class="col-4 " *ngIf='EditarCursoperm == 1'>
+                  <!-- <button class="btn cancelar">Eliminar examen</button> -->
+                  <i class="fas fa-times-circle  text-danger pointer" aria-label="eliminar examen" aria-expanded="false" title="eliminar examen"></i>
+                </div>
+              </div>
+            </div>
+            <div *ngIf='modulo.examen == false && EditarCursoperm == 1'>
+              <!-- <button class="btn btn-primary" (click)='addExamen(modulo.idModulo,modulo.nombreModulo)'>Agregar Examen</button> -->
+              <i class="fas fa-plus-square fa-2x icon-blue pointer" (click)='addExamen(modulo.idModulo,modulo.nombreModulo)' aria-expanded="false" title="agregar examen"></i>
+            </div>
+          </div>
+          <div class="col-4 col-md-4 text-responsive">
+            <div class="row">
+              <div class="col-6">
+                <label>Evaluación del tema</label>
+                <label *ngIf='modulo.evaluacionTema == 100' style="color: green">
+                  {{modulo.evaluacionTema}}%
+                </label>
+                <label *ngIf='modulo.evaluacionTema < 100 && modulo.evaluacionTema > 0' style="color: red">
+                  {{modulo.evaluacionTema}}%
+                </label>
+                <label *ngIf='modulo.evaluacionTema == "No tiene Evaluación" || modulo.evaluacionTema == 0' style="color: green">
+                  No tiene Evaluación
+                </label>
+              </div>
+              <div class="col-6">
+                <label>Evaluacion del Modulo</label>
+                <label *ngIf='modulo.evaluacionEvaluacionmodulo == 100 && EditarCursoperm == 1'>
+                  {{modulo.evaluacionEvaluacionmodulo}}%<br>
+                  <button class="btn agregar text-responsive" (click)='modificaEvaluacion(modulo.idEvaluacionmodulo,modulo.evaluacionEvaluacionmodulo,modulo.idModulo)'>Modificar Evaluacion</button>
+                </label>
+                <label *ngIf='modulo.evaluacionEvaluacionmodulo < 100 && modulo.evaluacionEvaluacionmodulo > 0 && EditarCursoperm == 1'>
+                  {{modulo.evaluacionEvaluacionmodulo}}%<br>
+                  <button class="btn agregar text-responsive" (click)='modificaEvaluacion(modulo.idEvaluacionmodulo,modulo.evaluacionEvaluacionmodulo,modulo.idModulo)'>Modificar Evaluación</button>
+                </label>
+                <label *ngIf='modulo.evaluacionEvaluacionmodulo == 0 && EditarCursoperm == 1'>
+                  No tiene Evaluacion<br>
+                  <button class="btn agregar text-responsive" (click)='modificaEvaluacion(modulo.idEvaluacionmodulo,modulo.evaluacionEvaluacionmodulo,modulo.idModulo)'>Modificar Evaluación</button>
+                </label>
+                <label *ngIf='modulo.evaluacionEvaluacionmodulo == "No tiene Evaluación" && EditarCursoperm == 1'>
+                  {{modulo.evaluacionEvaluacionmodulo}}<br>
+                  <button class="btn cancelar text-responsive" (click)='agregaEvaluacion(modulo.idModulo)'>Agregar Evaluación</button>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf='modulos == false' class="text-center">
+    <p>No hay Modulos registrados aún</p>
+  </div>
+  <button id="back" class="flotantesecond btn btn-primary" (click)="openDialog()" *ngIf='EditarCursoperm == 1'><i class="fas fa-plus" style=" font-size: 30px; font-weight: bold; padding-top: 5px; color: white"></i></button>
+  <button id="back" class="flotante btn btn-primary" [routerLink]="['/crearCurso']"><i class="fas fa-chevron-left" style=" font-size: 30px; font-weight: bold; padding-top: 5px; padding-right: 5px; color: white"></i></button>
+</div>
+<!-- <div class="row">
+	
+	<div class="col-3">Evaluación</div>
+</div>
+<div>
+	<div *ngIf='modulos'>
+		<div class="col-12">
+			<div>
+				<div dragula="modulos" [(dragulaModel)]="modulos">
+					<div class="row" *ngFor="let modulo of modulos">
+						<div class="col-5">
+							<mat-card class="example-card">
+								<mat-card-header>
+									<div mat-card-avatar>
+										{{modulo.numeroModulo}}
+									</div>
+									<mat-card-title>
+										{{modulo.nombreModulo}}
+									</mat-card-title>
+									<mat-card-subtitle>
+										Duración: {{modulo.duracionModulo}}HRS
+									</mat-card-subtitle>
+								</mat-card-header>
+								<mat-card-actions>
+									<div class="row">
+										<div class="col-6">
+											<button class="btn cancelar" [routerLink]="['/temas/'+modulo.idModulo+'/'+modulo.nombreModulo+'/'+nombreCurso]">Ver Modulo</button>
+										</div>
+										<div class="col-6">
+											<button class="btn agregar" (click)='editarModulo(modulo.idModulo,modulo.nombreModulo,modulo.numeroModulo,modulo.idCurso_Modulo,modulo.statusModulo,modulo.duracionModulo)'>Editar Modulo</button>
+										</div>
+									</div>
+								</mat-card-actions>
+							</mat-card>
+						</div>
+						<div class="col-4">
+							<button class="btn btn-primary">Agregar Examen</button>
+						</div>
+						<div class="col-3">
+							<label>20%</label>
+						</div>
+						<div class="col-12"><br></div>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div *ngIf='modulos == false' class="text-center">
+	<p>No hay Modulos registrados aún</p>
+</div>
+
+<button class="flotante btn btn-primary btn-circle btn-xl" (click)="openDialog()">+</button> -->

@@ -1,0 +1,122 @@
+<div class="container paddiging-up">
+  <br>
+
+  <h3>Mis Alumnos</h3>
+  <br>
+  <div class="row">
+    <div class="col-6 col-md-6 cursitos" *ngFor="let curso of cursos">
+      <mat-card style="height: 140px; cursor: pointer;" class="cursos" (click)="mostrarAlumnos(curso.idCurso, curso);getIdUsuario(curso.idCurso)">
+        <img mat-avatar src="{{url+ 'getImagenCurso/' + curso.imagenCurso}}" class="img-fluid  profile-img-card" alt="{{curso.imagenCurso}}" width="120px" height="120px" style="float: left; border-radius: 50%; padding-right: 1%">
+        <h3 mat-line>{{curso.nombreCurso}}</h3>
+      </mat-card>
+    </div>
+    <div class="col-7 col-md-7 alumnitos" *ngFor="let alumno of alumnosreales">
+      <mat-card class="cursos" style=" cursor: pointer;" (click)="mostrarPerfil(alumno,curso.idCurso,alumno.idUsuario)" >
+        <mat-list>
+          <mat-list-item>
+            <img src="{{url+ 'getImageFileUsuario/' +alumno?.imagenUsuario}}" class="img-fluid  profile-img-card" width="100px" height="100px" style="border-radius: 50%; float: left;">
+            <h4 style="float: left;">{{alumno?.nombreUsuario + ' ' + alumno?.apellidopaternoUsuario + ' ' + alumno?.apellidomaternoUsuario}}</h4>
+          </mat-list-item>
+        </mat-list>
+      </mat-card>
+      <br>
+    </div>
+    <div class="col-12 col-md-12 perfil" style="display: none;">
+      <div class="row">
+        <div class="col-sm-12 text-center" *ngIf='Alumno?.imagenUsuario != "default.png"' id="coso">
+          <img id="imagenUsuario" src="{{url+ 'getImageFileUsuario/' +perfil?.imagenUsuario}}">
+          <button class="volver btn btn-primary" (click)="volver2()">Regresar a alumnos</button>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <h4>{{perfil?.nombreUsuario + ' ' + perfil?.apellidopaternoUsuario + ' ' + perfil?.apellidomaternoUsuario}}</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <li class="list-inline-item" style="margin-right: 1%;"><img src="../assets/img/azules/Correo.png" style="width: 20px"></li><label>{{perfil?.correoUsuario}}</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <h5 class="azul" style="font-weight: bold;">Curso</h5>
+          <h5 class="naranja">{{cur?.nombreCurso}} - Calificación: {{califCurso}}</h5>
+        </div>
+        <div class="col-7">
+          <mat-progress-bar mode="determinate" value="{{perfil?.avanceUsuarioPersonaCurso}}" style="height: 70%; width: 50%; left: 50%; border-radius: 40px;" aria-labelledby="Rating"></mat-progress-bar>
+        </div>
+        <div class="col-5">
+          <h5 class="azul" style="margin-top: -1%">{{perfil?.avanceUsuarioPersonaCurso}}%</h5>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-8">
+        </div>
+        <div class="col-4 text-center">
+          <label class="azul" style="font-weight: bold;">Evaluación</label>
+        </div>
+      </div>
+      <div *ngFor="let modulo of modulos; let a = index">
+        <div class="row">
+          <div class="col-8">
+            <div class="cursos modulos" style="margin-bottom: 10px" (click)="muestraTemas(modulo.modulo.idModulo)">
+              <label style="margin-left: 6px; cursor: pointer;">Módulo <label class="azul" style="cursor: pointer;">{{
+                  (modulo?.modulo.nombreModulo.length>78)? (modulo?.modulo.nombreModulo | slice:0:78)+'..':(modulo?.modulo.nombreModulo)}}</label></label>
+            </div>
+            <div class="temas{{modulo.modulo.idModulo}}" style="display: none;">
+              <div style="margin-left: 10px">
+                <label>Temas</label>
+              </div>
+            </div>
+          </div>
+          <div *ngFor="let califModulo of califsModulo" class=" col-4 text-center">
+            <div *ngIf="califModulo.idModulo == modulo.modulo.idModulo">
+              <label class="azul" style="font-weight: bold; margin-bottom: 55px; margin-top: 3px">{{califModulo.califModulo}}</label>
+            </div>
+          </div>
+          <!-- <div class="col-4 text-center">
+            <label class="azul" style="font-weight: bold; margin-bottom: 55px; margin-top: 3px">g</label>
+          </div> -->
+        </div>
+        <div class="temas{{modulo.modulo.idModulo}}" style="display: none;" *ngFor="let tema of modulo.modulo.temas; let i = index;">
+          <div class="row" style="margin-bottom: 7px">
+            <div class="col-1">
+            </div>
+            <div class="col-7" style=" margin-bottom: 10px; cursor: auto;" (click)="muestraDocumentos(tema.idTema)">
+              <div class="modulos">
+                <label style="margin-left: 6px;">{{tema?.nombreTema}}</label>
+              </div>
+            </div>
+            
+            <div *ngFor="let idT of calTemasFi">
+              <div class="col-4 text-center" style=" margin-bottom: 10px;" *ngIf='tema?.idTema == idT.idTema'>
+                <label class="azul">{{idT.califTema}}</label>
+              </div>
+            </div>
+
+          </div>
+
+          <div style="display: none;" class="ll{{tema.idTema}}">
+            <div class="row">
+                <div class="col-2">
+                </div>
+                      <div style="margin-bottom: 5px;margin-top: 5px" class="modulos row col-5 text-center" *ngFor='let tarea of contenido; index as i'>
+                        <div *ngIf="tarea.idTema_Material == tema.idTema">
+                          {{tarea?.nombreMaterialevalusuario}} Calif:{{tarea?.calificacionMaterialevalusuario}} 
+                        </div>
+                        <!-- <ng-template #other_content>{{ocultaDocumentos(tema.idTema)}}</ng-template> -->
+                      </div>         
+              </div>
+            </div>
+            
+                  
+        </div>
+
+      </div>
+    </div>
+    <button id="back" class="flotante btn btn-primary" style="display: none;" (click)="volver()"><i class="fas fa-chevron-left" style=" font-size: 30px; font-weight: bold; padding-top: 5px; padding-right: 5px"></i></button>
+  </div>
+</div>

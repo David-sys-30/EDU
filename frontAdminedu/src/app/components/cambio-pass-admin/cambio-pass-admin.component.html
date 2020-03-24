@@ -1,0 +1,65 @@
+<div class="container paddiging-up">
+  <br>
+  <div class="text-center col-12 azul">
+  	<h3>Cambiar Contraseña</h3>
+  </div>
+  <br>
+  <div class="text-center col-12 azul">
+  	<h3>Elegir Usuario/Persona</h3>
+  </div>
+  <br>
+  <div class="row text-center">
+    <div class="col-6">
+    	<form class="example-form">
+		  <mat-form-field class="example-full-width">
+		    <input type="text" placeholder="Usuarios/Personas" aria-label="Usuarios/Personas" matInput [formControl]="myControl" [matAutocomplete]="auto">
+		    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" >
+		      <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (onSelectionChange)="cambiarPass(option.tipo,option.id)">
+		        {{option.nombre}}
+		      </mat-option>
+		    </mat-autocomplete>
+		  </mat-form-field>
+		</form>
+    </div>
+    <div class="col-6">
+    	      <form class="col-sm-12" #loginForm='ngForm' (ngSubmit)='cambPass()'>
+			    <div class="col-12  text-center">
+			      <div class="form-group">
+			        <input type="text" class="form-control text-responsive" placeholder="Nueva Contraseña" (change)="getp1($event.target.value)" required />
+			        <span *ngIf="!password.value && password.touched" class="alert-danger text-responsive">
+								La contraseña es obligatoria
+							</span>
+					<input type="text" class="form-control text-responsive" #password='ngModel' name="password" [(ngModel)]='user.contrasenaUsuario' placeholder="Repetir Contraseña" (change)="getp2($event.target.value)" required/>
+			        <span *ngIf="!password.value && password.touched" class="alert-danger text-responsive">
+								La contraseña es obligatoria
+							</span>
+
+					<!-- <input type="text" class="form-control text-responsive" #password='ngModel' name="password" [(ngModel)]='persona.contrasenaPersona' placeholder="Repetir Contraseña" (change)="getp2($event.target.value)" required *ngIf="type == 'per'"/>
+			        <span *ngIf="!password.value && password.touched" class="alert-danger text-responsive">
+								La contraseña es obligatoria
+							</span> -->
+			      </div>
+			      <div class="form-row">
+			        <div class="col-6">
+			          <button class="btn btn-primary " *ngIf="idUU != 0">Cambiar</button>
+			        </div>
+			      </div>
+			    </div>
+			  </form>
+    </div>
+
+<!--     <div class="col-6">
+    	<form class="example-form">
+		  <mat-form-field class="example-full-width">
+		    <input type="text" placeholder="Personas" aria-label="Personas" matInput [formControl]="myControl2" [matAutocomplete]="auto">
+		    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFnPer">
+		      <mat-option *ngFor="let option2 of filteredOptions2 | async" [value]="option2.idPersona">
+		        {{option2.nombrePersona}}
+		      </mat-option>
+		    </mat-autocomplete>
+		  </mat-form-field>
+		</form>
+    </div> -->
+  </div>
+</div>
+

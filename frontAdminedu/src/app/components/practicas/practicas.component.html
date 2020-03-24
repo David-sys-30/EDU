@@ -1,0 +1,62 @@
+<div class="container paddiging-up">
+  <br>
+
+  <h3>Prácticas</h3>
+  <br>
+  <div class="row">
+    <div class="col-6 col-md-6 cursitos" *ngFor="let curso of cursos">
+      <!-- <mat-card style="height: 140px; cursor: pointer;" (click)="mostrarAlumnos(curso.idCurso)"> -->
+      <mat-card style="height: 140px; cursor: pointer;" class="cursos" (click)="mostrarModulos(curso.idCurso)">
+        <img mat-avatar src="{{url+ 'getImagenCurso/' + curso.imagenCurso}}" class="img-fluid  profile-img-card" alt="{{curso.imagenCurso}}" width="120px" height="120px" style="float: left; border-radius: 50%; padding-right: 1%">
+        <h3 mat-line>{{curso.nombreCurso}}</h3>
+      </mat-card>
+    </div>
+    <div class="modulitos" style="display: hidden; padding-left: 10%;">
+      <label class="naranja cursoContenido azul" style="font-size: 15pt;font-weight: bolder;text-transform: uppercase;">{{curso?.nombreCurso}}</label>
+      <mat-expansion-panel *ngFor='let modulo of modulos' class="modulos" hideToggle="true" #example (click)="getCalifTema(modulo.modulo.idModulo)">
+        <mat-expansion-panel-header style="cursor: pointer;">
+          <mat-panel-title>
+            <mat-icon class='float-left' *ngIf="!example.expanded"><i class="fas fa-plus azul" style="font-size: 19px"></i></mat-icon>
+            <mat-icon *ngIf="example.expanded"><i class="fas fa-minus azul" style="font-size: 19px"></i></mat-icon>
+            <label style="padding-left: 7px; padding-top: 5px; font-size: 16px; cursor: pointer;">{{modulo.modulo.nombreModulo}}</label>
+          </mat-panel-title>
+          <div *ngFor="let califModulo of califsModulo">
+            <div *ngIf="califModulo.idModulo == modulo.modulo.idModulo" class="text-center">
+              Calificación Módulo
+              <h6>{{califModulo.califModulo}}</h6>
+            </div>
+          </div>
+          <!-- <button class="btn btn-primary" (click)="mostrarAlumnos(curso.idCurso,modulo.modulo.idModulo)">Ver Exámenes</button> -->
+          <!-- <i class="fas fa-lock naranja"></i> -->
+        </mat-expansion-panel-header>
+        <mat-card class="example-card modulos" *ngFor='let tema of modulo.modulo.temas' (click)="mostrarAlumnos(curso.idCurso,modulo.modulo.idModulo,tema.idTema)">
+          <mat-card-header>
+            <mat-card-title>{{tema.nombreTema}}</mat-card-title>
+            <mat-card-subtitle>{{tema.descripcionTema}}</mat-card-subtitle>
+            <div *ngFor="let calif of califsTema" style="position: absolute;width: 100%; padding-left: 70%;">
+              <div *ngIf=" tema.idTema == calif.idTema" class="text-center">
+                Calificación Tema
+                <h6>{{calif.califTema}}</h6>
+              </div>
+            </div>
+          </mat-card-header>
+        </mat-card>
+      </mat-expansion-panel>
+      <button id="back2" class="flotante btn btn-primary" style="display: none;" (click)="volver2()"><i class="fas fa-chevron-left" style=" font-size: 30px; font-weight: bold; padding-top: 5px; padding-right: 5px"></i></button>
+    </div>
+    <div class="col-7 col-md-7 alumnitos" *ngFor="let alumno of alumnosreales">
+      <mat-card>
+        <mat-list>
+          <mat-list-item>
+            <img src="{{url+ 'getImageFileUsuario/' +alumno?.imagenUsuario}}" class="img-fluid  profile-img-card ">
+            <a href="" class="col-md-6" [routerLink]="['/calificaciones',alumno?.idUsuario,curso.idCurso,getmodulo,idTema]">
+              <h3>{{alumno?.nombreUsuario + ' ' + alumno?.apellidopaternoUsuario + ' ' + alumno?.apellidomaternoUsuario}}</h3>
+            </a>
+          </mat-list-item>
+        </mat-list>
+      </mat-card>
+      <br>
+    </div>
+    <button id="back" class="flotante btn btn-primary" style="display: none;" (click)="volver()"><i class="fas fa-chevron-left" style=" font-size: 30px; font-weight: bold; padding-top: 5px; padding-right: 5px"></i></button>
+  </div>
+</div>

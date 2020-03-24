@@ -1,0 +1,249 @@
+<div class="col-lg-12 co" style="padding-top: 12vh;">
+  <h1>{{titulo}}</h1>
+  <div *ngIf='alertUpdate'>
+    <div class="alert alert-info" role="alert">
+      {{alertUpdate}}
+    </div>
+  </div>
+  <div class="col-lg-12 text-center" id="coso">
+    <img src="{{identity.usuario[0]?.imagenUsuario}}" id="imagenUsuario" *ngIf="charImg == 'https'">
+    <img src="{{url+ '/getImageFileUsuario/' +identity.usuario[0]?.imagenUsuario}}" id="imagenUsuario" *ngIf="charImg != 'https'">
+    <!-- <img id="imagenUsuario" src="{{url+ 'getImageFileUsuario/' +usuario.usuario[0]?.imagenUsuario}}"> -->
+  </div>
+  <hr class="separador">
+  <div class="dropdown menuresponsive">
+    <i class="fas fa-bars fa-2x naranja" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    </i>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a click class="itmen  " id="1" (click)="miPerfil()">MI PERFIL</a><br>
+      <a class="itmen " id="2" (click)="misCursos()">MIS CURSOS</a><br>
+      <a class="itmen " id="4" (click)="misCal()">CALIFICACIONES</a><br>
+      <a class="itmen " id="4" (click)="miCurricula()">KÁRDEX</a><br>
+    </div>
+  </div>
+  <div class="row">
+    <div class="sidemenu text-left col-12 col-md-2 ">
+      <a click class="itmen active" id="1" (click)="miPerfil()">MI PERFIL</a><br>
+      <a class="itmen" id="2" (click)="misCursos()">MIS CURSOS</a><br>
+      <a class="itmen" id="4" (click)="misCal()">CALIFICACIONES</a><br>
+      <a class="itmen" id="4" (click)="miCurricula()">KÁRDEX</a><br>
+    </div>
+    <div class="col-md-8 col-12" id="miPer">
+      <form #updateForm='ngForm' (ngSubmit)='onSubmit()'>
+        <div class="form-group row">
+          <label class=" col-md-3 col-12 offset-md-1 offset-0 col-form-label">Nombre:</label>
+          <div class="col-md-8 col-12">
+            <input type="text" #name='ngModel' name="nombreUsuario" [(ngModel)]='usuario.usuario[0].nombreUsuario' class="form-control " required *ngIf="charImg == 'https'">
+            <input type="text" #name='ngModel' name="nombreUsuario" [(ngModel)]='usuario.usuario[0].nombreUsuario' class="form-control " required *ngIf="charImg != 'https'">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class=" col-12 col-md-3 offset-md-1 offset-0 col-form-label">Apellido Paterno:</label>
+          <div class=" col-12 col-md-8">
+            <input type="text" #paterno='ngModel' name="apellidopaternoUsuario" [(ngModel)]='usuario.usuario[0].apellidopaternoUsuario' class="form-control " required *ngIf="charImg == 'https'">
+            <input type="text" #paterno='ngModel' name="apellidopaternoUsuario" [(ngModel)]='usuario.usuario[0].apellidopaternoUsuario' class="form-control " required *ngIf="charImg != 'https'">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-12 col-md-3 offset-md-1 offset-0 col-form-label">Apellido Materno:</label>
+          <div class=" col-12 col-md-8">
+            <input type="text" #materno='ngModel' name="apellidomaternoUsuario" [(ngModel)]='usuario.usuario[0].apellidomaternoUsuario' class="form-control " required *ngIf="charImg == 'https'">
+            <input type="text" #materno='ngModel' name="apellidomaternoUsuario" [(ngModel)]='usuario.usuario[0].apellidomaternoUsuario' class="form-control " required *ngIf="charImg != 'https'">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-12 col-md-3 offset-md-1 offset-0 col-form-label">Correo Electrónico:</label>
+          <div class=" col-12 col-md-8">
+            <input type="text" #email='ngModel' name="correoUsuario" [(ngModel)]='usuario.usuario[0].correoUsuario' class="form-control" required *ngIf="charImg == 'https'">
+            <input type="text" #email='ngModel' name="correoUsuario" [(ngModel)]='usuario.usuario[0].correoUsuario' class="form-control" required *ngIf="charImg != 'https'">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 text-center">
+            <label class="btn botonAzul">Cambiar Imagen <input type="file" accept=".jpg, .png, .jpeg|images/*" placeholder="Sube una imagen..." hidden id="files" (change)='fileChangeEvent($event)'></label><br>
+            <br>
+            <output id="list"></output><br>
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="charImg != 'https'">
+          <label class="col-12 col-md-3 offset-md-1 offset-0 col-form-label">Cambiar contraseña:</label>
+          <div class="col-12 col-md-8">
+            <input type="text" name="contrasenaUsuario" [ngModel]='usuario.contrasenaUsuario' class="form-control" required disabled *ngIf="charImg == 'https'">
+            <input type="text" name="contrasenaUsuario" [ngModel]='usuario.usuario[0].contrasenaUsuario' class="form-control" required disabled *ngIf="charImg != 'https'">
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="charImg != 'https'">
+          <div class="col-12 offset-md-4 offset-0 col-md-8">
+            <input type="text" name="contrasenaUsuario" class="form-control" required placeholder="Nueva contraseña" id="newpass"><br>
+            <input type="text" name="contrasenaUsuario" class="form-control form-cent" required placeholder="Confirmar contraseña">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class=" col-12 col-md-12 text-center">
+            <input type="submit" value="Actualizar" class="btn botonAzul act" id="bot">
+          </div>
+        </div>
+        <p>
+        </p>
+      </form>
+    </div>
+    <div class="row col-md-10 col-12" id="misCur">
+      <mat-card id="card" class="col-12 col-md-3 card example-card2 text-center" *ngFor="let curso of curso; index as i">
+        <img mat-card-image src="{{url+ 'getImagenCurso/' +curso.curso.imagenCurso}}" class="img-fluid puntador" [routerLink]="['/curso-alumno/'+idUsuarioPersonaCurso+'/'+curso.curso.idCurso+'/'+curso.curso.idCurso]">
+        <mat-card-content>
+          <p class="text-responsive titulo" style="color: #1686F5">
+            {{curso.curso.nombreCurso}}
+          </p>
+          <p class="text-responsive" style="color:#FF9100">
+            {{curso.curso.resumenCurso}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="row">
+            <div class="col-12 text-center">
+              <button class="botonCurso btncur" id="btnexp{{curso.curso.idCurso}}">Terminado</button>
+              <button class="botonCurso abr" id="abrircur{{curso.curso.idCurso}}" [routerLink]="['/curso-alumno/'+curso.usuarioPersonaCurso[0].idUsuarioPersonaCurso+'/'+curso.curso.idCurso+'/'+curso.curso.idCurso]">Abrir</button>
+            </div>
+          </div>
+          <br>
+          <div class="row" style="height: 10vh;">
+            <div class="col-6 text-center">
+              <p class="titulo" style="color: #1686F5">Inicio : {{convertirFecha(curso.fechain)}}</p>
+            </div>
+            <div class="col-6 text-center">
+              <p class="titulo" style="color: #1686F5">Fin : {{convertirFecha(curso.fechaexp)}}</p>
+            </div>
+          </div>
+        </mat-card-actions>
+        <mat-card-content>
+          <section class="example-section">
+            <mat-progress-bar class="example-margin" [color]="color" [mode]="mode" [value]="curso.usuarioPersonaCurso[0].avanceUsuarioPersonaCurso" [bufferValue]="bufferValue">
+            </mat-progress-bar>
+          </section>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-md-9 col-12" id="misCalif">
+      <div>
+        Mis calificaciones
+        <hr class="linAzusep">
+      </div>
+      <div class="card col-md-12" *ngFor="let curso of curso">
+        <mat-card>
+          <mat-card-title>
+            <div class="row">
+              <div class="col-12 col-md-2">
+                <img mat-list-avatar src="{{url+ 'getImagenCurso/' +curso.curso.imagenCurso}}" style="width: 100%;height: 100%;">
+              </div>
+              <div class="col-md-6 col-12 text-responsive" style="font-size: 10pt;color: #1686F5;font-weight: bold">
+                {{curso.curso.nombreCurso}}
+                <mat-card-subtitle class="text-responsive" style="font-size: 10pt;color:#FF9100;font-weight: normal;">
+                  {{curso.curso.resumenCurso}}
+                </mat-card-subtitle>
+              </div>
+              <div class="col-md-2 text-center">
+                Calificación
+                <mat-card-subtitle class=" text-center col-12" *ngFor="let califCurso of califCursos">
+                  <p *ngIf="califCurso.idUsuarioPersonaCurso == curso.usuarioPersonaCurso[0].idUsuarioPersonaCurso">{{califCurso.califCurso}}</p>
+                </mat-card-subtitle>
+              </div>
+              <div class="col-md-2 col-12 text-center">
+                <button mat-raised-button class="btn eliminaritem botonAzul" (click)="verDetalles(curso.curso.idCurso)">
+                  Ver Detalles
+                </button>
+                <br>
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <label style="font-size: 10px; font-weight: bold; color: #1686F5">Comparte tu logro</label>
+                    <div class="row text-center">
+                      <div class="col-md-6 col-6">
+                        <a class="icon-fb" (click)="win.open('https://www.facebook.com/sharer/sharer.php?u=https://www.google.com','sharer','toolbar=0,status=0,width=548,height=325')">
+                          <i class="fab fa-facebook-square shbut" style="color: #4267b2; cursor: pointer;"></i>
+                        </a>
+                      </div>
+                      <div class="col-6 col-md-6">
+                        <a class="icon-tw" (click)="win.open('https://twitter.com/intent/tweet?text= Hey, acabo de terminar el curso '+curso.curso.nombreCurso+' Vía @CIHumana&amp; en;url='+locurl,'sharer','toolbar=0,status=0,width=548,height=325')">
+                          <i class="fab fa-twitter shbut" style="color: #1da1f2; cursor: pointer;"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-card-title>
+        </mat-card>
+      </div>
+    </div>
+    <div class="col-md-9 col-12" id="miCurricula">
+      <div class="col-12">
+        {{nomcom}}<br>
+        Kárdex
+        <hr class="linAzusep">
+      </div>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="nombreCurso">
+          <th mat-header-cell *matHeaderCellDef class="text-responsive"> Nombre del Curso </th>
+          <td mat-cell *matCellDef="let element" class="text-responsive"> {{element.curso.nombreCurso}} </td>
+        </ng-container>
+        <ng-container matColumnDef="fechaexp">
+          <th mat-header-cell *matHeaderCellDef class="text-responsive"> Fecha de término </th>
+          <td mat-cell *matCellDef="let element" class="text-responsive"> {{element.fechaexp}} </td>
+        </ng-container>
+        <ng-container matColumnDef="califCurso">
+          <th mat-header-cell *matHeaderCellDef class="text-responsive"> Calificación </th>
+          <td mat-cell *matCellDef="let element" class="text-responsive">
+            <div *ngIf="element.calif[0].idUsuarioPersonaCurso == element.usuarioPersonaCurso[0].idUsuarioPersonaCurso && element.usuarioPersonaCurso[0].avanceUsuarioPersonaCurso == 100;else en_Curso">{{element.calif[0].califCurso}}</div>
+            <ng-template #en_Curso>En curso</ng-template>
+            <!-- <div *ngIf="element.calif[0].idUsuarioPersonaCurso == element.usuarioPersonaCurso[0].idUsuarioPersonaCurso && element.usuarioPersonaCurso[0].avanceUsuarioPersonaCurso != 100">{{element.usuarioPersonaCurso[0].avanceUsuarioPersonaCurso}}</div> -->
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+ 
+    </div>
+    <div class="col-md-9 col-12" id="contenido">
+  <div>
+    Contenido
+    <hr class="linAzusep">
+  </div>
+  <div class="col-12">
+    <mat-expansion-panel *ngFor='let modulo of modulos; index as i' class="modulos" hideToggle="true" id="{{modulo.modulo.idModulo}}" [expanded]="step == modulo.modulo.idModulo" #example >
+      <mat-expansion-panel-header>
+        <mat-panel-title class="text-responsive">
+          <mat-icon class='float-left' *ngIf="!example.expanded"><i class="fas fa-plus azul" ></i></mat-icon>
+          <mat-icon *ngIf="example.expanded"><i class="fas fa-minus azul text-responsive" ></i></mat-icon>
+          <label class="text-responsive" >{{modulo.modulo.nombreModulo}}</label>
+          <div class="text-right " >
+            <div class="text-responsive">
+              Calificación:
+            </div>
+            <div class="text-right text-responsive">
+              <p  class="text-responsive" id="modulo{{modulo.modulo.idModulo}}" >0</p>
+            </div>
+          </div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-card class=" modulos" *ngFor='let tema of modulo.modulo.temas; index as f'>
+        <mat-card-header>
+          <mat-card-title class="azul text-responsive">{{tema.nombreTema}}</mat-card-title>
+          <mat-card-subtitle class="naranja text-responsive">{{tema.descripcionTema}}</mat-card-subtitle>
+          <div class="text-right text-responsive" >
+            <div class="text-responsive">
+              Calificación:
+            </div>
+            <div class="text-right" *ngFor="let califMod of califTemas">
+              <p  class="text-responsive" id="tema{{tema.idTema}}" *ngIf="califMod.tema[0].idTema == tema.idTema">{{califMod.califTema[0].califTema}}</p>
+            </div>
+          </div>
+        </mat-card-header>
+      </mat-card>
+    </mat-expansion-panel>
+  </div>
+  <a>
+    <button class="btn botonAzul text-responsive" (click)="misCal()" style="z-index: 9999;">Regresar a Mis Calificaciones</button></a>
+</div>
+  </div>
+</div>
+

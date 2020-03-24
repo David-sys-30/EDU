@@ -1,0 +1,83 @@
+<div class="container">
+	<div class="row">
+		<div class="col-6">
+			<br>
+			<label class="btn cancelar">
+				Adjuntar practica
+				<input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,.xml,.xlsx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" id="custom-input" type="file" (change)="fileChangeListener($event)" hidden>
+			</label>
+			<br><br>
+			<div *ngIf='fileList'>
+				<input #nombre = 'ngModel' [(ngModel)] = "contenido.nombreContenido" type="text" class="form-control" placeholder="Nombre Documento" name="">
+				<br>
+				<label class="text-responsive">Evaluación</label>
+				<!-- <div class="text-center">
+					<p [(ngModel)]="value">{{value}}:</p>
+				</div> -->
+				<ng5-slider [(value)]="value" [options]="options"></ng5-slider>
+				<br>
+				<div class="row">
+					<div class="col-6">
+						<button (click) = 'cancelar()' class="btn cancelar text-responsive">Cancelar</button>
+					</div>
+					<div class="col-6">
+						<button class="btn agregar text-responsive" (click)='guardarPractica()'>Guardar</button>
+					</div>	
+				</div>
+
+			</div>
+		</div>
+		<div class="col-6 text-center" *ngIf='fileList'>
+			<div *ngIf='muestra'>
+				<img src="../../../assets/img/loading5.gif" style="width: 20%">
+			</div>
+			<br>
+			<label class="text-responsive">{{nombrePractica}}</label><br>
+			<label class="text-responsive">{{tamano | number:'2.0-2'}}mb</label>
+		</div>
+		<div class="col-12" *ngIf='fileList'>
+			<div class="progress">
+				<div class="progress-bar progress-bar-striped active" role="progressbar">
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<mat-card class="example-card card-margin-top">
+		<div *ngFor='let contenido of contenidoPractica'>
+			<div *ngIf='contenido.idCategoriacontenido_Contenido == 3'>
+				<div class="row">
+					<div class="col-8 col-md-7">
+						<mat-card-header>
+							<div mat-card-avatar class="example-header-image"></div>
+							<mat-card-title class="text-responsive">
+							{{contenido.nombreContenido}}</mat-card-title>
+							<mat-card-subtitle class="text-responsive">Nombre del archivo: {{contenido.rutaContenido}}</mat-card-subtitle>
+						</mat-card-header>
+					</div>
+					<div class="col-2 col-md-3">
+						<label class="text-responsive" >Evaluación</label><br>
+						<label class="text-responsive">{{contenido.porcentajeEvaluacioncontenido}}%</label>
+					</div>
+
+				</div>
+				<div class="row">					
+					<div  class="col-4 col-md-2">
+						<button class="btn agregar text-responsive" (click)='openModificar(contenido.idContenido, contenido.idCategoriacontenido_Contenido, contenido.nombreContenido, contenido.idFormatodocumento_Contenido, contenido.rutaContenido, contenido.idTema_Contenido, contenido.statusContenido, contenido.idEvaluacioncontenido, contenido.porcentajeEvaluacioncontenido)'>Modificar</button>
+
+					</div>
+					<div class="col-4 col-md-2">
+						<a target="_blank" href="{{url+'getDocumento/'+contenido.rutaContenido}}" download><button class="btn cancelar text-responsive">Descargar</button></a>
+					</div>
+					<div class="col-4 col-md-2 text-center">
+						<i class="far fa-trash-alt"></i>	
+					</div>
+				</div>
+				<hr>
+			</div>
+		</div>
+	</mat-card>
+</div>
+
+
+

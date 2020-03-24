@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Registra un nuevo grupo</h1>
+
+<label>Nombre de Grupo:</label>
+<textarea #descripcionRequisito [(ngModel)]='group.nombreGrupo' id="divo" rows="2" class="form-control"></textarea>
+<br>
+<div class="row">
+	<div class="col-lg-6">
+		<button class="cancelar btn" (click)="onNoClick()">Cancelar</button>
+	</div>
+	<div class="col-lg-6">
+		<button class="agregar btn" (click)="agregarGrupo()">Agregar</button>
+	</div>
+</div>
